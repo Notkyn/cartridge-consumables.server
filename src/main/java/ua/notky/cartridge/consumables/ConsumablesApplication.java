@@ -1,7 +1,5 @@
 package ua.notky.cartridge.consumables;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,22 +9,22 @@ import ua.notky.cartridge.consumables.configuration.ServerConfiguration;
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
+@Slf4j
 @SpringBootApplication
 @EnableConfigurationProperties
 public class ConsumablesApplication {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumablesApplication.class);
     private ServerConfiguration configuration;
 
     @PostConstruct
     public void init() {
-        LOGGER.info("Init Global Properties: [timezone={}]", configuration.getTimeZone());
+        log.info("Init Global Properties: [timezone={}]", configuration.getTimeZone());
         TimeZone.setDefault(TimeZone.getTimeZone(configuration.getTimeZone()));
     }
 
     public static void main(String[] args) {
         SpringApplication.run(ConsumablesApplication.class, args);
 
-        LOGGER.info("Application is running...");
+        log.debug("Application is running...");
 
     }
 
