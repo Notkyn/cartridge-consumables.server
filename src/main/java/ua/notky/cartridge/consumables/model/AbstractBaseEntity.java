@@ -1,14 +1,20 @@
 package ua.notky.cartridge.consumables.model;
 
 import lombok.*;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@MappedSuperclass
 public abstract class AbstractBaseEntity implements Serializable {
     private static final long serialVersionUID = 6189444611266106785L;
 
     @Getter
     @Setter
+    @Id
+    @Column(name = "_id", nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     AbstractBaseEntity() {

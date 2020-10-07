@@ -3,13 +3,17 @@ package ua.notky.cartridge.consumables.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
+@MappedSuperclass
 public abstract class AbstractNameEntity extends AbstractBaseEntity{
     private static final long serialVersionUID = 3677815587569656130L;
 
     @Getter
     @Setter
+    @Column(name = "name", nullable = false, length = 100, unique = true)
     private String name;
 
     public AbstractNameEntity() {
