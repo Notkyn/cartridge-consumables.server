@@ -24,6 +24,10 @@ public abstract class AbstractBaseEntity implements Serializable {
         this.id = id;
     }
 
+    public boolean isNew() {
+        return getId() == null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
