@@ -16,6 +16,7 @@ public interface DepartmentService {
 
     Department get(int id);
 
+    @Transactional
     void delete(int id);
 
     List<Department> getAll();
