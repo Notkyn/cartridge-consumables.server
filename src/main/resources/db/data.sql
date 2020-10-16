@@ -1,6 +1,6 @@
 SET SQL_SAFE_UPDATES = 0;
 
-# cleaning all notes from all tables
+# cleaning all notes from all tables;
 DELETE FROM `department_cartridge_megre` WHERE `_id` > 0;
 ALTER TABLE `department_cartridge_megre` AUTO_INCREMENT = 1;
 DELETE FROM `department` WHERE `_id` > 0;
@@ -18,7 +18,7 @@ ALTER TABLE `cleaning_blade` AUTO_INCREMENT = 1;
 DELETE FROM `dispensing_blade` WHERE `_id` > 0;
 ALTER TABLE `dispensing_blade` AUTO_INCREMENT = 1;
 
-# insert new notes to all tables
+# insert new notes to all tables;
 INSERT INTO `drum`(`name`) VALUES ('drum_1');
 INSERT INTO `drum`(`name`) VALUES ('drum_2');
 INSERT INTO `drum`(`name`) VALUES ('drum_3');
