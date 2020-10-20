@@ -4,9 +4,8 @@ import ua.notky.cartridge.consumables.model.Department;
 
 import java.util.List;
 
-public class DepartmentTool {
+public class DepartmentTool extends AbstractModelTool {
     public static final int ID_DEPARTMENT_2 = 2;
-    public static final int ID_NULL_DEPARTMENT = 10;
 
     public static final Department DEPARTMENT_1 = new Department(1, "department_1");
     public static final Department DEPARTMENT_2 = new Department(ID_DEPARTMENT_2, "department_2");
