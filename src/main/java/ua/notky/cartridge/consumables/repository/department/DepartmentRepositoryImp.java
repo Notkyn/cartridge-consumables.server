@@ -9,10 +9,8 @@ import java.util.List;
 
 @Slf4j
 @Repository
-public class DepartmentRepositiryImp implements DepartmentRepository {
+public class DepartmentRepositoryImp implements DepartmentRepository {
     private CrudDepartmentRepository repository;
-
-
 
     @Override
     public Department save(Department department) {
@@ -21,7 +19,7 @@ public class DepartmentRepositiryImp implements DepartmentRepository {
     }
 
     @Override
-    public Department get(int id) {
+    public Department getById(int id) {
         log.info("Find by Id [id={}] from bd", id);
         return repository.findById(id).orElse(null);
     }

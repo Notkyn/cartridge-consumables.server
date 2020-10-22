@@ -19,7 +19,7 @@ public class DepartmentServiceImp implements DepartmentService {
 
     @Override
     public Department create(Department department) {
-        log.info("Create new Joke: {}", department);
+        log.info("Create new Department: {}", department);
         checkNotNull(department);
         checkNew(department);
         return repository.save(department);
@@ -27,7 +27,7 @@ public class DepartmentServiceImp implements DepartmentService {
 
     @Override
     public Department update(Department department) {
-        log.info("Update Joke: {}", department);
+        log.info("Update Department: {}", department);
         checkNotNull(department);
         checkUpdated(department);
         return repository.save(department);
@@ -35,19 +35,19 @@ public class DepartmentServiceImp implements DepartmentService {
 
     @Override
     public Department get(int id) {
-        log.info("Get one Joke by id={}", id);
-        return checkNotFoundWithId(repository.get(id), id);
+        log.info("Get one Department by id={}", id);
+        return checkNotFoundWithId(repository.getById(id), id);
     }
 
     @Override
     public void delete(int id) {
-        log.info("Delete Joke by id={}", id);
+        log.info("Delete Department by id={}", id);
         checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Override
     public List<Department> getAll() {
-        log.info("Get all Jokes");
+        log.info("Get all Departments");
         return repository.getAll();
     }
 

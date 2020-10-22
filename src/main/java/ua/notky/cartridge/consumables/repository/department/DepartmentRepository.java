@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DepartmentRepository {
     Department save(Department department);
-    Department get(int id);
+    Department getById(int id);
     boolean delete(int id);
     List<Department> getAll();
 }

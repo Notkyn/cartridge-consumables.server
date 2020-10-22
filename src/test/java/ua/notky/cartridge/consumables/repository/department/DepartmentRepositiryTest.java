@@ -25,14 +25,14 @@ class DepartmentRepositiryTest extends AbstractTestRepository {
         assertEquals(newDepartmetn, result);
 
         int newDepartmentId = result.getId();
-        assertEquals(repository.get(newDepartmentId), newDepartmetn);
+        assertEquals(repository.getById(newDepartmentId), newDepartmetn);
     }
 
     @Test
-    void get() {
-        assertEquals(repository.get(ID_DEPARTMENT_2), DEPARTMENT_2);
-        assertNotEquals(repository.get(ID_DEPARTMENT_2), DEPARTMENT_3);
-        assertNull(repository.get(INVALID_ID));
+    void getById() {
+        assertEquals(repository.getById(ID_DEPARTMENT_2), DEPARTMENT_2);
+        assertNotEquals(repository.getById(ID_DEPARTMENT_2), DEPARTMENT_3);
+        assertNull(repository.getById(INVALID_ID));
     }
 
     @Test
@@ -40,7 +40,7 @@ class DepartmentRepositiryTest extends AbstractTestRepository {
     void delete() {
         assertTrue(repository.delete(ID_DEPARTMENT_2));
         assertFalse(repository.delete(INVALID_ID));
-        assertNull(repository.get(ID_DEPARTMENT_2));
+        assertNull(repository.getById(ID_DEPARTMENT_2));
         assertIterableEquals(repository.getAll(),
                 Arrays.asList(DEPARTMENT_1, DEPARTMENT_3, DEPARTMENT_4, DEPARTMENT_5));
     }
