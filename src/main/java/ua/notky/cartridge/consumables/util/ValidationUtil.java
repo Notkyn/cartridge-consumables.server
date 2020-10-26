@@ -3,8 +3,13 @@ package ua.notky.cartridge.consumables.util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 import ua.notky.cartridge.consumables.model.AbstractBaseEntity;
+import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
+
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class ValidationUtil {
@@ -53,5 +58,23 @@ public class ValidationUtil {
         log.info("Check Not Found - [object={}], [msg={}]", object, msg);
         checkNotFound(object != null, msg);
         return object;
+    }
+
+    public static <T extends AbstractBaseEntity,
+            K extends AbstractBaseEntity> void checkDependencySet(T entity, Set<K> dependencies){
+        log.info("Check Dependencies of the Entity - [entity={}]", entity);
+
+        dependencies = dependencies.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+
+        checkDependency(dependencies.size() > 0, "id=" + entity.getId());
+    }
+
+    private static void checkDependency(boolean dependency, String msg){
+        log.info("Check Dependency - [dependency={}], [msg={}]", dependency, msg);
+        if(dependency){
+            throw new HasDependencyException(msg);
+        }
     }
 }

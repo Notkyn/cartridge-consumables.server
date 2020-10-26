@@ -1,8 +1,6 @@
 SET SQL_SAFE_UPDATES = 0;
 
 # cleaning all notes from all tables;
-DELETE FROM `department_cartridge_megre` WHERE `_id` > 0;
-ALTER TABLE `department_cartridge_megre` AUTO_INCREMENT = 1;
 DELETE FROM `department` WHERE `_id` > 0;
 ALTER TABLE `department` AUTO_INCREMENT = 1;
 DELETE FROM `cartridge` WHERE `_id` > 0;
@@ -49,16 +47,16 @@ INSERT INTO `dispensing_blade`(`name`) VALUES ('dispensing_blade_3');
 INSERT INTO `dispensing_blade`(`name`) VALUES ('dispensing_blade_4');
 INSERT INTO `dispensing_blade`(`name`) VALUES ('dispensing_blade_5');
 
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`) 
+INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
 	VALUES ('cartridge_1', 1, 1, 1, 1, 1);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`) 
+INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
 	VALUES ('cartridge_2', 2, 2, 2, 2, 2);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`) 
+INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
 	VALUES ('cartridge_3', 3, 3, 3, 3, 3);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`) 
+INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
 	VALUES ('cartridge_4', 4, 4, 4, 4, 4);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`) 
-	VALUES ('cartridge_5', 5, 5, 5, 5, 5);
+INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
+	VALUES ('cartridge_5', 1, 1, 1, 1, 1);
 
 INSERT INTO `department`(`name`) VALUES ('department_1');
 INSERT INTO `department`(`name`) VALUES ('department_2');
