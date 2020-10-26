@@ -11,7 +11,7 @@ import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ua.notky.cartridge.consumables.tools.data.DepartmentTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
 
 class DepartmentServiceTest extends AbstractTestService {
 

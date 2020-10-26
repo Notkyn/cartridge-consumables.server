@@ -1,6 +1,7 @@
-package ua.notky.cartridge.consumables.tools.data;
+package ua.notky.cartridge.consumables.tools.data.model;
 
 import ua.notky.cartridge.consumables.model.Department;
+import ua.notky.cartridge.consumables.tools.data.AbstractModelTool;
 
 import java.util.List;
 

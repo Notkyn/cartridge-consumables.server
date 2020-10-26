@@ -1,15 +1,16 @@
-package ua.notky.cartridge.consumables.repository.department;
+package ua.notky.cartridge.consumables.repository.model;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.notky.cartridge.consumables.model.Department;
 import ua.notky.cartridge.consumables.repository.AbstractTestRepository;
+import ua.notky.cartridge.consumables.repository.department.DepartmentRepository;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ua.notky.cartridge.consumables.tools.data.DepartmentTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
 
 class DepartmentRepositiryTest extends AbstractTestRepository {
     @Autowired

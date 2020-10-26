@@ -1,15 +1,16 @@
-package ua.notky.cartridge.consumables.repository.cartridge;
+package ua.notky.cartridge.consumables.repository.model;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.notky.cartridge.consumables.model.Cartridge;
 import ua.notky.cartridge.consumables.repository.AbstractTestRepository;
+import ua.notky.cartridge.consumables.repository.cartridge.CartridgeRepository;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ua.notky.cartridge.consumables.tools.data.CartridgeTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.*;
 
 public class CartridgeRepositoryTest extends AbstractTestRepository {
     @Autowired
@@ -18,13 +19,13 @@ public class CartridgeRepositoryTest extends AbstractTestRepository {
     @Test
     @Transactional
     void save() {
-        Cartridge newDepartmetn = getNew();
+        Cartridge newCartridge = getNew();
 
-        Cartridge result = repository.save(newDepartmetn);
-        assertEquals(newDepartmetn, result);
+        Cartridge result = repository.save(newCartridge);
+        assertEquals(newCartridge, result);
 
-        int newDepartmentId = result.getId();
-        assertEquals(repository.getById(newDepartmentId), newDepartmetn);
+        int newCartridgeId = result.getId();
+        assertEquals(repository.getById(newCartridgeId), newCartridge);
     }
 
     @Test

@@ -11,7 +11,7 @@ import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ua.notky.cartridge.consumables.tools.data.CartridgeTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.*;
 
 public class CartridgeServiceTest extends AbstractTestService {
     @Autowired
@@ -20,13 +20,13 @@ public class CartridgeServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void create() {
-        Cartridge newDepartment = getNew();
+        Cartridge newCartridge = getNew();
 
-        Cartridge result = service.create(newDepartment);
-        assertEquals(newDepartment, result);
+        Cartridge result = service.create(newCartridge);
+        assertEquals(newCartridge, result);
 
-        int newDepartmentId = result.getId();
-        assertEquals(service.get(newDepartmentId), newDepartment);
+        int newCartridgeId = result.getId();
+        assertEquals(service.get(newCartridgeId), newCartridge);
     }
 
     @Test

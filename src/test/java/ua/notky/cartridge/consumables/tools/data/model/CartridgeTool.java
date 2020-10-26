@@ -1,8 +1,11 @@
-package ua.notky.cartridge.consumables.tools.data;
+package ua.notky.cartridge.consumables.tools.data.model;
 
 import ua.notky.cartridge.consumables.model.Cartridge;
+import ua.notky.cartridge.consumables.tools.data.AbstractModelTool;
 
 import java.util.List;
+
+import static ua.notky.cartridge.consumables.tools.data.model.parts.CleaningBladeTool.CLEANING_BLADE_2;
 
 public class CartridgeTool extends AbstractModelTool {
     public static final int ID_CARTRIDGE_2 = 2;
@@ -17,7 +20,9 @@ public class CartridgeTool extends AbstractModelTool {
             CARTRIDGE_3, CARTRIDGE_4, CARTRIDGE_5);
 
     public static Cartridge getNew(){
-        return new Cartridge("New Cartridge");
+        Cartridge cartridge = new Cartridge("New Cartridge");
+        cartridge.setCleaningBlade(CLEANING_BLADE_2);
+        return cartridge;
     }
 
     public static Cartridge getCopy(Cartridge value){
