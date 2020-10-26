@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.notky.cartridge.consumables.model.Cartridge;
 import ua.notky.cartridge.consumables.service.AbstractTestService;
+import ua.notky.cartridge.consumables.service.model.cartridge.CartridgeService;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 

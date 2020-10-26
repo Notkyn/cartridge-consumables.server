@@ -1,11 +1,10 @@
-package ua.notky.cartridge.consumables.service.model.parts.imp;
+package ua.notky.cartridge.consumables.service.model.parts.cleaningblade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.notky.cartridge.consumables.model.parts.CleaningBlade;
 import ua.notky.cartridge.consumables.repository.parts.cleaningblade.CleaningBladeRepository;
-import ua.notky.cartridge.consumables.service.model.parts.CleaningBladeService;
 
 import java.util.List;
 

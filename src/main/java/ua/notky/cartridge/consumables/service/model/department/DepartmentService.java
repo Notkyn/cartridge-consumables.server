@@ -1,4 +1,4 @@
-package ua.notky.cartridge.consumables.service.model;
+package ua.notky.cartridge.consumables.service.model.department;
 
 import org.springframework.transaction.annotation.Transactional;
 import ua.notky.cartridge.consumables.model.Department;

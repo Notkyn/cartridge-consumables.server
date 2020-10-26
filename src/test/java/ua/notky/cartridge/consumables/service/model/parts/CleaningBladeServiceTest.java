@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.notky.cartridge.consumables.model.parts.CleaningBlade;
 import ua.notky.cartridge.consumables.service.AbstractTestService;
+import ua.notky.cartridge.consumables.service.model.parts.cleaningblade.CleaningBladeService;
 import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;

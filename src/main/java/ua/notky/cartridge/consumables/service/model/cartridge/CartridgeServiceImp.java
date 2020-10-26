@@ -1,11 +1,11 @@
-package ua.notky.cartridge.consumables.service.model.imp;
+package ua.notky.cartridge.consumables.service.model.cartridge;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.notky.cartridge.consumables.model.Cartridge;
 import ua.notky.cartridge.consumables.repository.cartridge.CartridgeRepository;
-import ua.notky.cartridge.consumables.service.model.CartridgeService;
+import ua.notky.cartridge.consumables.service.model.cartridge.CartridgeService;
 
 import java.util.List;
 

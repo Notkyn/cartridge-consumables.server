@@ -1,4 +1,4 @@
-package ua.notky.cartridge.consumables.service.model.parts;
+package ua.notky.cartridge.consumables.service.model.parts.cleaningblade;
 
 import org.springframework.transaction.annotation.Transactional;
 import ua.notky.cartridge.consumables.model.parts.CleaningBlade;
