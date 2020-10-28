@@ -3,6 +3,7 @@ package ua.notky.cartridge.consumables.model;
 import ua.notky.cartridge.consumables.model.parts.CleaningBlade;
 import ua.notky.cartridge.consumables.model.parts.DispensingBlade;
 import ua.notky.cartridge.consumables.model.parts.Drum;
+import ua.notky.cartridge.consumables.model.parts.MagneticShaft;
 
 import javax.persistence.*;
 
@@ -22,6 +23,10 @@ public class Cartridge extends AbstractNameEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_dispensing_blade", nullable = false)
     private DispensingBlade dispensingBlade;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "_id_magnetic_shaft", nullable = false)
+    private MagneticShaft magneticShaft;
 
 
     public Cartridge() {
@@ -57,5 +62,13 @@ public class Cartridge extends AbstractNameEntity {
 
     public void setDispensingBlade(DispensingBlade dispensingBlade) {
         this.dispensingBlade = dispensingBlade;
+    }
+
+    public MagneticShaft getMagneticShaft() {
+        return magneticShaft;
+    }
+
+    public void setMagneticShaft(MagneticShaft magneticShaft) {
+        this.magneticShaft = magneticShaft;
     }
 }
