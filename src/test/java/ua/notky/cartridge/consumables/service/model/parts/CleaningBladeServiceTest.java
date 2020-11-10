@@ -34,16 +34,19 @@ public class CleaningBladeServiceTest extends AbstractTestService {
     }
 
     @Test
+    @Transactional
     void createIllegalArgument(){
         assertThrows(IllegalArgumentException.class, () -> service.create(null));
     }
 
     @Test
+    @Transactional
     void createIllegalEntity(){
         assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(CLEANING_BLADE_2)));
     }
 
     @Test
+    @Transactional
     void update() {
         CleaningBlade updated = getUpdated(CLEANING_BLADE_2);
 
@@ -54,7 +57,7 @@ public class CleaningBladeServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void updateIllegalArgument(){
-        assertThrows(IllegalArgumentException.class, () -> service.create(null));
+        assertThrows(IllegalArgumentException.class, () -> service.update(null));
     }
 
     @Test

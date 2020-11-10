@@ -11,6 +11,12 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.parts.CleaningBladeTool.CLEANING_BLADE_2;
+import static ua.notky.cartridge.consumables.tools.data.model.parts.DispensingBladeTool.DISPENSING_BLADE_2;
+import static ua.notky.cartridge.consumables.tools.data.model.parts.DrumTool.DRUM_2;
+import static ua.notky.cartridge.consumables.tools.data.model.parts.MagneticShaftTool.MAGNETIC_SHAFT_2;
+import static ua.notky.cartridge.consumables.tools.data.model.parts.PrimaryChargeShaftTool.PRIMARY_CHARGE_SHAFT_2;
+import static ua.notky.cartridge.consumables.tools.data.model.parts.TonerTool.TONER_2;
 
 public class CartridgeRepositoryTest extends AbstractTestRepository {
     @Autowired
@@ -33,6 +39,18 @@ public class CartridgeRepositoryTest extends AbstractTestRepository {
         assertEquals(repository.getById(ID_CARTRIDGE_2), CARTRIDGE_2);
         assertNotEquals(repository.getById(ID_CARTRIDGE_2), CARTRIDGE_3);
         assertNull(repository.getById(INVALID_ID));
+    }
+
+    @Test
+    void getWithAllParts(){
+        Cartridge cartridge = repository.getWithAllParts(ID_CARTRIDGE_2);
+        assertEquals(cartridge, CARTRIDGE_2);
+        assertEquals(cartridge.getToner(), TONER_2);
+        assertEquals(cartridge.getDrum(), DRUM_2);
+        assertEquals(cartridge.getMagneticShaft(), MAGNETIC_SHAFT_2);
+        assertEquals(cartridge.getPrimaryChargeShaft(), PRIMARY_CHARGE_SHAFT_2);
+        assertEquals(cartridge.getCleaningBlade(), CLEANING_BLADE_2);
+        assertEquals(cartridge.getDispensingBlade(), DISPENSING_BLADE_2);
     }
 
     @Test

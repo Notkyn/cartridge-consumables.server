@@ -39,6 +39,12 @@ public class CartridgeServiceImp implements CartridgeService {
     }
 
     @Override
+    public Cartridge getWithAllParts(int id) {
+        log.info("Get one Cartridge by id={} with all parts", id);
+        return checkNotFoundWithId(repository.getWithAllParts(id), id);
+    }
+
+    @Override
     public void delete(int id) {
         log.info("Delete Cartridge by id={}", id);
         checkNotFoundWithId(repository.delete(id), id);

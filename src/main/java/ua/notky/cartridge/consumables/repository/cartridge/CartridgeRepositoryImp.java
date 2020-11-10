@@ -25,6 +25,12 @@ public class CartridgeRepositoryImp implements CartridgeRepository {
     }
 
     @Override
+    public Cartridge getWithAllParts(int id) {
+        log.info("Find by Id [id={}] from bd with all parts", id);
+        return repository.getWithAllParts(id);
+    }
+
+    @Override
     public boolean delete(int id) {
         log.info("Delete from bd with id={}", id);
         return repository.delete(id) != 0;

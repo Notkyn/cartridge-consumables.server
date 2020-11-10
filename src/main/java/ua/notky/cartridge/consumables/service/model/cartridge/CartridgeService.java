@@ -14,6 +14,7 @@ public interface CartridgeService {
     Cartridge update(Cartridge cartridge);
 
     Cartridge get(int id);
+    Cartridge getWithAllParts(int id);
 
     @Transactional
     void delete(int id);

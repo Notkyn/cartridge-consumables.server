@@ -58,6 +58,7 @@ CREATE TABLE `dispensing_blade`(
 CREATE TABLE `cartridge`(
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL UNIQUE,
+  `coef_toner` INT UNSIGNED NOT NULL,
   `_id_toner` INT UNSIGNED NOT NULL,
   `_id_drum` INT UNSIGNED NOT NULL,
   `_id_magnetic_shaft` INT UNSIGNED NOT NULL,

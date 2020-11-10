@@ -35,16 +35,19 @@ public class MagneticShaftServiceTest extends AbstractTestService {
     }
 
     @Test
+    @Transactional
     void createIllegalArgument(){
         assertThrows(IllegalArgumentException.class, () -> service.create(null));
     }
 
     @Test
+    @Transactional
     void createIllegalEntity(){
         assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(MAGNETIC_SHAFT_2)));
     }
 
     @Test
+    @Transactional
     void update() {
         MagneticShaft updated = getUpdated(MAGNETIC_SHAFT_2);
 
@@ -55,7 +58,7 @@ public class MagneticShaftServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void updateIllegalArgument(){
-        assertThrows(IllegalArgumentException.class, () -> service.create(null));
+        assertThrows(IllegalArgumentException.class, () -> service.update(null));
     }
 
     @Test

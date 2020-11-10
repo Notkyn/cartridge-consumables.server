@@ -32,16 +32,19 @@ class DepartmentServiceTest extends AbstractTestService {
     }
 
     @Test
+    @Transactional
     void createIllegalArgument(){
         assertThrows(IllegalArgumentException.class, () -> service.create(null));
     }
 
     @Test
+    @Transactional
     void createIllegalEntity(){
         assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(DEPARTMENT_2)));
     }
 
     @Test
+    @Transactional
     void update() {
         Department updated = getUpdated(DEPARTMENT_2);
 
@@ -52,7 +55,7 @@ class DepartmentServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void updateIllegalArgument(){
-        assertThrows(IllegalArgumentException.class, () -> service.create(null));
+        assertThrows(IllegalArgumentException.class, () -> service.update(null));
     }
 
     @Test

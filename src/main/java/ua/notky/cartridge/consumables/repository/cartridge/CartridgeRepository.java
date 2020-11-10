@@ -7,6 +7,7 @@ import java.util.List;
 public interface CartridgeRepository {
     Cartridge save(Cartridge cartridge);
     Cartridge getById(int id);
+    Cartridge getWithAllParts(int id);
     boolean delete(int id);
     List<Cartridge> getAll();
 }

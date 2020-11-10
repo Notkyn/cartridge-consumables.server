@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ConfigurableApplicationContext;
 import ua.notky.cartridge.consumables.configuration.ServerConfiguration;
+import ua.notky.cartridge.consumables.service.model.cartridge.CartridgeService;
+import ua.notky.cartridge.consumables.service.model.parts.cleaningblade.CleaningBladeService;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -22,9 +25,14 @@ public class ConsumablesApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ConsumablesApplication.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(ConsumablesApplication.class, args);
 
         log.debug("Application is running...");
+
+        CartridgeService cartridgeService = ctx.getBean(CartridgeService.class);
+        CleaningBladeService cleaningBladeService = ctx.getBean(CleaningBladeService.class);
+
+        cartridgeService.delete(2);
 
     }
 

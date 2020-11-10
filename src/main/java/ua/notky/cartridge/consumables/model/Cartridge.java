@@ -51,4 +51,14 @@ public class Cartridge extends AbstractNameEntity {
     public Cartridge(Integer id, String name) {
         super(id, name);
     }
+
+    public Cartridge(Integer id, String name, int coefToner) {
+        super(id, name);
+        this.coefToner = coefToner;
+    }
+
+    public Cartridge(String name, int coefToner) {
+        super(name);
+        this.coefToner = coefToner;
+    }
 }

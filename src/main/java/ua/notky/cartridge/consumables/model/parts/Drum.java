@@ -1,5 +1,7 @@
 package ua.notky.cartridge.consumables.model.parts;
 
+import lombok.Getter;
+import lombok.Setter;
 import ua.notky.cartridge.consumables.model.AbstractNameEntity;
 import ua.notky.cartridge.consumables.model.Cartridge;
 
@@ -9,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "drum")
 public class Drum extends AbstractNameEntity {
@@ -26,13 +30,5 @@ public class Drum extends AbstractNameEntity {
 
     public Drum(Integer id, String name) {
         super(id, name);
-    }
-
-    public Set<Cartridge> getCartridges() {
-        return cartridges;
-    }
-
-    public void setCartridges(Set<Cartridge> cartridges) {
-        this.cartridges = cartridges;
     }
 }

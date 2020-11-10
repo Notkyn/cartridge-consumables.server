@@ -36,16 +36,19 @@ public class TonerServiceTest extends AbstractTestService {
     }
 
     @Test
+    @Transactional
     void createIllegalArgument(){
         assertThrows(IllegalArgumentException.class, () -> service.create(null));
     }
 
     @Test
+    @Transactional
     void createIllegalEntity(){
         assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(TONER_2)));
     }
 
     @Test
+    @Transactional
     void update() {
         Toner updated = getUpdated(TONER_2);
 
@@ -56,7 +59,7 @@ public class TonerServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void updateIllegalArgument(){
-        assertThrows(IllegalArgumentException.class, () -> service.create(null));
+        assertThrows(IllegalArgumentException.class, () -> service.update(null));
     }
 
     @Test
