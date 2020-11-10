@@ -1,13 +1,24 @@
 package ua.notky.cartridge.consumables.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import ua.notky.cartridge.consumables.model.parts.*;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "cartridge")
 public class Cartridge extends AbstractNameEntity {
     private static final long serialVersionUID = 4466775734839249457L;
+
+    @Column(name = "coef_toner", nullable = false)
+    private int coefToner;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "_id_toner", nullable = false)
+    private Toner toner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_drum", nullable = false)
@@ -39,45 +50,5 @@ public class Cartridge extends AbstractNameEntity {
 
     public Cartridge(Integer id, String name) {
         super(id, name);
-    }
-
-    public Drum getDrum() {
-        return drum;
-    }
-
-    public void setDrum(Drum drum) {
-        this.drum = drum;
-    }
-
-    public void setCleaningBlade(CleaningBlade cleaningBlade) {
-        this.cleaningBlade = cleaningBlade;
-    }
-
-    public CleaningBlade getCleaningBlade() {
-        return cleaningBlade;
-    }
-
-    public DispensingBlade getDispensingBlade() {
-        return dispensingBlade;
-    }
-
-    public void setDispensingBlade(DispensingBlade dispensingBlade) {
-        this.dispensingBlade = dispensingBlade;
-    }
-
-    public MagneticShaft getMagneticShaft() {
-        return magneticShaft;
-    }
-
-    public void setMagneticShaft(MagneticShaft magneticShaft) {
-        this.magneticShaft = magneticShaft;
-    }
-
-    public PrimaryChargeShaft getPrimaryChargeShaft() {
-        return primaryChargeShaft;
-    }
-
-    public void setPrimaryChargeShaft(PrimaryChargeShaft primaryChargeShaft) {
-        this.primaryChargeShaft = primaryChargeShaft;
     }
 }

@@ -5,6 +5,8 @@ DELETE FROM `department` WHERE `_id` > 0;
 ALTER TABLE `department` AUTO_INCREMENT = 1;
 DELETE FROM `cartridge` WHERE `_id` > 0;
 ALTER TABLE `cartridge` AUTO_INCREMENT = 1;
+DELETE FROM `toner` WHERE `_id` > 0;
+ALTER TABLE `toner` AUTO_INCREMENT = 1;
 DELETE FROM `drum` WHERE `_id` > 0;
 ALTER TABLE `drum` AUTO_INCREMENT = 1;
 DELETE FROM `magnetic_shaft` WHERE `_id` > 0;
@@ -17,6 +19,12 @@ DELETE FROM `dispensing_blade` WHERE `_id` > 0;
 ALTER TABLE `dispensing_blade` AUTO_INCREMENT = 1;
 
 # insert new notes to all tables;
+INSERT INTO `toner`(`name`) VALUES ('toner_1');
+INSERT INTO `toner`(`name`) VALUES ('toner_2');
+INSERT INTO `toner`(`name`) VALUES ('toner_3');
+INSERT INTO `toner`(`name`) VALUES ('toner_4');
+INSERT INTO `toner`(`name`) VALUES ('toner_5');
+
 INSERT INTO `drum`(`name`) VALUES ('drum_1');
 INSERT INTO `drum`(`name`) VALUES ('drum_2');
 INSERT INTO `drum`(`name`) VALUES ('drum_3');
@@ -47,16 +55,16 @@ INSERT INTO `dispensing_blade`(`name`) VALUES ('dispensing_blade_3');
 INSERT INTO `dispensing_blade`(`name`) VALUES ('dispensing_blade_4');
 INSERT INTO `dispensing_blade`(`name`) VALUES ('dispensing_blade_5');
 
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
-	VALUES ('cartridge_1', 1, 1, 1, 1, 1);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
-	VALUES ('cartridge_2', 2, 2, 2, 2, 2);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
-	VALUES ('cartridge_3', 3, 3, 3, 3, 3);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
-	VALUES ('cartridge_4', 4, 4, 4, 4, 4);
-INSERT INTO `cartridge`(`name`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
-	VALUES ('cartridge_5', 1, 1, 1, 1, 1);
+INSERT INTO `cartridge`(`name`, `_id_toner`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
+	VALUES ('cartridge_1', 1, 1, 1, 1, 1, 1);
+INSERT INTO `cartridge`(`name`, `_id_toner`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
+	VALUES ('cartridge_2', 2, 2, 2, 2, 2, 2);
+INSERT INTO `cartridge`(`name`, `_id_toner`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
+	VALUES ('cartridge_3', 3, 3, 3, 3, 3, 3);
+INSERT INTO `cartridge`(`name`, `_id_toner`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
+	VALUES ('cartridge_4', 4, 4, 4, 4, 4, 4);
+INSERT INTO `cartridge`(`name`, `_id_toner`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
+	VALUES ('cartridge_5', 1, 1, 1, 1, 1, 1);
 
 INSERT INTO `department`(`name`) VALUES ('department_1');
 INSERT INTO `department`(`name`) VALUES ('department_2');

@@ -18,7 +18,7 @@ import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALI
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.PrimaryChargeShaftTool.*;
 
-public class PrimaryCheargeShaftServiceTest extends AbstractTestService {
+public class PrimaryChargeShaftServiceTest extends AbstractTestService {
     @Autowired
     private PrimaryChargeShaftService service;
 
