@@ -85,7 +85,10 @@ CREATE TABLE `cartridge`(
 CREATE TABLE `department`(
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL UNIQUE,
-  PRIMARY KEY(`_id`)
+  `_id_cartridge` INT UNSIGNED NOT NULL,
+  PRIMARY KEY(`_id`),
+  CONSTRAINT `_id_cartridge_ibfk_1`
+   FOREIGN KEY(`_id_cartridge`) REFERENCES `cartridge`(`_id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8mb4;

@@ -1,5 +1,6 @@
 package ua.notky.cartridge.consumables.repository.cartridge;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,6 +12,7 @@ public interface CrudCartridgeRepository extends JpaRepository<Cartridge, Intege
     int delete(int id);
 
 
+    @EntityGraph(attributePaths = {"departments"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT c FROM Cartridge c "
             + "JOIN FETCH c.toner "
             + "JOIN FETCH c.drum "
@@ -20,8 +22,4 @@ public interface CrudCartridgeRepository extends JpaRepository<Cartridge, Intege
             + "JOIN FETCH c.dispensingBlade "
             + " WHERE c.id=?1")
     Cartridge getWithAllParts(int id);
-/*
-//    @Query("SELECT c FROM Cartridge c JOIN FETCH c.cleaningBlade")
-    @Query("SELECT c FROM Cartridge c")
-    Cartridge getAll();*/
 }

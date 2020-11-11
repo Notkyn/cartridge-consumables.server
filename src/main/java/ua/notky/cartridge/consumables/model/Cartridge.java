@@ -5,6 +5,7 @@ import lombok.Setter;
 import ua.notky.cartridge.consumables.model.parts.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -39,6 +40,9 @@ public class Cartridge extends AbstractNameEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_primary_charge_shaft", nullable = false)
     private PrimaryChargeShaft primaryChargeShaft;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cartridge")
+    private Set<Department> departments;
 
 
     public Cartridge() {

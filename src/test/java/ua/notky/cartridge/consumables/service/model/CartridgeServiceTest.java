@@ -10,9 +10,11 @@ import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_2;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.CleaningBladeTool.CLEANING_BLADE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.DispensingBladeTool.DISPENSING_BLADE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.DrumTool.DRUM_2;
@@ -82,6 +84,8 @@ public class CartridgeServiceTest extends AbstractTestService {
         assertEquals(cartridge.getPrimaryChargeShaft(), PRIMARY_CHARGE_SHAFT_2);
         assertEquals(cartridge.getCleaningBlade(), CLEANING_BLADE_2);
         assertEquals(cartridge.getDispensingBlade(), DISPENSING_BLADE_2);
+        assertIterableEquals(cartridge.getDepartments(),
+                Collections.singletonList(DEPARTMENT_2));
     }
 
     @Test
@@ -92,10 +96,9 @@ public class CartridgeServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void delete() {
-        service.delete(ID_CARTRIDGE_2);
+        service.delete(ID_CARTRIDGE_5);
         assertIterableEquals(service.getAll(),
-                Arrays.asList(CARTRIDGE_1, CARTRIDGE_3, CARTRIDGE_4, CARTRIDGE_5));
-
+                Arrays.asList(CARTRIDGE_1, CARTRIDGE_2, CARTRIDGE_3, CARTRIDGE_4));
     }
 
     @Test

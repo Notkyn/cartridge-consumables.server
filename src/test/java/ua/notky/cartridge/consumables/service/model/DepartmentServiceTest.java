@@ -12,6 +12,7 @@ import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
 
 class DepartmentServiceTest extends AbstractTestService {
@@ -68,6 +69,13 @@ class DepartmentServiceTest extends AbstractTestService {
     void get() {
         assertEquals(service.get(ID_DEPARTMENT_2), DEPARTMENT_2);
         assertNotEquals(service.get(ID_DEPARTMENT_2), DEPARTMENT_3);
+    }
+
+    @Test
+    void getWithCartridge(){
+        Department department = service.getWithCartridge(ID_DEPARTMENT_2);
+        assertEquals(department, DEPARTMENT_2);
+        assertEquals(department.getCartridge(), CARTRIDGE_2);
     }
 
     @Test

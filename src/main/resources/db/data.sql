@@ -66,10 +66,10 @@ INSERT INTO `cartridge`(`name`, `coef_toner`, `_id_toner`, `_id_drum`, `_id_magn
 INSERT INTO `cartridge`(`name`, `coef_toner`, `_id_toner`, `_id_drum`, `_id_magnetic_shaft`, `_id_primary_charge_shaft`, `_id_cleaning_blade`, `_id_dispensing_blade`)
   VALUES ('cartridge_5', 1, 1, 1, 1, 1, 1, 1);
 
-INSERT INTO `department`(`name`) VALUES ('department_1');
-INSERT INTO `department`(`name`) VALUES ('department_2');
-INSERT INTO `department`(`name`) VALUES ('department_3');
-INSERT INTO `department`(`name`) VALUES ('department_4');
-INSERT INTO `department`(`name`) VALUES ('department_5');
+INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_1', 1);
+INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_2', 2);
+INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_3', 3);
+INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_4', 4);
+INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_5', 1);
 
 SET SQL_SAFE_UPDATES = 1;

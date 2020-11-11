@@ -25,6 +25,12 @@ public class DepartmentRepositoryImp implements DepartmentRepository {
     }
 
     @Override
+    public Department getWithCartridge(int id) {
+        log.info("Find by Id [id={}] from bd with cartridge", id);
+        return repository.getWithCartridge(id);
+    }
+
+    @Override
     public boolean delete(int id) {
         log.info("Delete from bd with id={}", id);
         return repository.delete(id) != 0;

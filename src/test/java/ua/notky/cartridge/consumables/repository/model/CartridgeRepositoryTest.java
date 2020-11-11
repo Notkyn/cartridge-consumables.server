@@ -8,9 +8,11 @@ import ua.notky.cartridge.consumables.repository.AbstractTestRepository;
 import ua.notky.cartridge.consumables.repository.cartridge.CartridgeRepository;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_2;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.CleaningBladeTool.CLEANING_BLADE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.DispensingBladeTool.DISPENSING_BLADE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.DrumTool.DRUM_2;
@@ -51,16 +53,18 @@ public class CartridgeRepositoryTest extends AbstractTestRepository {
         assertEquals(cartridge.getPrimaryChargeShaft(), PRIMARY_CHARGE_SHAFT_2);
         assertEquals(cartridge.getCleaningBlade(), CLEANING_BLADE_2);
         assertEquals(cartridge.getDispensingBlade(), DISPENSING_BLADE_2);
+        assertIterableEquals(cartridge.getDepartments(),
+                Collections.singletonList(DEPARTMENT_2));
     }
 
     @Test
     @Transactional
     void delete() {
-        assertTrue(repository.delete(ID_CARTRIDGE_2));
+        assertTrue(repository.delete(ID_CARTRIDGE_5));
         assertFalse(repository.delete(INVALID_ID));
-        assertNull(repository.getById(ID_CARTRIDGE_2));
+        assertNull(repository.getById(ID_CARTRIDGE_5));
         assertIterableEquals(repository.getAll(),
-                Arrays.asList(CARTRIDGE_1, CARTRIDGE_3, CARTRIDGE_4, CARTRIDGE_5));
+                Arrays.asList(CARTRIDGE_1, CARTRIDGE_2, CARTRIDGE_3, CARTRIDGE_4));
     }
 
     @Test

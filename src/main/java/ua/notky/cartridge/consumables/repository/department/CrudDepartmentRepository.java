@@ -10,4 +10,9 @@ public interface CrudDepartmentRepository extends JpaRepository<Department, Inte
     @Modifying
     @Query(value = "DELETE FROM Department d WHERE d.id=?1")
     int delete(int id);
+
+    @Query("SELECT d FROM Department d "
+            + "JOIN FETCH d.cartridge "
+            + " WHERE d.id=?1")
+    Department getWithCartridge(int id);
 }
