@@ -31,9 +31,16 @@ public class DepartmentRepositoryImp implements DepartmentRepository {
     }
 
     @Override
-    public boolean delete(int id) {
-        log.info("Delete from bd with id={}", id);
-        return repository.delete(id) != 0;
+    public Department getWithWorkDays(int id) {
+        log.info("Find by Id [id={}] from bd with work days", id);
+        return repository.getWithWorkDays(id);
+    }
+
+    @Override
+    public boolean delete(Department department) {
+        log.info("Delete from bd with id={}", department.getId());
+        repository.delete(department);
+        return repository.findById(department.getId()).orElse(null) == null;
     }
 
     @Override

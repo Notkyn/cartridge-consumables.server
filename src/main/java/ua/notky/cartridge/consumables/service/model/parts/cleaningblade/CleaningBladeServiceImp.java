@@ -46,7 +46,7 @@ public class CleaningBladeServiceImp implements CleaningBladeService {
     @Override
     public void delete(int id) {
         log.info("Delete Cleaning Blade by id={}", id);
-        CleaningBlade blade = checkNotFoundWithId(repository.getById(id), id);
+        CleaningBlade blade = checkNotFoundWithId(repository.getWithCartridges(id), id);
         checkDependencySet(blade, blade.getCartridges());
         repository.delete(id);
     }

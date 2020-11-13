@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "department")
@@ -15,6 +17,11 @@ public class Department extends AbstractNameEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_cartridge", nullable = false)
     private Cartridge cartridge;
+
+    @Getter
+    @Setter
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "departments")
+    private List<WorkingDay> workingDays = new ArrayList<>();
 
     public Department() {
     }

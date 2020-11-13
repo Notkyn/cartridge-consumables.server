@@ -8,6 +8,7 @@ public interface DepartmentRepository {
     Department save(Department department);
     Department getById(int id);
     Department getWithCartridge(int id);
-    boolean delete(int id);
+    Department getWithWorkDays(int id);
+    boolean delete(Department department);
     List<Department> getAll();
 }

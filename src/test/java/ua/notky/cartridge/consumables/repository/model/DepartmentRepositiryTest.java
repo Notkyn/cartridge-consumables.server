@@ -8,15 +8,17 @@ import ua.notky.cartridge.consumables.repository.AbstractTestRepository;
 import ua.notky.cartridge.consumables.repository.department.DepartmentRepository;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.WORKING_DAY_1;
+import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.WORKING_DAY_2;
 
 class DepartmentRepositiryTest extends AbstractTestRepository {
     @Autowired
     private DepartmentRepository repository;
-
 
     @Test
     @Transactional
@@ -45,10 +47,17 @@ class DepartmentRepositiryTest extends AbstractTestRepository {
     }
 
     @Test
+    void getWithWorkingDay(){
+        Department department = repository.getWithWorkDays(ID_DEPARTMENT_2);
+        assertEquals(department, DEPARTMENT_2);
+        assertIterableEquals(department.getWorkingDays(),
+                List.of(WORKING_DAY_1, WORKING_DAY_2));
+    }
+
+    @Test
     @Transactional
     void delete() {
-        assertTrue(repository.delete(ID_DEPARTMENT_5));
-        assertFalse(repository.delete(INVALID_ID));
+        assertTrue(repository.delete(DEPARTMENT_5));
         assertNull(repository.getById(ID_DEPARTMENT_5));
         assertIterableEquals(repository.getAll(),
                 Arrays.asList(DEPARTMENT_1, DEPARTMENT_2, DEPARTMENT_3, DEPARTMENT_4));

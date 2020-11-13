@@ -7,6 +7,7 @@ import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -67,6 +68,17 @@ public class ValidationUtil {
         dependencies = dependencies.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
+
+        checkDependency(dependencies.size() > 0, "id=" + entity.getId());
+    }
+
+    public static <T extends AbstractBaseEntity,
+            K extends AbstractBaseEntity> void checkDependencyList(T entity, List<K> dependencies){
+        log.info("Check Dependencies of the Entity - [entity={}]", entity);
+
+        dependencies = dependencies.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
         checkDependency(dependencies.size() > 0, "id=" + entity.getId());
     }

@@ -45,9 +45,18 @@ public class DepartmentServiceImp implements DepartmentService {
     }
 
     @Override
+    public Department getWithWorkDays(int id) {
+        log.info("Get one Department by id={} with work days", id);
+        return checkNotFoundWithId(repository.getWithWorkDays(id), id);
+    }
+
+    @Override
     public void delete(int id) {
         log.info("Delete Department by id={}", id);
-        checkNotFoundWithId(repository.delete(id), id);
+        Department department = repository.getWithWorkDays(id);
+        checkNotFoundWithId(department, id);
+        checkDependencyList(department, department.getWorkingDays());
+        repository.delete(department);
     }
 
     @Override

@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `working_day_department_megre`;
+DROP TABLE IF EXISTS `working_day`;
 DROP TABLE IF EXISTS `department`;
 DROP TABLE IF EXISTS `cartridge`;
 DROP TABLE IF EXISTS `toner`;
@@ -88,7 +90,28 @@ CREATE TABLE `department`(
   `_id_cartridge` INT UNSIGNED NOT NULL,
   PRIMARY KEY(`_id`),
   CONSTRAINT `_id_cartridge_ibfk_1`
-   FOREIGN KEY(`_id_cartridge`) REFERENCES `cartridge`(`_id`)
+    FOREIGN KEY(`_id_cartridge`) REFERENCES `cartridge`(`_id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARACTER SET = utf8mb4;
+
+CREATE TABLE `working_day`(
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `date` TIMESTAMP NOT NULL UNIQUE,
+  PRIMARY KEY(`_id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARACTER SET = utf8mb4;
+
+CREATE TABLE `working_day_department_megre` (
+  `_id` INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  `_id_working_day_megre` INT UNSIGNED NOT NULL,
+  `_id_department_megre` INT UNSIGNED NOT NULL,
+  PRIMARY KEY(`_id`),
+  CONSTRAINT `_id_working_day_megre_ibfk_1`
+    FOREIGN KEY (`_id_working_day_megre`) REFERENCES `working_day`(`_id`),
+  CONSTRAINT `_id_department_megre_ibfk_2`
+    FOREIGN KEY (`_id_department_megre`) REFERENCES `department`(`_id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8mb4;

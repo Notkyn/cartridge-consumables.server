@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.notky.cartridge.consumables.model.Cartridge;
 import ua.notky.cartridge.consumables.service.AbstractTestService;
 import ua.notky.cartridge.consumables.service.model.cartridge.CartridgeService;
+import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
@@ -99,6 +100,12 @@ public class CartridgeServiceTest extends AbstractTestService {
         service.delete(ID_CARTRIDGE_5);
         assertIterableEquals(service.getAll(),
                 Arrays.asList(CARTRIDGE_1, CARTRIDGE_2, CARTRIDGE_3, CARTRIDGE_4));
+    }
+
+    @Test
+    @Transactional
+    void deleteHasDependency() {
+        assertThrows(HasDependencyException.class, () -> service.delete(ID_CARTRIDGE_2));
     }
 
     @Test

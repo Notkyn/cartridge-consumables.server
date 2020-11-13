@@ -47,7 +47,10 @@ public class CartridgeServiceImp implements CartridgeService {
     @Override
     public void delete(int id) {
         log.info("Delete Cartridge by id={}", id);
-        checkNotFoundWithId(repository.delete(id), id);
+        Cartridge cartridge = repository.getWithAllParts(id);
+        checkNotFoundWithId(cartridge, id);
+        checkDependencySet(cartridge, cartridge.getDepartments());
+        repository.delete(id);
     }
 
     @Override

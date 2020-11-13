@@ -3,34 +3,37 @@ package ua.notky.cartridge.consumables.service.model;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import ua.notky.cartridge.consumables.model.Department;
+import ua.notky.cartridge.consumables.model.WorkingDay;
 import ua.notky.cartridge.consumables.service.AbstractTestService;
-import ua.notky.cartridge.consumables.service.model.department.DepartmentService;
+import ua.notky.cartridge.consumables.service.model.workingday.WorkingDayService;
 import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGE_2;
-import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_ID;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_2;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_4;
+import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.*;
 
-class DepartmentServiceTest extends AbstractTestService {
-
+public class WorkingDayServiceTest extends AbstractTestService {
     @Autowired
-    private DepartmentService service;
+    private WorkingDayService service;
 
     @Test
     @Transactional
     void create() {
-        Department newDepartment = getNew();
+        WorkingDay newWorkingDay = getNew();
 
-        Department result = service.create(newDepartment);
-        assertEquals(newDepartment, result);
+        WorkingDay result = service.create(newWorkingDay);
+        assertEquals(newWorkingDay, result);
 
-        int newDepartmentId = result.getId();
-        assertEquals(service.get(newDepartmentId), newDepartment);
+        int newWorkingDayId = result.getId();
+        assertEquals(service.get(newWorkingDayId), newWorkingDay);
     }
 
     @Test
@@ -42,13 +45,13 @@ class DepartmentServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void createIllegalEntity(){
-        assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(DEPARTMENT_2)));
+        assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(WORKING_DAY_2)));
     }
 
     @Test
     @Transactional
     void update() {
-        Department updated = getUpdated(DEPARTMENT_2);
+        WorkingDay updated = getUpdated(WORKING_DAY_2);
 
         assertEquals(service.update(updated), updated);
         assertEquals(service.get(updated.getId()), updated);
@@ -68,15 +71,16 @@ class DepartmentServiceTest extends AbstractTestService {
 
     @Test
     void get() {
-        assertEquals(service.get(ID_DEPARTMENT_2), DEPARTMENT_2);
-        assertNotEquals(service.get(ID_DEPARTMENT_2), DEPARTMENT_3);
+        assertEquals(service.get(ID_WORKING_DAY_2), WORKING_DAY_2);
+        assertNotEquals(service.get(ID_WORKING_DAY_2), WORKING_DAY_3);
     }
 
     @Test
-    void getWithCartridge(){
-        Department department = service.getWithCartridge(ID_DEPARTMENT_2);
-        assertEquals(department, DEPARTMENT_2);
-        assertEquals(department.getCartridge(), CARTRIDGE_2);
+    void getWithDepartments(){
+        WorkingDay workingDay = service.getWithDepartments(ID_WORKING_DAY_2);
+        assertEquals(workingDay, WORKING_DAY_2);
+        assertIterableEquals(workingDay.getDepartments(),
+                List.of(DEPARTMENT_2, DEPARTMENT_4));
     }
 
     @Test
@@ -87,16 +91,10 @@ class DepartmentServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void delete() {
-        service.delete(ID_DEPARTMENT_5);
+        service.delete(ID_WORKING_DAY_5);
         assertIterableEquals(service.getAll(),
-                Arrays.asList(DEPARTMENT_1, DEPARTMENT_2, DEPARTMENT_3, DEPARTMENT_4));
+                Arrays.asList(WORKING_DAY_1, WORKING_DAY_2, WORKING_DAY_3, WORKING_DAY_4));
 
-    }
-
-    @Test
-    @Transactional
-    void deleteHasDependency() {
-        assertThrows(HasDependencyException.class, () -> service.delete(ID_DEPARTMENT_2));
     }
 
     @Test
@@ -107,6 +105,6 @@ class DepartmentServiceTest extends AbstractTestService {
 
     @Test
     void getAll() {
-        assertIterableEquals(service.getAll(), DEPARTMENTS);
+        assertIterableEquals(service.getAll(), WORKING_DAYS);
     }
 }

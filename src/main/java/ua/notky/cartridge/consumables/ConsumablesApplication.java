@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import ua.notky.cartridge.consumables.configuration.ServerConfiguration;
+import ua.notky.cartridge.consumables.repository.department.DepartmentRepository;
 import ua.notky.cartridge.consumables.service.model.cartridge.CartridgeService;
-import ua.notky.cartridge.consumables.service.model.parts.cleaningblade.CleaningBladeService;
+import ua.notky.cartridge.consumables.service.model.department.DepartmentService;
+import ua.notky.cartridge.consumables.service.model.workingday.WorkingDayService;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -29,10 +31,10 @@ public class ConsumablesApplication {
 
         log.debug("Application is running...");
 
+        DepartmentService departmentService = ctx.getBean(DepartmentService.class);
+        DepartmentRepository departmentRepository = ctx.getBean(DepartmentRepository.class);
+        WorkingDayService workingDayService = ctx.getBean(WorkingDayService.class);
         CartridgeService cartridgeService = ctx.getBean(CartridgeService.class);
-        CleaningBladeService cleaningBladeService = ctx.getBean(CleaningBladeService.class);
-
-        cartridgeService.delete(2);
 
     }
 

@@ -16,6 +16,7 @@ public interface DepartmentService {
 
     Department get(int id);
     Department getWithCartridge(int id);
+    Department getWithWorkDays(int id);
 
     @Transactional
     void delete(int id);

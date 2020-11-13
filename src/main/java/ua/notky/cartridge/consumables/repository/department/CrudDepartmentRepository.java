@@ -1,5 +1,6 @@
 package ua.notky.cartridge.consumables.repository.department;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +16,11 @@ public interface CrudDepartmentRepository extends JpaRepository<Department, Inte
             + "JOIN FETCH d.cartridge "
             + " WHERE d.id=?1")
     Department getWithCartridge(int id);
+
+    @EntityGraph(attributePaths = {"workingDays"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT d FROM Department d WHERE d.id=?1")
+    Department getWithWorkDays(int id);
+
+
+
 }
