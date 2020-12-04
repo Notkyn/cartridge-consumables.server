@@ -1,0 +1,19 @@
+.btn {
+   padding: 0;
+   font-weight: 400;
+   color: $white;
+   font-size: rem(14);
+   line-height: rem(16);
+   border: none;
+   border-radius: rem(50);
+   width: rem(110);
+   height: rem(30);
+   cursor: pointer;
+
+
+   &_account {
+      background: #706565;
+      margin-top: rem(15);
+      margin-left: rem(10);
+   }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "consumables",
+  "version": "1.0.0",
+  "description": "\"Consumables of Cartridge\"",
+  "main": "script.js",
+  "repository": "https://github.com/Notkyn/cartridge-consumables.server.git",
+  "author": "notky <notky@ukr.net>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "gulp",
+    "bem": "bem create $*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/register": "^7.12.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "bem-tools-core": "^0.0.3",
+    "bem-tools-create": "^2.3.0",
+    "browser-sync": "^2.26.13",
+    "del": "^6.0.0",
+    "eslint": "^7.14.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-debug": "^4.0.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-watch": "^5.0.1",
+    "require-dir": "^1.2.0",
+    "webpack": "^5.9.0",
+    "webpack-stream": "^6.1.1"
+  }
+}

@@ -1,0 +1,13 @@
+.account {
+   width: rem(130);
+   min-height: rem(150);
+
+   &_logo {
+      background:#C4C4C4;
+      border-radius: 100%;
+      width: rem(70);
+      height: rem(70);
+      margin-left: rem(30);
+      margin-top: rem(10);
+   }
+}

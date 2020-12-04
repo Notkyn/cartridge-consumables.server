@@ -1,0 +1,116 @@
+.menu {
+   padding: 0;
+   width: rem(240);
+   min-height: calc(100vh - 190px);
+   padding: rem(20) rem(30);
+
+   & ul {
+      list-style: none;
+      width: rem(240);
+      padding: 0;
+   }
+
+   &-group {
+      padding-left: rem(10);
+   }
+
+   &-item {
+      min-height: rem(30);
+      font-weight: 400;
+      color: $black;
+      line-height: rem(30);
+      margin-top: rem(20);
+      position: relative;
+
+      & a {
+         display: block;
+         text-decoration: none;
+         color: $black;
+         padding-left: rem(10);
+         cursor: pointer;
+
+         &:hover {
+            background: $grey_for_link;
+         }
+      }
+
+      &::before {
+         content: '';
+         width: rem(240);
+         height: rem(2);
+         background: $black;
+         position: absolute;
+         top: rem(28);
+         left: 0;
+      }
+
+      &__active {
+         background: $black;
+
+         & a {
+            color: $white;
+
+            &:hover {
+               background: $black;
+            }
+         }
+      }
+   }
+
+   &-subitem {
+      min-height: rem(30);
+      font-weight: 400;
+      color: $black;
+      line-height: rem(30);
+      position: relative;
+
+      & a {
+         padding-left: rem(30);
+         display: block;
+         text-decoration: none;
+         color: $black;
+         cursor: pointer;
+
+         &:hover {
+            background: $grey_for_link;
+         }
+      }
+
+      &::before{
+         content: '';
+         width: rem(10);
+         height: rem(10);
+         border-radius: rem(50);
+         background: $black;
+         position: absolute;
+         top: rem(10);
+         left: rem(10);
+      }
+
+      &__active {
+         background: $black;
+
+         & a {
+            color: $white;
+
+            &:hover {
+               background: $black;
+            }
+         }
+
+         &::before {
+            background: $white;
+         }
+      }
+   }
+
+   &::after{
+      content: '';
+      width: rem(2);
+      height: calc(100% - 150px);
+      background: $black;
+      position: absolute;
+      top: rem(150);
+      left: rem(298);
+   }
+}

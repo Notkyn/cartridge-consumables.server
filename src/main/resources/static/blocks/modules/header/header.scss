@@ -1,0 +1,47 @@
+.header {
+   min-height: rem(150);
+   background: $white;
+   display: flex;
+   justify-content: start;
+   padding: 0 rem(50) 0 rem(100);
+   position: relative;
+
+   &_descr {
+      margin-top: rem(30);
+      width: rem(300);
+
+      &_title {
+         font-weight: 700;
+         font-size: rem(24);
+         line-height: rem(28);
+         color: $black;
+         margin-bottom: rem(5);
+
+      }
+
+      &_subtitle {
+         font-weight: 400;
+         font-size: rem(14);
+         line-height: rem(16);
+         color: $black;
+         margin-top: rem(1);
+      }
+   }
+
+   &::after {
+      content: '';
+      width: 100%;
+      height: rem(2);
+      background: $black;
+      position: absolute;
+      left: 0;
+      top: rem(148);
+   }
+
+   &_img {
+      flex-grow: 1;
+      display: flex;
+      justify-content: end;
+      margin-right: rem(50);
+   }
+}

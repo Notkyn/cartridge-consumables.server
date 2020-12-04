@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    lang="en">
+
+    <div th:fragment="header" class="header">
+        <div class="header_descr">
+            <div class="header_descr_title">Картриджи</div>
+            <div class="header_descr_subtitle">Картриджи для лазерних принтерів</div>
+            <div class="header_descr_subtitle">Витратні матеріали для катриджів</div>
+        </div>
+        <div class="header_img">
+            <img th:src="@{img/header_img.png}" alt="logo">
+        </div>
+        <div th:replace="blocks/account :: account"></div>
+    </div>
+
+</html>

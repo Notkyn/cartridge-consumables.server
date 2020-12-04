@@ -17,3 +17,9 @@ mvnw
 
 ### Logs ###
 logs
+
+### Web Tools ###
+node_modules
+yarn.lock
+yarn-error.log
+dist
