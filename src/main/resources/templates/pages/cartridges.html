@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blocks/head :: head"></head>
+<body>
+<div th:replace="blocks/header :: header"></div>
+<div class="container-content">
+    <div th:replace="blocks/menu :: menu"></div>
+    <div th:replace="blocks/content/cartridges :: cartridges"></div>
+</div>
+
+</body>
+</html>

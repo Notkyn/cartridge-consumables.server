@@ -1,8 +1,8 @@
 .menu {
-   padding: 0;
    width: rem(240);
    min-height: calc(100vh - 190px);
    padding: rem(20) rem(30);
+   border-right: rem(2) solid $black;
 
    & ul {
       list-style: none;
@@ -102,15 +102,5 @@
             background: $white;
          }
       }
-   }
-
-   &::after{
-      content: '';
-      width: rem(2);
-      height: calc(100% - 150px);
-      background: $black;
-      position: absolute;
-      top: rem(150);
-      left: rem(298);
    }
 }

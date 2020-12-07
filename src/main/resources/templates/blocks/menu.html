@@ -5,17 +5,17 @@
 
     <div th:fragment="menu" class="menu">
         <ul>
-            <li class="menu-item"><a href="#">Головна</a></li>
-            <li class="menu-item"><a href="#">Магазини/Офіс</a></li>
-            <li class="menu-item"><a href="#">Картриджи</a></li>
+            <li class="menu-item" data-page="main"><a th:href="@{/}">Головна</a></li>
+            <li class="menu-item" data-page="department"><a th:href="@{/departments}">Магазини/Офіс</a></li>
+            <li class="menu-item" data-page="cartridges"><a th:href="@{/cartridges}">Картриджи</a></li>
             <li class="menu-item menu-group">Запчастини</li>
-            <li class="menu-subitem"><a href="#">Тонер</a></li>
-            <li class="menu-subitem"><a href="#">Фотобарабан</a></li>
-            <li class="menu-subitem"><a href="#">Магнітний вал</a></li>
-            <li class="menu-subitem"><a href="#">Вал заряду</a></li>
-            <li class="menu-subitem"><a href="#">Лезо очистки</a></li>
-            <li class="menu-subitem"><a href="#">Лезо дозування</a></li>
-            <li class="menu-item"><a href="#">Інструменти</a></li>
+            <li class="menu-subitem" data-page="toners"><a th:href="@{/toners}">Тонер</a></li>
+            <li class="menu-subitem" data-page="drums"><a th:href="@{/drums}">Фотобарабан</a></li>
+            <li class="menu-subitem" data-page="magnetic-shafts"><a th:href="@{/magnetic_shafts}">Магнітний вал</a></li>
+            <li class="menu-subitem" data-page="primary-charge-shafts"><a th:href="@{/primary_charge_shafts}">Вал заряду</a></li>
+            <li class="menu-subitem" data-page="cleaning-blades"><a th:href="@{/cleaning_blades}">Лезо очистки</a></li>
+            <li class="menu-subitem" data-page="dispensing-blades"><a th:href="@{/dispensing_blades}">Лезо дозування</a></li>
+            <li class="menu-item" data-page="tools"><a th:href="@{/tools}">Інструменти</a></li>
         </ul>
     </div>
 

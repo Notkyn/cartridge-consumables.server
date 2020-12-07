@@ -10,7 +10,7 @@ gulp.task("server", () => {
         proxy: server.proxy,
         //server: server.path,
         port: server.port,
-        notify: true
+        notify: false
     });
 
     gulp.watch(paths.thymeleaf.watch, gulp.parallel("thymeleaf"));

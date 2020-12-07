@@ -5,6 +5,9 @@
 <head th:replace="blocks/head :: head"></head>
 <body>
     <div th:replace="blocks/header :: header"></div>
-    <div th:replace="blocks/menu :: menu"></div>
+    <div class="container-content">
+        <div th:replace="blocks/menu :: menu"></div>
+        <div th:replace="blocks/content/main :: main"></div>
+    </div>
 </body>
 </html>

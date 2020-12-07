@@ -4,6 +4,8 @@ class Menu {
         this._menu = document.querySelector(`.${className}`);
         this._menu_items = this._menu.querySelectorAll(`.${className}-item:not(.${className}-group)`);
         this._menu_subitems = this._menu.querySelectorAll(`.${className}-subitem`);
+        this._page = document.querySelector('div[data-page]').getAttribute('data-page');
+        this._active_item = this._menu.querySelector(`[data-page="${this._page}"]`);
     }
 
 
@@ -11,38 +13,14 @@ class Menu {
         this._refreshAllItem();
         this._refreshAllSubitem();
 
-        this._setActiveItem(this._menu_items[0], true);
-
-        this._menu_items.forEach((element) => {
-            element.addEventListener('click', () => {
-                this._refreshAllItem();
-                this._refreshAllSubitem();
-                this._setActiveItem(element, true);
-            });
-        });
-
-        this._menu_subitems.forEach((element) => {
-            element.addEventListener('click', () => {
-                this._refreshAllItem();
-                this._refreshAllSubitem();
-                this._setActiveSubItem(element, true);
-            });
-        });
+        this._setActiveItem(this._active_item, true);
     }
 
     _setActiveItem(element, key){
         if(key){
-            element.classList.add(`${this.className}-item__active`);
+            element.classList.add(`${element.getAttribute("class")}__active`);
         } else {
-            element.classList.remove(`${this.className}-item__active`);
-        }
-    }
-
-    _setActiveSubItem(element, key){
-        if(key){
-            element.classList.add(`${this.className}-subitem__active`);
-        } else {
-            element.classList.remove(`${this.className}-subitem__active`);
+            element.classList.remove(`${element.getAttribute("class")}__active`);
         }
     }
 
@@ -54,7 +32,7 @@ class Menu {
 
     _refreshAllSubitem(){
         this._menu_subitems.forEach((element) => {
-            this._setActiveSubItem(element, false);
+            this._setActiveItem(element, false);
         });
     }
 }
