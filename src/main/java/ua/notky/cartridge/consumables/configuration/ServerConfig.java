@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @PropertySource("classpath:properties/global.properties")
-public class ServerConfiguration {
+public class ServerConfig {
 
     @Value("${app.timezone}")
     private String timeZone;

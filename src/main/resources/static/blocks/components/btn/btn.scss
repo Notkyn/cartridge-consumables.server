@@ -9,11 +9,24 @@
    width: rem(110);
    height: rem(30);
    cursor: pointer;
-
+   background: $btn;
+   outline: none;
 
    &_account {
-      background: #706565;
       margin-top: rem(15);
       margin-left: rem(10);
+   }
+
+   &_add {
+      width: 200px;
+      height: 30px;
+   }
+
+   &:hover{
+      background: $btn-hover;
+   }
+
+   &:active{
+      background: $btn-press;
    }
 }

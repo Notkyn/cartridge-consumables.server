@@ -1,4 +1,4 @@
-package ua.notky.cartridge.consumables.web;
+package ua.notky.cartridge.consumables.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

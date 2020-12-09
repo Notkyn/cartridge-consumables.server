@@ -3,6 +3,7 @@
 xmlns:th="http://www.thymeleaf.org"
 lang="en">
 <div th:fragment="toners" class="toners" data-page="toners">
- <div>Toners!</div>
+ <button class="btn btn_add">Добавить</button>
+ <div th:replace="blocks/parts_table :: parts-table"></div>
 </div>
 </html>

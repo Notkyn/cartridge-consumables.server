@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
-import ua.notky.cartridge.consumables.configuration.ServerConfiguration;
+import ua.notky.cartridge.consumables.configuration.ServerConfig;
 import ua.notky.cartridge.consumables.repository.department.DepartmentRepository;
 import ua.notky.cartridge.consumables.service.model.cartridge.CartridgeService;
 import ua.notky.cartridge.consumables.service.model.department.DepartmentService;
@@ -18,7 +18,7 @@ import java.util.TimeZone;
 @SpringBootApplication
 @EnableConfigurationProperties
 public class ConsumablesApplication {
-    private ServerConfiguration configuration;
+    private ServerConfig configuration;
 
     @PostConstruct
     public void init() {
@@ -39,7 +39,7 @@ public class ConsumablesApplication {
     }
 
     @Autowired
-    public void setConfiguration(ServerConfiguration configuration) {
+    public void setConfiguration(ServerConfig configuration) {
         this.configuration = configuration;
     }
 }
