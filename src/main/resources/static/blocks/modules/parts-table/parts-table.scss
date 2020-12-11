@@ -1,0 +1,154 @@
+.parts-table {
+   margin-top: rem(15);
+
+   &-header {
+      border-top: 2px solid $black;
+      border-bottom: 2px solid $black;
+      height: rem(43);
+      display: flex;
+
+      &-index {
+         width: rem(50);
+         font-weight: 700;
+         font-size: rem(18);
+         line-height: rem(43);
+         text-align: center;
+         color: $black;
+         user-select: none;
+      }
+
+      &-name {
+         flex-grow: 1;
+         font-weight: 700;
+         font-size: rem(18);
+         line-height: rem(43);
+         text-align: center;
+         color: $black;
+         display: flex;
+         justify-content: start;
+         padding-left: rem(15);
+         cursor: pointer;
+         user-select: none;
+
+         & span {
+            display: block;
+            margin-left: rem(30);
+         }
+      }
+
+      &-edit {
+         width: rem(100);
+         background: $white;
+      }
+
+      &-delete {
+         width: rem(100);
+         background: $white;
+      }
+   }
+
+   &-row {
+      border-bottom: 1px solid $black;
+      display: flex;
+      height: rem(35);
+
+      &-index {
+         width: rem(50);
+         font-weight: 400;
+         font-size: rem(16);
+         line-height: rem(35);
+         text-align: center;
+         color: $black;
+      }
+
+      &-name {
+         flex-grow: 1;
+         font-weight: 400;
+         font-size: rem(16);
+         line-height: rem(35);
+         text-align: start;
+         padding-left: rem(30);
+         color: $black;
+      }
+
+      &-edit {
+         width: rem(100);
+         cursor: pointer;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+
+         &-img {
+            width: rem(22);
+            height: rem(22);
+            background: url('../img/icons/edit-icon.svg') center (center / contain) no-repeat;
+         }
+
+         &:hover {
+            background: $column-btn-hover;
+         }
+
+         &:active {
+            background: $white;
+         }
+      }
+
+      &-delete {
+         width: rem(100);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         cursor: pointer;
+
+         &-img {
+            width: rem(22);
+            height: rem(22);
+            background: url('../img/icons/delete-icon.svg') center (center / contain) no-repeat;
+         }
+
+         &:hover {
+            background: $column-btn-hover;
+         }
+
+         &:active {
+            background: $white;
+         }
+      }
+   }
+
+   &-arrows {
+
+      &-up {
+         background: url('../img/icons/sort-arrow.svg') center (center / contain) no-repeat;
+         display: block;
+         width: rem(10);
+         height: rem(8);
+         margin-top: rem(14);
+
+         &-active {
+            background: url('../img/icons/sort-arrow-active.svg') center (center / contain) no-repeat;
+         }
+
+         &-inactive {
+            display: none;
+         }
+      }
+
+      &-down {
+         background: url('../img/icons/sort-arrow.svg') center (center / contain) no-repeat;
+         transform: rotate(180deg);
+         display: block;
+         width: rem(10);
+         height: rem(8);
+
+         &-active {
+            margin-top: rem(22);
+            background: url('../img/icons/sort-arrow-active.svg') center (center / contain) no-repeat;
+         }
+
+         &-inactive {
+            display: none;
+         }
+      }
+   }
+}

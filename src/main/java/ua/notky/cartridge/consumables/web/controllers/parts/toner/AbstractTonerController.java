@@ -16,6 +16,11 @@ public class AbstractTonerController {
         return tonerService.getAll();
     }
 
+    void delete(int id){
+        log.info("Delete Toner with id={}", id);
+        tonerService.delete(id);
+    }
+
     @Autowired
     public void setTonerService(TonerService tonerService) {
         this.tonerService = tonerService;

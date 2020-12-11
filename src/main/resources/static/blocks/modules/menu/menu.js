@@ -1,9 +1,9 @@
 class Menu {
     constructor(className = 'menu'){
-        this.className = className;
-        this._menu = document.querySelector(`.${className}`);
-        this._menu_items = this._menu.querySelectorAll(`.${className}-item:not(.${className}-group)`);
-        this._menu_subitems = this._menu.querySelectorAll(`.${className}-subitem`);
+        this._className = className;
+        this._menu = document.querySelector(`.${this._className}`);
+        this._menu_items = this._menu.querySelectorAll(`.${this._className}-item:not(.${this._className}-group)`);
+        this._menu_subitems = this._menu.querySelectorAll(`.${this._className}-subitem`);
         this._page = document.querySelector('div[data-page]').getAttribute('data-page');
         this._active_item = this._menu.querySelector(`[data-page="${this._page}"]`);
     }
@@ -13,10 +13,10 @@ class Menu {
         this._refreshAllItem();
         this._refreshAllSubitem();
 
-        this._setActiveItem(this._active_item, true);
+        Menu._setActiveItem(this._active_item, true);
     }
 
-    _setActiveItem(element, key){
+    static _setActiveItem(element, key){
         if(key){
             element.classList.add(`${element.getAttribute("class")}__active`);
         } else {
@@ -26,13 +26,13 @@ class Menu {
 
     _refreshAllItem(){
         this._menu_items.forEach((element) => {
-            this._setActiveItem(element, false);
+            Menu._setActiveItem(element, false);
         });
     }
 
     _refreshAllSubitem(){
         this._menu_subitems.forEach((element) => {
-            this._setActiveItem(element, false);
+            Menu._setActiveItem(element, false);
         });
     }
 }

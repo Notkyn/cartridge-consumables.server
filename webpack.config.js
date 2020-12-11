@@ -2,24 +2,14 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-    plugins: [
-        new webpack.ProvidePlugin({
-            "jQuery": "jquery",
-            "window.jQuery": "jquery",
-            "jquery": "jquery",
-            "window.jquery": "jquery",
-            "$": "jquery",
-            "window.$": "jquery"
-        })
-    ],
-
     entry: {
         main: "./src/main/resources/static/scripts/index.js",
+        toners: "./src/main/resources/static/scripts/import/pages/toners.js"
     },
 
     output: {
-        filename: "script.js",
-        chunkFilename: "script.js",
+        filename: "[name].js",
+        chunkFilename: "[name].js",
         publicPath: "/"
     },
 
@@ -55,7 +45,10 @@ module.exports = {
 
     resolve: {
         alias: {
-            "%blocks%": path.resolve(__dirname, "src/main/resources/static/blocks")
+            "%blocks%": path.resolve(__dirname, "src/main/resources/static/blocks"),
+            "%contents%": path.resolve(__dirname, "src/main/resources/static/blocks/contents"),
+            "%api%": path.resolve(__dirname, "src/main/resources/static/scripts/import/api"),
+            "%config%": path.resolve(__dirname, "src/main/resources/static/scripts/import/config")
         }
     }
 };
