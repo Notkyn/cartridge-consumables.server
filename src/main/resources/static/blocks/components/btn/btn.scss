@@ -27,6 +27,45 @@
    }
 
    &:active{
-      background: $btn-press;
+      background: $btn-active;
+   }
+
+   &_modal {
+      width: rem(260);
+      height: rem(40);
+      background: $modal-btn;
+      border-radius: rem(50);
+      font-weight: 700;
+      font-size: rem(18);
+      line-height: rem(40);
+      text-align: center;
+      color: $white;
+
+      &:hover {
+         background: $modal-btn-hover;
+      }
+
+      &:active {
+         background: $modal-btn-active;
+      }
+
+      &-cancel {
+         width: rem(260);
+         height: rem(40);
+         background: $btn;
+         border-radius: rem(50);
+         font-weight: 400;
+         font-size: rem(18);
+         line-height: rem(40);
+         text-align: center;
+         color: $white;
+         &:hover{
+            background: $btn-hover;
+         }
+
+         &:active{
+            background: $btn-active;
+         }
+      }
    }
 }

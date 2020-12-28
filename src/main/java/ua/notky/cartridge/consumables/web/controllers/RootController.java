@@ -3,14 +3,16 @@ package ua.notky.cartridge.consumables.web.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ua.notky.cartridge.consumables.configuration.web.constant.PathController;
+import ua.notky.cartridge.consumables.configuration.web.constant.UrlController;
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = UrlController.PAGE_MAIN)
 public class RootController {
 
     @GetMapping
     public String index(){
-        return "index";
+        return PathController.PAGE_MAIN;
     }
 
     @GetMapping(value = "/departments")
@@ -48,9 +50,9 @@ public class RootController {
         return "pages/primary_charge_shafts";
     }
 
-    @GetMapping(value = "/toners")
+    @GetMapping(value = UrlController.PAGE_TONER)
     public String toners(){
-        return "pages/toners";
+        return PathController.PAGE_TONER;
     }
 
     @GetMapping(value = "/tools")

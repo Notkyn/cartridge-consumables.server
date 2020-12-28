@@ -1,0 +1,21 @@
+.modal-title {
+  width: rem(540);
+  height: rem(40);
+  font-weight: bold;
+  font-size: rem(24);
+  line-height: rem(40);
+  text-align: center;
+  color: $black;
+  position: relative;
+
+  &:after {
+    content: "";
+    width: rem(540);
+    height: rem(2);
+    background: $black;
+    position: absolute;
+    top: rem(40);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,28 @@
+.modal-field {
+  width: rem(540);
+  margin-top: rem(20);
+
+  &-title {
+    display: block;
+    height: rem(35);
+    font-weight: 400;
+    font-size: rem(18);
+    line-height: rem(35);
+    color: $black;
+  }
+
+  &-value{
+    display: block;
+    width: rem(500);
+    min-height: rem(160);
+    border: 1px solid $grey;
+    border-radius: rem(20);
+    font-weight: 400;
+    font-size: rem(16);
+    line-height: rem(19);
+    color: $black;
+    padding: rem(20);
+    outline: none;
+    resize: none;
+  }
+}

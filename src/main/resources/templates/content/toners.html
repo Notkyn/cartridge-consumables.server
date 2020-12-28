@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:th="http://www.thymeleaf.org"
 lang="en">
-<div th:fragment="toners" class="toners" data-page="toners">
- <button class="btn btn_add">Додати</button>
- <div th:replace="blocks/parts_table :: parts-table"></div>
-</div>
+ <div th:fragment="toners" class="toners" data-page="toners">
+   <button class="btn btn_add" data-btn="add">Додати</button>
+   <div th:replace="blocks/parts_table :: parts-table"></div>
+ </div>
 </html>

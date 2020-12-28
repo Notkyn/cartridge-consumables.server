@@ -1,5 +1,7 @@
 class Rest{
     constructor(){
+        this._contentType = "application/x-www-form-urlencoded; charset=UTF-8";
+        this._contentTypeJson = "application/json;charset=utf-8";
 
     }
 
@@ -7,7 +9,7 @@ class Rest{
         fetch(url, {
             method: 'get',
             headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                "Content-type": this._contentType
             }
         })
             .then(this._status)
@@ -18,11 +20,26 @@ class Rest{
             });
     }
 
+    post(url, data, someDo){
+        fetch(url, {
+            method: 'post',
+            headers: {
+                "Content-type": this._contentTypeJson
+            },
+            body: JSON.stringify(data)
+        })
+            .then(this._status)
+            .then(someDo)
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+    }
+
     delete(url, someDo){
         fetch(url, {
             method: 'delete',
             headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                "Content-type": this._contentType
             }
         })
             .then(this._status)
@@ -43,7 +60,6 @@ class Rest{
             return Promise.reject(new Error(response.statusText));
         }
     }
-
 }
 
 export const request = new Rest();

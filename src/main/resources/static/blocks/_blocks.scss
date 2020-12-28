@@ -2,8 +2,12 @@
 @import "modules/account/account";
 @import "modules/menu/menu";
 @import "modules/parts-table/parts-table";
+@import "modules/modal/editor-parts/editor-parts";
 
 @import "components/btn/btn";
+@import "components/overflow/overflow";
+@import "components/modal/modal-title";
+@import "components/modal/modal-field";
 
 @import "contents/main/main";
 @import "contents/departments/departments";

@@ -12,13 +12,28 @@ public class AbstractTonerController {
     private TonerService tonerService;
 
     List<Toner> getAll(){
-        log.info("Get all Toners");
+        log.info("Get all");
         return tonerService.getAll();
     }
 
     void delete(int id){
-        log.info("Delete Toner with id={}", id);
+        log.info("Delete id={}", id);
         tonerService.delete(id);
+    }
+
+    Toner get(int id){
+        log.info("Get id={}", id);
+        return tonerService.get(id);
+    }
+
+    void create(Toner toner){
+        log.info("Create {}", toner);
+        tonerService.create(toner);
+    }
+
+    void update(Toner toner){
+        log.info("Update id={}, {}",toner.getId(), toner);
+        tonerService.update(toner);
     }
 
     @Autowired

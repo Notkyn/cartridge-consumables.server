@@ -21,6 +21,7 @@ public class AccessAjaxInterceptor implements HandlerInterceptor {
         if(request.getHeader("host").equals(webConfig.getHost())){
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "*");
+            response.setHeader("Access-Control-Allow-Headers", "*");
         }
         return true;
     }

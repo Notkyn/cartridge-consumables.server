@@ -2,9 +2,12 @@ package ua.notky.cartridge.consumables.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -14,6 +17,9 @@ public abstract class AbstractNameEntity extends AbstractBaseEntity{
     @Getter
     @Setter
     @Column(name = "name", nullable = false, length = 100, unique = true)
+    @NotBlank
+//    @Size(max = 100)
+    @Length(max = 100)
     private String name;
 
     public AbstractNameEntity() {
