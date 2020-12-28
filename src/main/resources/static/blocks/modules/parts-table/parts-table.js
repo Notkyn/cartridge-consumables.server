@@ -11,7 +11,8 @@ export class PartsTable {
 
         this._createBody = this._createBody.bind(this);
         this._refreshTable = this._refreshTable.bind(this);
-        this._addOrUpdateItem = this._addOrUpdateItem.bind(this);
+        this._resultFromModal = this._resultFromModal.bind(this);
+        this._renderModal = this._renderModal.bind(this);
     }
 
     build(modal){
@@ -20,9 +21,22 @@ export class PartsTable {
 
         this._modal = modal;
         this._modal.setTable(this._table);
-        this._table.addEventListener(configuration.getConstants().eventModalAddBtn, this._addOrUpdateItem);
+        this._table.addEventListener(configuration.getConstants().eventModalAddBtn, this._resultFromModal);
 
         this._refreshTable();
+    }
+
+    _renderBody(){
+        request.get(configuration.getInstanse().getAllAjax(), this._createBody);
+    }
+
+    _renderModal(data){
+        configuration.getModalMode().setEditModalMode();
+        this._modal.show(data);
+    }
+
+    _resultFromModal(){
+        request.post(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable);
     }
 
     _refreshTable(){
@@ -31,10 +45,6 @@ export class PartsTable {
         this._table.appendChild(this._createHeader());
 
         this._renderBody();
-    }
-
-    _addOrUpdateItem(){
-        request.post(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable);
     }
 
     _clearTable(){
@@ -88,10 +98,6 @@ export class PartsTable {
         return header;
     }
 
-    _renderBody(){
-        request.get(configuration.getInstanse().getAllAjax(), this._createBody);
-    }
-
     _createBody(data) {
         this._indexValue = 1;
 
@@ -123,7 +129,7 @@ export class PartsTable {
 
         let editBtn = this._createBtnBody("edit");
         editBtn.addEventListener(configuration.getConstants().eventClick, () => {
-            console.log("ID: " + element.id + " - EDIT!");
+            request.get(configuration.getInstanse().getOneAjax(element.id), this._renderModal);
         });
 
         let deleteBtn = this._createBtnBody("delete");

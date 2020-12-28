@@ -16,6 +16,10 @@ class TonersConfig {
         return globalConfig.getServerUrl() + this._all_toners;
     }
 
+    getOneAjax(id){
+        return globalConfig.getServerUrl() + this._all_toners + "/" + id;
+    }
+
     getDeleteAjax(id){
         return globalConfig.getServerUrl() + this._all_toners + "/" + id;
     }
