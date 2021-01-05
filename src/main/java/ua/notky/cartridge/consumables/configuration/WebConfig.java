@@ -26,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(accessAjaxInterceptor);
+        //registry.addInterceptor(accessAjaxInterceptor);
         registry.addInterceptor(localeChangeInterceptor());
     }
 

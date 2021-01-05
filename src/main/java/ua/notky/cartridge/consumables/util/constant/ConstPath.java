@@ -1,6 +1,6 @@
-package ua.notky.cartridge.consumables.configuration.web.constant;
+package ua.notky.cartridge.consumables.util.constant;
 
-public class PathController {
+public class ConstPath {
     /* Pages */
 
     public static final String PAGE_MAIN = "index";

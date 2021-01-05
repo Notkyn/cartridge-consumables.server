@@ -1,6 +1,6 @@
-package ua.notky.cartridge.consumables.configuration.web.constant;
+package ua.notky.cartridge.consumables.util.constant;
 
-public class UrlController {
+public class ConstUrl {
     /* Pages */
     public static final String PAGE_MAIN = "/";
     public static final String PAGE_TONER = "/toners";

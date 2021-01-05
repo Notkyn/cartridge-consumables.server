@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JacksonObjectMapper extends ObjectMapper {
     private static final long serialVersionUID = 7277973977665901609L;
+    private static final ObjectMapper MAPPER = new JacksonObjectMapper();
 
     private JacksonObjectMapper() {
         registerModule(new Hibernate5Module());
@@ -23,5 +24,9 @@ public class JacksonObjectMapper extends ObjectMapper {
         setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
         setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+    }
+
+    public static ObjectMapper getMapper() {
+        return MAPPER;
     }
 }

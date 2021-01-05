@@ -7,6 +7,8 @@ import ua.notky.cartridge.consumables.service.model.parts.toner.TonerService;
 
 import java.util.List;
 
+import static ua.notky.cartridge.consumables.util.ValidationUtil.checkNewBean;
+
 @Slf4j
 public class AbstractTonerController {
     private TonerService tonerService;
@@ -28,6 +30,7 @@ public class AbstractTonerController {
 
     void create(Toner toner){
         log.info("Create {}", toner);
+        checkNewBean(toner);
         tonerService.create(toner);
     }
 

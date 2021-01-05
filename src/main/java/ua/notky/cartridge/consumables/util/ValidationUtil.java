@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import ua.notky.cartridge.consumables.model.AbstractBaseEntity;
 import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
+import ua.notky.cartridge.consumables.util.exception.IllegalRequestDataException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
 import java.util.List;
@@ -87,6 +88,12 @@ public class ValidationUtil {
         log.info("Check Dependency - [dependency={}], [msg={}]", dependency, msg);
         if(dependency){
             throw new HasDependencyException(msg);
+        }
+    }
+
+    public static <T extends AbstractBaseEntity> void checkNewBean(T bean) {
+        if (!bean.isNew()) {
+            throw new IllegalRequestDataException(bean + " must be new (id=null)");
         }
     }
 }
