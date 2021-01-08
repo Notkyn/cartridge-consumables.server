@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ua.notky.cartridge.consumables.tools.data.model.parts.TonerTool.*;
 import static ua.notky.cartridge.consumables.tools.web.WebTool.*;
+import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
 
 public class TonerControllerTest extends AbstractControllerTest {
 
@@ -26,6 +27,7 @@ public class TonerControllerTest extends AbstractControllerTest {
     @Test
     void getAll() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_TONER))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
                 .andExpect(contentContentType())
@@ -46,12 +48,16 @@ public class TonerControllerTest extends AbstractControllerTest {
     void getNotFound() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_TONER + "/" + INVALID_ID))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(matchTypeError(DATA_NOT_FOUND));
     }
 
     @Test
     void delete() throws  Exception {
         mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_TONER + "/" + ID_TONER_5))
+                .andDo(print())
                 .andExpect(status().isNoContent());
 
         assertIterableEquals(service.getAll(),
@@ -62,14 +68,20 @@ public class TonerControllerTest extends AbstractControllerTest {
     void deleteHasDependency() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_TONER + "/" + ID_TONER_2))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(matchTypeError(HAS_DEPENDENCY));
     }
 
     @Test
     void deleteNotFound() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_TONER + "/" + INVALID_ID))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(matchTypeError(DATA_NOT_FOUND));
     }
 
     @Test
@@ -82,10 +94,16 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @Test
     void createInvalid() throws  Exception {
+        Toner tonerBig = new Toner(INVALID_NAME_BIG);
+
         mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_TONER)
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(tonerBig)))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(matchTypeError(VALIDATION_ERROR));
     }
 
     @Test
@@ -96,6 +114,9 @@ public class TonerControllerTest extends AbstractControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newToner)))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isConflict())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(matchTypeError(VALIDATION_ERROR));
     }
 }

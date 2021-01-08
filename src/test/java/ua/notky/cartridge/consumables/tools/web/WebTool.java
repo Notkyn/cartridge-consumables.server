@@ -3,13 +3,13 @@ package ua.notky.cartridge.consumables.tools.web;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultMatcher;
 import ua.notky.cartridge.consumables.model.AbstractBaseEntity;
+import ua.notky.cartridge.consumables.util.exception.ErrorType;
 
 import java.util.List;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ua.notky.cartridge.consumables.tools.web.JsonTool.readListFromJsonMvcResult;
 
 public class WebTool {
@@ -20,6 +20,10 @@ public class WebTool {
 
     public static ResultMatcher contentContentType(){
         return content().contentType(MediaType.APPLICATION_JSON);
+    }
+
+    public static ResultMatcher matchTypeError(ErrorType errorType){
+        return jsonPath("$.type").value(errorType.toString());
     }
 
     @SafeVarargs
