@@ -10,37 +10,37 @@ import java.util.List;
 import static ua.notky.cartridge.consumables.util.ValidationUtil.checkNewBean;
 
 @Slf4j
-public class AbstractTonerController {
-    private TonerService tonerService;
+public abstract class AbstractTonerController {
+    private TonerService service;
 
     List<Toner> getAll(){
         log.info("Get all");
-        return tonerService.getAll();
+        return service.getAll();
     }
 
     void delete(int id){
         log.info("Delete id={}", id);
-        tonerService.delete(id);
+        service.delete(id);
     }
 
     Toner get(int id){
         log.info("Get id={}", id);
-        return tonerService.get(id);
+        return service.get(id);
     }
 
     void create(Toner toner){
         log.info("Create {}", toner);
         checkNewBean(toner);
-        tonerService.create(toner);
+        service.create(toner);
     }
 
     void update(Toner toner){
         log.info("Update id={}, {}",toner.getId(), toner);
-        tonerService.update(toner);
+        service.update(toner);
     }
 
     @Autowired
-    public void setTonerService(TonerService tonerService) {
-        this.tonerService = tonerService;
+    public void setService(TonerService service) {
+        this.service = service;
     }
 }

@@ -45,9 +45,9 @@ public class RootController {
         return "pages/magnetic_shafts";
     }
 
-    @GetMapping(value = "/primary_charge_shafts")
+    @GetMapping(value = ConstUrl.PRIMARY_CHARGE_SHAFT)
     public String primaryChargeShafts(){
-        return "pages/primary_charge_shafts";
+        return ConstPath.PRIMARY_CHARGE_SHAFT;
     }
 
     @GetMapping(value = ConstUrl.PAGE_TONER)
