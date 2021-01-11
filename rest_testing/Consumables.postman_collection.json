@@ -15,6 +15,175 @@
 							"name": "toner",
 							"item": [
 								{
+									"name": "error",
+									"item": [
+										{
+											"name": "DATA_NOT_FOUND - get",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/toner/20",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"toner",
+														"20"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "DATA_NOT_FOUND - delete",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/toner/60",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"toner",
+														"60"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "HAS_DEPENDENCY - delete",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/toner/1",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"toner",
+														"1"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "DUPLICATE_NAME - create",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"toner_2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/toner",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"toner"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "INVALID_DATA (name is long)- create",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/toner/",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"toner",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "INVALID_DATA (name is short) - create",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/toner/",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"toner",
+														""
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
 									"name": "get all",
 									"request": {
 										"method": "GET",
@@ -117,17 +286,282 @@
 									},
 									"response": []
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							]
+						},
+						{
+							"name": "primarychargeshaft",
+							"item": [
+								{
+									"name": "error",
+									"item": [
+										{
+											"name": "DATA_NOT_FOUND - get",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft/10",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"primary_charge_shaft",
+														"10"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "DATA_NOT_FOUND - delete",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft/10",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"primary_charge_shaft",
+														"10"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "HAS_DEPENDENCY - delete",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft/2",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"primary_charge_shaft",
+														"2"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "DUPLICATE_NAME - create",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"primary_charge_shaft_2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"primary_charge_shaft"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "INVALID_DATA (name is long) - create",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"primary_charge_shaft"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "INVALID_DATA (name is short) - create",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"consumables",
+														"ui",
+														"parts",
+														"primary_charge_shaft"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "get all",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"consumables",
+												"ui",
+												"parts",
+												"primary_charge_shaft"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get one",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"consumables",
+												"ui",
+												"parts",
+												"primary_charge_shaft",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft/5",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"consumables",
+												"ui",
+												"parts",
+												"primary_charge_shaft",
+												"5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create or update",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"new Item\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/consumables/ui/parts/primary_charge_shaft",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"consumables",
+												"ui",
+												"parts",
+												"primary_charge_shaft"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
