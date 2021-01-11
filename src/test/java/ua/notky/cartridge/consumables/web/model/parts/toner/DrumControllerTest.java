@@ -1,5 +1,6 @@
 package ua.notky.cartridge.consumables.web.model.parts.toner;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,12 +21,18 @@ import static ua.notky.cartridge.consumables.tools.web.WebTool.*;
 import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
 
 public class DrumControllerTest extends AbstractControllerTest {
+
+    @BeforeAll
+    static void prepareForTest(){
+        url = ConstUrl.UI_DRUM;
+    }
+
     @Autowired
     private DrumService service;
 
     @Test
     void getAll() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_DRUM))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
@@ -35,7 +42,7 @@ public class DrumControllerTest extends AbstractControllerTest {
 
     @Test
     void get() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_DRUM + "/" + ID_DRUM_2))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ID_DRUM_2)))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
@@ -45,7 +52,7 @@ public class DrumControllerTest extends AbstractControllerTest {
 
     @Test
     void getNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_DRUM + "/" + INVALID_ID))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(INVALID_ID)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -55,7 +62,7 @@ public class DrumControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_DRUM + "/" + ID_DRUM_5))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_DRUM_5)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
@@ -65,7 +72,7 @@ public class DrumControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteHasDependency() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_DRUM + "/" + ID_DRUM_2))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_DRUM_2)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -75,7 +82,7 @@ public class DrumControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_DRUM + "/" + INVALID_ID))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(INVALID_ID)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -85,7 +92,7 @@ public class DrumControllerTest extends AbstractControllerTest {
 
     @Test
     void create() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_DRUM)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(getNew())))
                 .andExpect(status().isNoContent());
@@ -95,7 +102,7 @@ public class DrumControllerTest extends AbstractControllerTest {
     void createInvalid() throws  Exception {
         Drum drumBig = new Drum(INVALID_NAME_BIG);
 
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_DRUM)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(drumBig)))
                 .andDo(print())
@@ -109,7 +116,7 @@ public class DrumControllerTest extends AbstractControllerTest {
     void createDuplicate() throws  Exception {
         Drum newDrum = getNew();
         newDrum.setName(DRUM_2.getName());
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_DRUM)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newDrum)))
                 .andDo(print())

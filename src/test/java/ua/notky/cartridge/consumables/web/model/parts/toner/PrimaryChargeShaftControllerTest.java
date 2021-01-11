@@ -1,5 +1,6 @@
 package ua.notky.cartridge.consumables.web.model.parts.toner;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,12 +22,17 @@ import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
 
 public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
+    @BeforeAll
+    static void prepareForTest(){
+        url = ConstUrl.UI_PRIMARY_CHARGE_SHAFT;
+    }
+
     @Autowired
     private PrimaryChargeShaftService service;
 
     @Test
     void getAll() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_PRIMARY_CHARGE_SHAFT))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
@@ -36,7 +42,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
     @Test
     void get() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_PRIMARY_CHARGE_SHAFT + "/" + ID_PRIMARY_CHARGE_SHAFT_2))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ID_PRIMARY_CHARGE_SHAFT_2)))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
@@ -46,7 +52,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
     @Test
     void getNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_PRIMARY_CHARGE_SHAFT + "/" + INVALID_ID))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(INVALID_ID)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -56,7 +62,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_PRIMARY_CHARGE_SHAFT + "/" + ID_PRIMARY_CHARGE_SHAFT_5))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_PRIMARY_CHARGE_SHAFT_5)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
@@ -66,7 +72,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteHasDependency() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_PRIMARY_CHARGE_SHAFT + "/" + ID_PRIMARY_CHARGE_SHAFT_2))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_PRIMARY_CHARGE_SHAFT_2)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -76,7 +82,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_PRIMARY_CHARGE_SHAFT + "/" + INVALID_ID))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(INVALID_ID)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -86,7 +92,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
     @Test
     void create() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_PRIMARY_CHARGE_SHAFT)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(getNew())))
                 .andExpect(status().isNoContent());
@@ -96,7 +102,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
     void createInvalid() throws  Exception {
         PrimaryChargeShaft shaftBig = new PrimaryChargeShaft(INVALID_NAME_BIG);
 
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_PRIMARY_CHARGE_SHAFT)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(shaftBig)))
                 .andDo(print())
@@ -110,7 +116,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
     void createDuplicate() throws  Exception {
         PrimaryChargeShaft newShaft = getNew();
         newShaft.setName(PRIMARY_CHARGE_SHAFT_2.getName());
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_PRIMARY_CHARGE_SHAFT)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newShaft)))
                 .andDo(print())

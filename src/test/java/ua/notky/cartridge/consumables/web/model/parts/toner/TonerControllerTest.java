@@ -1,5 +1,6 @@
 package ua.notky.cartridge.consumables.web.model.parts.toner;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,12 +22,17 @@ import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
 
 public class TonerControllerTest extends AbstractControllerTest {
 
+    @BeforeAll
+    static void prepareForTest(){
+        url = ConstUrl.UI_TONER;
+    }
+
     @Autowired
     private TonerService service;
 
     @Test
     void getAll() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_TONER))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
@@ -36,7 +42,7 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @Test
     void get() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_TONER + "/" + ID_TONER_2))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ID_TONER_2)))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
@@ -46,7 +52,7 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @Test
     void getNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ConstUrl.UI_TONER + "/" + INVALID_ID))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(INVALID_ID)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -56,7 +62,7 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_TONER + "/" + ID_TONER_5))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_TONER_5)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
@@ -66,7 +72,7 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteHasDependency() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_TONER + "/" + ID_TONER_2))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_TONER_2)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -76,7 +82,7 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteNotFound() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(ConstUrl.UI_TONER + "/" + INVALID_ID))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(INVALID_ID)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -86,7 +92,7 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @Test
     void create() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_TONER)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(getNew())))
                 .andExpect(status().isNoContent());
@@ -96,7 +102,7 @@ public class TonerControllerTest extends AbstractControllerTest {
     void createInvalid() throws  Exception {
         Toner tonerBig = new Toner(INVALID_NAME_BIG);
 
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_TONER)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(tonerBig)))
                 .andDo(print())
@@ -110,7 +116,7 @@ public class TonerControllerTest extends AbstractControllerTest {
     void createDuplicate() throws  Exception {
         Toner newToner = getNew();
         newToner.setName(TONER_2.getName());
-        mvc.perform(MockMvcRequestBuilders.post(ConstUrl.UI_TONER)
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newToner)))
                 .andDo(print())

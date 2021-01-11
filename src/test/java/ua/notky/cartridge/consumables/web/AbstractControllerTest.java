@@ -18,4 +18,21 @@ public class AbstractControllerTest {
 
     @Autowired
     protected MockMvc mvc;
+
+    protected static String url;
+
+    protected String generateUrl(int... args){
+        if(args.length == 0){
+            return url;
+        } else {
+            StringBuilder sb = new StringBuilder(url);
+
+            for(int item : args){
+                sb.append("/")
+                    .append(item);
+            }
+
+            return sb.toString();
+        }
+    }
 }
