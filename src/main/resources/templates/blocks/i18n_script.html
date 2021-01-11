@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+    <script th:fragment="i18n_script" th:inline="javascript" defer>
+
+
+        var i18n = {};
+        i18n.modalAddBtn = [[(#{view.btn.add})]];
+        i18n.modalUpdateBtn = [[(#{view.btn.update})]];
+        i18n.nameToner = [[(#{view.model.parts.toner})]];
+        i18n.nameName = [[(#{view.name})]];
+
+    </script>
+
+</html>

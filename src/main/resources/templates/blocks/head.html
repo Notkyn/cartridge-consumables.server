@@ -11,16 +11,7 @@
 
         <script th:src="@{js/main.min.js}" defer></script>
 
-        <script th:inline="javascript" defer>
-
-            var i18n = {};
-            i18n.modalAddBtn = [[(#{modal.btn.add})]];
-            i18n.modalUpdateBtn = [[(#{modal.btn.update})]];
-            i18n.nameToner = [[(#{name.toner})]];
-            i18n.nameName = [[(#{name.name})]];
-
-        </script>
-
+        <script th:replace="blocks/i18n_script :: i18n_script"></script>
 
     </head>
 
