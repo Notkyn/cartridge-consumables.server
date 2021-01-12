@@ -2,13 +2,17 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="blocks/head :: head"></head>
-<body>
-<div th:replace="blocks/header :: header"></div>
-<div class="container-content">
-    <div th:replace="blocks/menu :: menu"></div>
-    <div th:replace="content/cartridges :: cartridges"></div>
-</div>
+    <head th:replace="blocks/head :: head"></head>
+    <body>
+        <div th:replace="blocks/header :: header"></div>
+        <div class="container-content">
+            <div th:replace="blocks/menu :: menu"></div>
 
-</body>
+            <div class="cartridges" data-page="cartridges">
+                <div>Cartriges</div>
+            </div>
+
+        </div>
+
+    </body>
 </html>

@@ -46,7 +46,6 @@ module.exports = {
     resolve: {
         alias: {
             "%blocks%": path.resolve(__dirname, "src/main/resources/static/blocks"),
-            "%contents%": path.resolve(__dirname, "src/main/resources/static/blocks/contents"),
             "%api%": path.resolve(__dirname, "src/main/resources/static/scripts/import/api"),
             "%config%": path.resolve(__dirname, "src/main/resources/static/scripts/import/config")
         }

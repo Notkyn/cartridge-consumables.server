@@ -2,12 +2,16 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="blocks/head :: head"></head>
-<body>
-<div th:replace="blocks/header :: header"></div>
-<div class="container-content">
-    <div th:replace="blocks/menu :: menu"></div>
-    <div th:replace="content/primary_charge_shafts :: primary-charge-shafts"></div>
-</div>
-</body>
+    <head th:replace="blocks/head :: head"></head>
+    <body>
+        <div th:replace="blocks/header :: header"></div>
+        <div class="container-content">
+            <div th:replace="blocks/menu :: menu"></div>
+
+            <div class="primary-charge-shafts" data-page="primary-charge-shafts">
+                <div>Primary Charge Shafts</div>
+            </div>
+
+        </div>
+    </body>
 </html>

@@ -1,0 +1,7 @@
+.main, .departments, .cartridges,
+.toners, .drums, .magnetic-shafts,
+.primary-charge-shafts, .cleaning-blades,
+.dispensing-blades, .tools {
+  padding: rem(30);
+  flex-grow: 1;
+}

@@ -9,13 +9,4 @@
 @import "components/modal/modal-title";
 @import "components/modal/modal-field";
 
-@import "contents/main/main";
-@import "contents/departments/departments";
-@import "contents/cartridges/cartridges";
-@import "contents/toners/toners";
-@import "contents/drums/drums";
-@import "contents/magnetic-shafts/magnetic-shafts";
-@import "contents/primary-charge-shafts/primary-charge-shafts";
-@import "contents/cleaning-blades/cleaning-blades";
-@import "contents/dispensing-blades/dispensing-blades";
-@import "contents/tools/tools";
+@import "modules/content-pages/content-pages";

@@ -1,5 +1,3 @@
-import "%contents%/toners/toners";
-
 import { PartsTable } from "%blocks%/modules/parts-table/parts-table";
 import { EditorParts } from "%blocks%/modules/modal/editor-parts/editor-parts";
 import { AddNewBtn } from "%blocks%/components/btn/btn";

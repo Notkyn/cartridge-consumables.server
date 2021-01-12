@@ -9,7 +9,12 @@
         <div th:replace="blocks/header :: header"></div>
         <div class="container-content">
             <div th:replace="blocks/menu :: menu"></div>
-            <div th:replace="content/toners :: toners"></div>
+
+            <div class="toners" data-page="toners">
+                <button class="btn btn_add" data-btn="add" th:text="#{view.btn.add}"></button>
+                <div th:replace="blocks/parts_table :: parts-table"></div>
+            </div>
+
         </div>
 
         <div th:replace="blocks/modal/editor_parts :: editor-parts"></div>
