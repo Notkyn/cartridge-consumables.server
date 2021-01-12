@@ -8,7 +8,7 @@ public class ConstUrl {
     public static final String PAGE_MAGNETIC_SHAFTS = "/magnetic_shafts";
     public static final String PRIMARY_CHARGE_SHAFT = "/primary_charge_shafts";
     public static final String PAGE_CLEANING_BLADE = "/cleaning_blades";
-    public static final String PAGE_DISPENSING_BLADE = "pages/dispensing_blades";
+    public static final String PAGE_DISPENSING_BLADE = "/dispensing_blades";
 
     /* UI */
     public static final String UI_TONER = "/ui/parts/toner";
