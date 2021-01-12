@@ -61,8 +61,6 @@ export class EditorParts {
 
     setTable(table){
         this._apply_btn.addEventListener(configuration.getConstants().eventClick, () => {
-            //todo rest create or update new
-
 
             this._close();
 

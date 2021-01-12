@@ -1,4 +1,5 @@
 import { tonersConfig } from "%config%/model/parts/toners";
+import { drumsConfig } from "%config%/model/parts/drums";
 import { modalMode } from "%config%/modes/modal";
 import { constants } from "%config%/constants";
 
@@ -9,6 +10,7 @@ class FabricConfig {
 
 
         this._isToner = false;
+        this._isDrum = false;
     }
 
     _refreshConfig(){
@@ -17,11 +19,15 @@ class FabricConfig {
         modalMode.refresh();
 
         this._isToner = false;
+        this._isDrum = false;
     }
 
     getInstanse(){
-        if(this._isToner){
-            return tonersConfig;
+        switch (true) {
+            case this._isToner:
+                return tonersConfig;
+            case this._isDrum:
+                return drumsConfig;
         }
     }
 
@@ -44,6 +50,12 @@ class FabricConfig {
     setTonerConfig(){
         this._refreshConfig();
         this._isToner = true;
+        this._setPartsMode(true);
+    }
+
+    setDrumConfig(){
+        this._refreshConfig();
+        this._isDrum = true;
         this._setPartsMode(true);
     }
 }
