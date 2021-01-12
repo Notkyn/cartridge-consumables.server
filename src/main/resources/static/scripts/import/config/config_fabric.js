@@ -3,6 +3,7 @@ import { drumsConfig } from "%config%/model/parts/drums";
 import { magneticShaftsConfig } from "%config%/model/parts/magnetic-shaft";
 import { primaryChargeShaftsConfig } from "%config%/model/parts/primary-charge-shaft";
 import { cleaningBladesConfig } from "%config%/model/parts/cleaning-blade";
+import { dispensingBladesConfig } from "%config%/model/parts/dispensing-blade";
 import { modalMode } from "%config%/modes/modal";
 import { constants } from "%config%/constants";
 
@@ -11,12 +12,12 @@ class FabricConfig {
     constructor(){
         this._isPartsMode = false;
 
-
         this._isToner = false;
         this._isDrum = false;
         this._isMagneticShaft = false;
         this._isPrimaryChargeShaft = false;
         this._isCleaningBlade = false;
+        this._isDispensingBlade = false;
     }
 
     _refreshConfig(){
@@ -29,6 +30,7 @@ class FabricConfig {
         this._isMagneticShaft = false;
         this._isPrimaryChargeShaft = false;
         this._isCleaningBlade = false;
+        this._isDispensingBlade = false;
     }
 
     getInstanse(){
@@ -43,6 +45,8 @@ class FabricConfig {
                 return primaryChargeShaftsConfig;
             case this._isCleaningBlade:
                 return cleaningBladesConfig;
+            case this._isDispensingBlade:
+                return dispensingBladesConfig;
         }
     }
 
@@ -89,6 +93,12 @@ class FabricConfig {
     setCleaningBladeConfig(){
         this._refreshConfig();
         this._isCleaningBlade = true;
+        this._setPartsMode(true);
+    }
+
+    setDispensingBladeConfig(){
+        this._refreshConfig();
+        this._isDispensingBlade = true;
         this._setPartsMode(true);
     }
 }

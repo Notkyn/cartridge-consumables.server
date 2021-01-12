@@ -8,7 +8,8 @@ module.exports = {
         "drums": "./src/main/resources/static/scripts/import/pages/drums.js",
         "magnetic-shafts": "./src/main/resources/static/scripts/import/pages/magnetic-shafts.js",
         "primary-charge-shafts": "./src/main/resources/static/scripts/import/pages/primary-charge-shafts.js",
-        "cleaning-blades": "./src/main/resources/static/scripts/import/pages/cleaning-blades.js"
+        "cleaning-blades": "./src/main/resources/static/scripts/import/pages/cleaning-blades.js",
+        "dispensing-blades": "./src/main/resources/static/scripts/import/pages/dispensing-blades.js"
     },
 
     output: {
