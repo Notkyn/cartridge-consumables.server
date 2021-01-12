@@ -8,4 +8,5 @@ public class ConstPath {
     public static final String PAGE_DRUM = "pages/drums";
     public static final String PAGE_MAGNETIC_SHAFT = "pages/magnetic_shafts";
     public static final String PRIMARY_CHARGE_SHAFT = "pages/primary_charge_shafts";
+    public static final String PAGE_CLEANING_BLADE = "pages/cleaning_blade";
 }

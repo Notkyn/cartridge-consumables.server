@@ -25,9 +25,9 @@ public class RootController {
         return "pages/cartridges";
     }
 
-    @GetMapping(value = "/cleaning_blades")
+    @GetMapping(value = ConstUrl.PAGE_CLEANING_BLADE)
     public String cleaningBlades(){
-        return "pages/cleaning_blades";
+        return ConstPath.PAGE_CLEANING_BLADE;
     }
 
     @GetMapping(value = "/dispensing_blades")
