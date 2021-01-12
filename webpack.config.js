@@ -3,10 +3,11 @@ const webpack = require("webpack");
 
 module.exports = {
     entry: {
-        main: "./src/main/resources/static/scripts/index.js",
-        toners: "./src/main/resources/static/scripts/import/pages/toners.js",
-        drums: "./src/main/resources/static/scripts/import/pages/drums.js",
-        magnetic_shafts: "./src/main/resources/static/scripts/import/pages/magnetic-shafts.js"
+        "main": "./src/main/resources/static/scripts/index.js",
+        "toners": "./src/main/resources/static/scripts/import/pages/toners.js",
+        "drums": "./src/main/resources/static/scripts/import/pages/drums.js",
+        "magnetic-shafts": "./src/main/resources/static/scripts/import/pages/magnetic-shafts.js",
+        "primary-charge-shafts": "./src/main/resources/static/scripts/import/pages/primary-charge-shafts.js"
     },
 
     output: {
