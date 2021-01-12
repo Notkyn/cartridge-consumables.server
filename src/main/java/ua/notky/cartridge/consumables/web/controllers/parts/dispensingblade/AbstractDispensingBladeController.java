@@ -1,20 +1,19 @@
-package ua.notky.cartridge.consumables.web.controllers.parts.cleaningblade;
+package ua.notky.cartridge.consumables.web.controllers.parts.dispensingblade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import ua.notky.cartridge.consumables.model.parts.CleaningBlade;
-import ua.notky.cartridge.consumables.service.model.parts.cleaningblade.CleaningBladeService;
+import ua.notky.cartridge.consumables.model.parts.DispensingBlade;
+import ua.notky.cartridge.consumables.service.model.parts.dispensingblade.DispensingBladeService;
 
 import java.util.List;
 
 import static ua.notky.cartridge.consumables.util.ValidationUtil.checkNewBean;
 
 @Slf4j
-public abstract class AbstractCleaningBladeController {
+public abstract class AbstractDispensingBladeController {
+    private DispensingBladeService service;
 
-    private CleaningBladeService service;
-
-    List<CleaningBlade> getAll(){
+    List<DispensingBlade> getAll(){
         log.info("Get all");
         return service.getAll();
     }
@@ -24,24 +23,24 @@ public abstract class AbstractCleaningBladeController {
         service.delete(id);
     }
 
-    CleaningBlade get(int id){
+    DispensingBlade get(int id){
         log.info("Get id={}", id);
         return service.get(id);
     }
 
-    void create(CleaningBlade blade){
+    void create(DispensingBlade blade){
         log.info("Create {}", blade);
         checkNewBean(blade);
         service.create(blade);
     }
 
-    void update(CleaningBlade blade){
+    void update(DispensingBlade blade){
         log.info("Update id={}, {}",blade.getId(), blade);
         service.update(blade);
     }
 
     @Autowired
-    public void setService(CleaningBladeService service) {
+    public void setService(DispensingBladeService service) {
         this.service = service;
     }
 }

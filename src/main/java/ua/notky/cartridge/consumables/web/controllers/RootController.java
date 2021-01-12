@@ -25,14 +25,9 @@ public class RootController {
         return "pages/cartridges";
     }
 
-    @GetMapping(value = ConstUrl.PAGE_CLEANING_BLADE)
-    public String cleaningBlades(){
-        return ConstPath.PAGE_CLEANING_BLADE;
-    }
-
-    @GetMapping(value = "/dispensing_blades")
-    public String dispensingBlades(){
-        return "pages/dispensing_blades";
+    @GetMapping(value = ConstUrl.PAGE_TONER)
+    public String toners(){
+        return ConstPath.PAGE_TONER;
     }
 
     @GetMapping(value = ConstUrl.PAGE_DRUM)
@@ -50,9 +45,14 @@ public class RootController {
         return ConstPath.PRIMARY_CHARGE_SHAFT;
     }
 
-    @GetMapping(value = ConstUrl.PAGE_TONER)
-    public String toners(){
-        return ConstPath.PAGE_TONER;
+    @GetMapping(value = ConstUrl.PAGE_CLEANING_BLADE)
+    public String cleaningBlades(){
+        return ConstPath.PAGE_CLEANING_BLADE;
+    }
+
+    @GetMapping(value = ConstUrl.PAGE_DISPENSING_BLADE)
+    public String dispensingBlades(){
+        return ConstPath.PAGE_DISPENSING_BLADE;
     }
 
     @GetMapping(value = "/tools")
