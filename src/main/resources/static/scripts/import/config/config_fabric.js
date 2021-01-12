@@ -1,5 +1,6 @@
 import { tonersConfig } from "%config%/model/parts/toners";
 import { drumsConfig } from "%config%/model/parts/drums";
+import { magneticShaftsConfig } from "%config%/model/parts/magnetic-shaft";
 import { modalMode } from "%config%/modes/modal";
 import { constants } from "%config%/constants";
 
@@ -11,6 +12,7 @@ class FabricConfig {
 
         this._isToner = false;
         this._isDrum = false;
+        this._isMagneticShaft = false;
     }
 
     _refreshConfig(){
@@ -20,6 +22,7 @@ class FabricConfig {
 
         this._isToner = false;
         this._isDrum = false;
+        this._isMagneticShaft = false;
     }
 
     getInstanse(){
@@ -28,6 +31,8 @@ class FabricConfig {
                 return tonersConfig;
             case this._isDrum:
                 return drumsConfig;
+            case this._isMagneticShaft:
+                return magneticShaftsConfig;
         }
     }
 
@@ -56,6 +61,12 @@ class FabricConfig {
     setDrumConfig(){
         this._refreshConfig();
         this._isDrum = true;
+        this._setPartsMode(true);
+    }
+
+    setMagneticShaftConfig(){
+        this._refreshConfig();
+        this._isMagneticShaft = true;
         this._setPartsMode(true);
     }
 }

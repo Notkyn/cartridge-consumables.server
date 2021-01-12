@@ -5,7 +5,8 @@ module.exports = {
     entry: {
         main: "./src/main/resources/static/scripts/index.js",
         toners: "./src/main/resources/static/scripts/import/pages/toners.js",
-        drums: "./src/main/resources/static/scripts/import/pages/drums.js"
+        drums: "./src/main/resources/static/scripts/import/pages/drums.js",
+        magnetic_shafts: "./src/main/resources/static/scripts/import/pages/magnetic-shafts.js"
     },
 
     output: {
