@@ -1,4 +1,4 @@
-package ua.notky.cartridge.consumables.web.model.parts.toner;
+package ua.notky.cartridge.consumables.web.model.parts;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

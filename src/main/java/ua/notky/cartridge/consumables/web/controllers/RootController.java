@@ -35,14 +35,14 @@ public class RootController {
         return "pages/dispensing_blades";
     }
 
-    @GetMapping(value = "/drums")
+    @GetMapping(value = ConstUrl.PAGE_DRUM)
     public String drums(){
-        return "pages/drums";
+        return ConstPath.PAGE_DRUM;
     }
 
-    @GetMapping(value = "/magnetic_shafts")
+    @GetMapping(value = ConstUrl.PAGE_MAGNETIC_SHAFTS)
     public String magneticShafts(){
-        return "pages/magnetic_shafts";
+        return ConstPath.PAGE_MAGNETIC_SHAFT;
     }
 
     @GetMapping(value = ConstUrl.PRIMARY_CHARGE_SHAFT)
