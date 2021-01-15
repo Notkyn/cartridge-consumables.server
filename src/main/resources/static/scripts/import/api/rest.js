@@ -2,7 +2,6 @@ class Rest{
     constructor(){
         this._contentType = "application/x-www-form-urlencoded; charset=UTF-8";
         this._contentTypeJson = "application/json;charset=utf-8";
-
     }
 
     get(url, succesDo, failDo){
@@ -43,19 +42,6 @@ class Rest{
             .catch(failResponse => this._error(failResponse, failDo));
     }
 
-    test(url, data, succesDo, failDo){
-        fetch(url, {
-            method: 'post',
-            headers: {
-                "Content-type": this._contentTypeJson
-            },
-            body: JSON.stringify(data)
-        })
-            .then(this._status)
-            .then(succesDo)
-            .catch(failResponse => this._error(failResponse, failDo));
-    }
-
     _json(response){
         return response.json();
     }
@@ -64,7 +50,7 @@ class Rest{
         if (response.status >= 200 && response.status < 300) {
             return Promise.resolve(response);
         } else {
-            return Promise.reject(failResponse);
+            return Promise.reject(response);
         }
     }
 

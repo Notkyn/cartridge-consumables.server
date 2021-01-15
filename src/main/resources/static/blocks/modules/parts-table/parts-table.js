@@ -1,6 +1,7 @@
 import { request } from '%api%/rest';
 import { configuration } from "%config%/config_fabric";
 import { sort } from "%api%/sort";
+import { noteHandler } from "%api%/note-handler";
 
 export class PartsTable {
 
@@ -38,17 +39,6 @@ export class PartsTable {
     _resultFromModal(){
         // request.post(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable);
         request.test(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable, this._failRequest)
-    }
-
-    _failRequest(error){
-        console.log(error);
-
-        // error.text()
-        //     .then(textBody => JSON.parse(textBody))
-        //     .then(e => {
-        //         console.log(e);
-        //         console.log(e.details);
-        //     });
     }
 
     _refreshTable(){
@@ -146,7 +136,9 @@ export class PartsTable {
 
         let deleteBtn = this._createBtnBody("delete");
         deleteBtn.addEventListener(configuration.getConstants().eventClick, () => {
-            request.delete(configuration.getInstanse().getDeleteAjax(element.id), this._refreshTable);
+            request.delete(configuration.getInstanse().getDeleteAjax(element.id),
+                this._refreshTable,
+                noteHandler.failDeleteObject);
         });
 
         let row = document.createElement("div");
