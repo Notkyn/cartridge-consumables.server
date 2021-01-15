@@ -24,5 +24,4 @@ yarn-error.log
 target/
 !**/src/main/**/target/
 !**/src/test/**/target/
-!**/src/main/resources/js/rrr.txt
-consumables/src/main/resources/js/rrr.txt
+src/main/resources/static/js
