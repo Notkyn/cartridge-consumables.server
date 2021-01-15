@@ -36,7 +36,19 @@ export class PartsTable {
     }
 
     _resultFromModal(){
-        request.post(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable);
+        // request.post(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable);
+        request.test(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable, this._failRequest)
+    }
+
+    _failRequest(error){
+        console.log(error);
+
+        // error.text()
+        //     .then(textBody => JSON.parse(textBody))
+        //     .then(e => {
+        //         console.log(e);
+        //         console.log(e.details);
+        //     });
     }
 
     _refreshTable(){

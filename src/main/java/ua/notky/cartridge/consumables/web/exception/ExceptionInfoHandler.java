@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -19,6 +20,9 @@ import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static ua.notky.cartridge.consumables.util.ExceptionUtil.*;
 import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
@@ -41,9 +45,9 @@ public class ExceptionInfoHandler {
 
         BindingResult result = ((MethodArgumentNotValidException) exception).getBindingResult();
 
-        String[] details = result.getFieldErrors().stream()
-                .map(fe -> messageI18nUtil.getMessageBindFormat(fe.getCode()))
-                .toArray(String[]::new);
+        Map details = result.getFieldErrors().stream()
+                .collect(Collectors.toMap(FieldError::getField,
+                        v -> messageI18nUtil.getMessageBindFormat(v.getCode())));
 
         return getErrorInfo(request,
                 exception,
@@ -58,11 +62,12 @@ public class ExceptionInfoHandler {
 
         if(isDuplicateEntryException(exception)){
             logException(log, request, exception, true, VALIDATION_ERROR);
+
             return getErrorInfo(request,
                     exception,
                     VALIDATION_ERROR,
                     messageI18nUtil.getMessageErrorType(VALIDATION_ERROR),
-                    messageI18nUtil.getMessage(Const.DUPLICATE_EXCEPTION_CODE));
+                    Map.of(Const.NAME_FIELD, messageI18nUtil.getMessage(Const.DUPLICATE_EXCEPTION_CODE)));
         }
 
         logException(log, request, exception, true, DATA_ERROR);

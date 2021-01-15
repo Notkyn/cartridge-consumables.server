@@ -5,7 +5,7 @@ class Rest{
 
     }
 
-    get(url, someDo){
+    get(url, succesDo, failDo){
         fetch(url, {
             method: 'get',
             headers: {
@@ -14,13 +14,11 @@ class Rest{
         })
             .then(this._status)
             .then(this._json)
-            .then(someDo)
-            .catch(function (error) {
-                console.log('Request failed', error);
-            });
+            .then(succesDo)
+            .catch(failResponse => this._error(failResponse, failDo));
     }
 
-    post(url, data, someDo){
+    post(url, data, succesDo, failDo){
         fetch(url, {
             method: 'post',
             headers: {
@@ -29,13 +27,11 @@ class Rest{
             body: JSON.stringify(data)
         })
             .then(this._status)
-            .then(someDo)
-            .catch(function (error) {
-                console.log('Request failed', error);
-            });
+            .then(succesDo)
+            .catch(failResponse => this._error(failResponse, failDo));
     }
 
-    delete(url, someDo){
+    delete(url, succesDo, failDo){
         fetch(url, {
             method: 'delete',
             headers: {
@@ -43,10 +39,21 @@ class Rest{
             }
         })
             .then(this._status)
-            .then(someDo)
-            .catch(function (error) {
-                console.log('Request failed', error);
-            });
+            .then(succesDo)
+            .catch(failResponse => this._error(failResponse, failDo));
+    }
+
+    test(url, data, succesDo, failDo){
+        fetch(url, {
+            method: 'post',
+            headers: {
+                "Content-type": this._contentTypeJson
+            },
+            body: JSON.stringify(data)
+        })
+            .then(this._status)
+            .then(succesDo)
+            .catch(failResponse => this._error(failResponse, failDo));
     }
 
     _json(response){
@@ -57,8 +64,15 @@ class Rest{
         if (response.status >= 200 && response.status < 300) {
             return Promise.resolve(response);
         } else {
-            return Promise.reject(new Error(response.statusText));
+            return Promise.reject(failResponse);
         }
+    }
+
+    _error(failResponse, failDo){
+        failResponse
+            .text()
+            .then(textBody => JSON.parse(textBody))
+            .then(failDo);
     }
 }
 

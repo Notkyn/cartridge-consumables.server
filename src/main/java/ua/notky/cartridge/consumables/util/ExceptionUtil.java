@@ -9,6 +9,7 @@ import ua.notky.cartridge.consumables.util.exception.ErrorInfo;
 import ua.notky.cartridge.consumables.util.exception.ErrorType;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -76,16 +77,25 @@ public class ExceptionUtil {
                                   Exception exception,
                                   ErrorType errorType,
                                   String errorMsg,
-                                  String... details) {
+                                  Map details) {
         log.info("Create ErrorInfo for Request: [requestUrl={}], [exception={}]",
                 request.getRequestURL(), exception.toString());
 
         Throwable rootCause = getRootCause(exception);
 
-        return new ErrorInfo(request.getRequestURL(),
+        return new ErrorInfo(
+                request.getRequestURL().toString(),
                 errorType,
                 errorMsg,
-                details.length != 0 ? details : new String[]{getExceptionMessage(rootCause)});
+                details != null && details.size() > 0 ? details :
+                        Map.of(Const.MSG, getExceptionMessage(rootCause)));
+    }
+
+    public static ErrorInfo getErrorInfo(HttpServletRequest request,
+                                         Exception exception,
+                                         ErrorType errorType,
+                                         String errorMsg){
+        return getErrorInfo(request, exception, errorType, errorMsg, null);
     }
 
     public static boolean isDuplicateEntryException(Exception ex){

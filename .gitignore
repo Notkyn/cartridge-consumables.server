@@ -1,7 +1,4 @@
 HELP.md
-target/
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 ### IntelliJ IDEA ###
 .idea
@@ -22,3 +19,10 @@ logs
 node_modules
 yarn.lock
 yarn-error.log
+
+### Compile Files ###
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/resources/js/rrr.txt
+consumables/src/main/resources/js/rrr.txt
