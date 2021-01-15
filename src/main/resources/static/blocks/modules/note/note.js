@@ -1,5 +1,5 @@
 export class Note{
-    constructor(delay = 2000){
+    constructor(delay = 3000){
         this._rootView = document.querySelector("body");
         this._view = this._createView();
         this._delay = delay;

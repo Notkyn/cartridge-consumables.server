@@ -14,6 +14,7 @@ export class PartsTable {
         this._refreshTable = this._refreshTable.bind(this);
         this._resultFromModal = this._resultFromModal.bind(this);
         this._renderModal = this._renderModal.bind(this);
+        this._successDeteleItem = this._successDeteleItem.bind(this);
     }
 
     build(modal){
@@ -28,7 +29,9 @@ export class PartsTable {
     }
 
     _renderBody(){
-        request.get(configuration.getInstanse().getAllAjax(), this._createBody);
+        request.get(configuration.getInstanse().getAllAjax(),
+            this._createBody,
+            noteHandler.failLoad);
     }
 
     _renderModal(data){
@@ -131,13 +134,15 @@ export class PartsTable {
 
         let editBtn = this._createBtnBody("edit");
         editBtn.addEventListener(configuration.getConstants().eventClick, () => {
-            request.get(configuration.getInstanse().getOneAjax(element.id), this._renderModal);
+            request.get(configuration.getInstanse().getOneAjax(element.id),
+                this._renderModal,
+                noteHandler.failLoad);
         });
 
         let deleteBtn = this._createBtnBody("delete");
         deleteBtn.addEventListener(configuration.getConstants().eventClick, () => {
             request.delete(configuration.getInstanse().getDeleteAjax(element.id),
-                this._refreshTable,
+                this._successDeteleItem,
                 noteHandler.failDeleteObject);
         });
 
@@ -154,6 +159,11 @@ export class PartsTable {
         row.appendChild(deleteBtn);
 
         return row;
+    }
+
+    _successDeteleItem(){
+        noteHandler.successDeleteObject();
+        this._refreshTable();
     }
 
     _createBtnBody(nameBtn){
