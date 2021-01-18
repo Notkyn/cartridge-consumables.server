@@ -17,8 +17,6 @@ export class EditorParts {
 
         this._failValidationForm = this._failValidationForm.bind(this);
         this._createEvent = this._createEvent.bind(this);
-
-        this._close();
     }
 
     show(data){
@@ -81,11 +79,11 @@ export class EditorParts {
     _validatedNameField(isOk, msg){
         if(isOk){
             this._name_field.classList.remove("modal-field-value_error");
-            this._name_field_error.classList.add("hide");
+            this._name_field_error.classList.add(configuration.getConstants().classHide);
             this._name_field_error.innerHTML = "";
         } else {
             this._name_field.classList.add("modal-field-value_error");
-            this._name_field_error.classList.remove("hide");
+            this._name_field_error.classList.remove(configuration.getConstants().classHide);
             this._name_field_error.innerHTML = msg;
         }
     }
