@@ -12,7 +12,6 @@ export class PartsTable {
 
         this._createBody = this._createBody.bind(this);
         this._refreshTable = this._refreshTable.bind(this);
-        this._resultFromModal = this._resultFromModal.bind(this);
         this._renderModal = this._renderModal.bind(this);
         this._successDeteleItem = this._successDeteleItem.bind(this);
     }
@@ -23,7 +22,8 @@ export class PartsTable {
 
         this._modal = modal;
         this._modal.setTable(this._table);
-        this._table.addEventListener(configuration.getConstants().eventModalAddBtn, this._resultFromModal);
+
+        this._table.addEventListener(configuration.getConstants().eventModalAddBtn, this._refreshTable);
 
         this._refreshTable();
     }
@@ -37,11 +37,6 @@ export class PartsTable {
     _renderModal(data){
         configuration.getModalMode().setEditModalMode();
         this._modal.show(data);
-    }
-
-    _resultFromModal(){
-        // request.post(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable);
-        request.test(configuration.getInstanse().getAddAjax(), this._modal.getData(), this._refreshTable, this._failRequest)
     }
 
     _refreshTable(){

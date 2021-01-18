@@ -1,5 +1,6 @@
 import { Overflow } from "%blocks%/components/overflow/overflow";
 import { configuration } from "%config%/config_fabric";
+import {request} from "%api%/rest";
 
 export class EditorParts {
     constructor(){
@@ -10,6 +11,12 @@ export class EditorParts {
         this._apply_btn = this._modal.querySelector(".btn_modal");
         this._cancel_btn = this._modal.querySelector(".btn_modal-cancel");
         this._name_field = this._modal.querySelector("#modal-field-name");
+        this._name_field_error = this._modal.querySelector("#modal-field-error-name");
+
+        this._table = null;
+
+        this._failValidationForm = this._failValidationForm.bind(this);
+        this._createEvent = this._createEvent.bind(this);
 
         this._close();
     }
@@ -33,7 +40,7 @@ export class EditorParts {
         this._modal.classList.add(configuration.getConstants().classHide);
     }
 
-    getData(){
+    _getData(){
         let resultData = {};
 
         if(this._id.innerHTML.length > 0){
@@ -54,19 +61,48 @@ export class EditorParts {
             this._apply_btn.innerHTML = i18n.modalUpdateBtn;
         }
 
-        this._cancel_btn.addEventListener(configuration.getConstants().eventClick, () => {
-            this._close();
-        })
+        this._validatedNameField(true);
+
+    }
+
+    _createEvent(){
+        this._close();
+        this._table.dispatchEvent(new CustomEvent(configuration.getConstants().eventModalAddBtn, {
+            bubbles: true
+        }));
+    }
+
+    _failValidationForm(error){
+        if(error.details.name !== undefined){
+            this._validatedNameField(false, error.details.name);
+        }
+    }
+
+    _validatedNameField(isOk, msg){
+        if(isOk){
+            this._name_field.classList.remove("modal-field-value_error");
+            this._name_field_error.classList.add("hide");
+            this._name_field_error.innerHTML = "";
+        } else {
+            this._name_field.classList.add("modal-field-value_error");
+            this._name_field_error.classList.remove("hide");
+            this._name_field_error.innerHTML = msg;
+        }
     }
 
     setTable(table){
+        this._table = table;
+
         this._apply_btn.addEventListener(configuration.getConstants().eventClick, () => {
 
-            this._close();
+            request.post(configuration.getInstanse().getAddAjax(),
+                this._getData(),
+                this._createEvent,
+                this._failValidationForm);
+        });
 
-            table.dispatchEvent(new CustomEvent(configuration.getConstants().eventModalAddBtn, {
-                bubbles: true
-            }));
-        })
+        this._cancel_btn.addEventListener(configuration.getConstants().eventClick, () => {
+            this._createEvent();
+        });
     }
 }

@@ -24,5 +24,20 @@
     padding: rem(20);
     outline: none;
     resize: none;
+
+    &_error {
+      border: 2px solid $error;
+    }
   }
+
+  &-error {
+    margin-top: rem(5);
+    color: $error;
+    text-align: center;
+    overflow-wrap: break-word;
+    font-weight: 400;
+    font-size: rem(16);
+  }
+
+
 }
