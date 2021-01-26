@@ -1,0 +1,16 @@
+.error {
+  text-align: center;
+  margin-top: rem(100);
+
+  &-status {
+    color: $error-page;
+    font-size: rem(120);
+    font-weight: 700;
+  }
+
+  &-msg {
+    margin-top: rem(30);
+    font-size: rem(16);
+    font-weight: 400;
+  }
+}

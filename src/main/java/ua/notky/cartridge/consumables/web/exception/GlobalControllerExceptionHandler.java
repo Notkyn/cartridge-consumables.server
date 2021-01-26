@@ -19,6 +19,7 @@ import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
 @Slf4j
 public class GlobalControllerExceptionHandler {
 
+    //todo использование
     @ExceptionHandler(NoHandlerFoundException.class)
     public ModelAndView wrongRequest(HttpServletRequest request, NoHandlerFoundException exception) {
         logException(log, request, exception, false, WRONG_REQUEST);

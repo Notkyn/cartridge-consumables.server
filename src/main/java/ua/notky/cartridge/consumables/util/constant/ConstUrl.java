@@ -3,6 +3,7 @@ package ua.notky.cartridge.consumables.util.constant;
 public class ConstUrl {
     /* Pages */
     public static final String PAGE_MAIN = "/";
+    public static final String PAGE_ERROR = "/error";
     public static final String PAGE_TONER = "/toners";
     public static final String PAGE_DRUM = "/drums";
     public static final String PAGE_MAGNETIC_SHAFTS = "/magnetic_shafts";

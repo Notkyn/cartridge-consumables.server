@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import ua.notky.cartridge.consumables.util.constant.Const;
+import ua.notky.cartridge.consumables.util.constant.ConstPath;
 import ua.notky.cartridge.consumables.util.exception.ErrorInfo;
 import ua.notky.cartridge.consumables.util.exception.ErrorType;
 
@@ -55,7 +56,8 @@ public class ExceptionUtil {
     /*
      * Создание страници ошибки:
      * - отправка деталей исключения на страницу
-     * */
+     */
+    // todo использование
     public static ModelAndView getExceptionView(Exception exception,
                                           ErrorType errorType,
                                           String msg){
@@ -63,7 +65,7 @@ public class ExceptionUtil {
 
         Throwable rootCause = getRootCause(exception);
 
-        ModelAndView mav = new ModelAndView("exception/exception");
+        ModelAndView mav = new ModelAndView(ConstPath.PAGE_EXCEPTION);
         mav.addObject("typeMessage", errorType.getErrorCode());
         mav.addObject("exception", rootCause);
         mav.addObject("message", msg != null ? msg : getExceptionMessage(rootCause));
@@ -71,8 +73,23 @@ public class ExceptionUtil {
     }
 
     /*
+    * Создание Страници ошибки
+    */
+
+    public static ModelAndView getErrorPage(int statusCode, String msg){
+        log.info("Create ModelAndView of Error Page for Request: [status={}]", statusCode);
+
+        ModelAndView mav = new ModelAndView(ConstPath.PAGE_ERROR);
+
+        mav.addObject("statusCode", statusCode);
+        mav.addObject("message", msg != null ? msg : "");
+
+        return mav;
+    }
+
+    /*
     * Обьект для детального описания исключения
-    * */
+    */
     public static ErrorInfo getErrorInfo(HttpServletRequest request,
                                   Exception exception,
                                   ErrorType errorType,
