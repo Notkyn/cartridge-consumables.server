@@ -10,4 +10,5 @@ public interface CartridgeRepository {
     Cartridge getWithAllParts(int id);
     boolean delete(int id);
     List<Cartridge> getAll();
+    List<Cartridge> getAllWithAllParts();
 }

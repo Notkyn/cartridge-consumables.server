@@ -59,6 +59,12 @@ public class CartridgeServiceImp implements CartridgeService {
         return repository.getAll();
     }
 
+    @Override
+    public List<Cartridge> getAllWithAllParts() {
+        log.info("Get all Cartridges with all parts");
+        return repository.getAllWithAllParts();
+    }
+
     @Autowired
     public void setRepository(CartridgeRepository repository) {
         this.repository = repository;

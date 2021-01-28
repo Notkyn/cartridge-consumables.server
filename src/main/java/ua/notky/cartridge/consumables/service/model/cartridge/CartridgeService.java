@@ -20,4 +20,5 @@ public interface CartridgeService {
     void delete(int id);
 
     List<Cartridge> getAll();
+    List<Cartridge> getAllWithAllParts();
 }

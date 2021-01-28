@@ -40,6 +40,13 @@ public class CartridgeRepositoryImp implements CartridgeRepository {
     public List<Cartridge> getAll() {
         log.info("Find all from bd");
         return repository.findAll();
+
+    }
+
+    @Override
+    public List<Cartridge> getAllWithAllParts() {
+        log.info("Find all from bd with all parts");
+        return repository.getAllWithAllParts();
     }
 
     @Autowired
