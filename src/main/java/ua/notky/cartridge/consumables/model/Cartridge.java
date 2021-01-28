@@ -5,6 +5,8 @@ import lombok.Setter;
 import ua.notky.cartridge.consumables.model.parts.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Set;
 
 @Getter
@@ -14,6 +16,8 @@ import java.util.Set;
 public class Cartridge extends AbstractNameEntity {
     private static final long serialVersionUID = 4466775734839249457L;
 
+    @Positive
+    @NotNull
     @Column(name = "coef_toner", nullable = false)
     private int coefToner;
 
