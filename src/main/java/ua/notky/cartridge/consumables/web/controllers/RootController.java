@@ -20,9 +20,9 @@ public class RootController {
         return "pages/departments";
     }
 
-    @GetMapping(value = "/cartridges")
+    @GetMapping(value = ConstUrl.PAGE_CARTRIDGE)
     public String cartridges(){
-        return "pages/cartridges";
+        return ConstPath.PAGE_CARTRIDGE;
     }
 
     @GetMapping(value = ConstUrl.PAGE_TONER)
@@ -35,7 +35,7 @@ public class RootController {
         return ConstPath.PAGE_DRUM;
     }
 
-    @GetMapping(value = ConstUrl.PAGE_MAGNETIC_SHAFTS)
+    @GetMapping(value = ConstUrl.PAGE_MAGNETIC_SHAFT)
     public String magneticShafts(){
         return ConstPath.PAGE_MAGNETIC_SHAFT;
     }

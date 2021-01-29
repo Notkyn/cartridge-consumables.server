@@ -15,6 +15,7 @@ import static ua.notky.cartridge.consumables.tools.data.model.parts.TonerTool.TO
 public class CartridgeTool extends AbstractModelTool {
     public static final int ID_CARTRIDGE_2 = 2;
     public static final int ID_CARTRIDGE_5 = 5;
+    public static final int CARTIDGE_COEF_INVALID = -10;
 
     public static final Cartridge CARTRIDGE_1 = new Cartridge(1, "cartridge_1", 1);
     public static final Cartridge CARTRIDGE_2 = new Cartridge(ID_CARTRIDGE_2, "cartridge_2", 2);

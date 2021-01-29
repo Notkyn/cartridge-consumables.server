@@ -21,26 +21,32 @@ public class Cartridge extends AbstractNameEntity {
     @Column(name = "coef_toner", nullable = false)
     private int coefToner;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_toner", nullable = false)
     private Toner toner;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_drum", nullable = false)
     private Drum drum;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_cleaning_blade", nullable = false)
     private CleaningBlade cleaningBlade;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_dispensing_blade", nullable = false)
     private DispensingBlade dispensingBlade;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_magnetic_shaft", nullable = false)
     private MagneticShaft magneticShaft;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_primary_charge_shaft", nullable = false)
     private PrimaryChargeShaft primaryChargeShaft;
