@@ -15,7 +15,7 @@ public class ConstUrl {
     public static final String PAGE_DISPENSING_BLADE = "/dispensing_blades";
 
     /* UI */
-    public static final String UI_CARTRIDGE = "/ui/parts/cartridge";
+    public static final String UI_CARTRIDGE = "/ui/cartridge";
 
     public static final String UI_TONER = "/ui/parts/toner";
     public static final String UI_DRUM = "/ui/parts/drum";
