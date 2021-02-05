@@ -1,3 +1,4 @@
+import { cartridgesConfig } from "%config%/model/cartridge";
 import { tonersConfig } from "%config%/model/parts/toners";
 import { drumsConfig } from "%config%/model/parts/drums";
 import { magneticShaftsConfig } from "%config%/model/parts/magnetic-shaft";
@@ -10,8 +11,12 @@ import { constants } from "%config%/constants";
 
 class FabricConfig {
     constructor(){
+        // models
+        this._isCartridge = false;
+
         this._isPartsMode = false;
 
+        // parts
         this._isToner = false;
         this._isDrum = false;
         this._isMagneticShaft = false;
@@ -25,6 +30,8 @@ class FabricConfig {
 
         modalMode.refresh();
 
+        this._isCartridge = false;
+
         this._isToner = false;
         this._isDrum = false;
         this._isMagneticShaft = false;
@@ -35,6 +42,8 @@ class FabricConfig {
 
     getInstanse(){
         switch (true) {
+            case this._isCartridge:
+                return cartridgesConfig;
             case this._isToner:
                 return tonersConfig;
             case this._isDrum:
@@ -58,12 +67,13 @@ class FabricConfig {
         return modalMode;
     }
 
-    isParts(){
-        return this._isPartsMode;
-    }
-
     _setPartsMode(value){
         this._isPartsMode = value;
+    }
+
+    setCartridgeConfig(){
+        this._refreshConfig();
+        this._isCartridge = true;
     }
 
     setTonerConfig(){
