@@ -9,10 +9,14 @@
             <div th:replace="blocks/menu :: menu"></div>
 
             <div class="cartridges" data-page="cartridges">
-                <div>Cartriges</div>
+                <button class="btn btn_add" data-btn="add" th:text="#{view.btn.add}"></button>
+                <div th:replace="blocks/cartridge_table :: cartridge-table"></div>
             </div>
 
         </div>
+
+        <div th:replace="blocks/modal/cartridge_editor :: cartridge-editor"></div>
+        <div th:replace="blocks/modal/overflow :: overflow"></div>
 
         <script th:src="@{/js/cartridges.min.js}" defer></script>
     </body>

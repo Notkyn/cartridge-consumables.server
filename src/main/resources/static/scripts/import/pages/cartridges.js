@@ -1,10 +1,10 @@
-// import { PartsTable } from "%blocks%/modules/tables/parts-table/parts-table";
-// import { EditorParts } from "%blocks%/modules/modal/editor-parts/editor-parts";
-// import { AddNewBtn } from "%blocks%/components/btn/btn";
+import { CartridgesTable } from "%blocks%/modules/tables/cartridge-table/cartridge-table";
+import { CartridgeEditor } from "%blocks%/modules/modal/cartridge-editor/cartridge-editor";
+import { AddNewBtn } from "%blocks%/components/btn/btn";
 import { configuration } from "%config%/config_fabric";
 
 configuration.setCartridgeConfig();
 
-// const modal = new EditorParts();
-// new AddNewBtn().build(modal);
-// new PartsTable("cleaning-blades").build(modal);
+const modal = new CartridgeEditor();
+new AddNewBtn().build(modal);
+new CartridgesTable("cartridges").build(modal);

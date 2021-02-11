@@ -1,0 +1,234 @@
+.cartridge-table {
+   margin-top: rem(15);
+
+   &-header {
+      border-top: 2px solid $black;
+      border-bottom: 2px solid $black;
+      height: rem(43);
+      display: flex;
+
+      &-index {
+         width: rem(100);
+         font-weight: 700;
+         font-size: rem(18);
+         line-height: rem(43);
+         text-align: center;
+         color: $black;
+         user-select: none;
+      }
+
+      &-name {
+         flex-grow: 1;
+         font-weight: 700;
+         font-size: rem(18);
+         line-height: rem(43);
+         color: $black;
+         display: flex;
+         justify-content: start;
+         padding-left: rem(10);
+         cursor: pointer;
+         user-select: none;
+
+         & span {
+            flex-grow: 1;
+            text-align: center;
+         }
+      }
+
+      &-parts {
+         width: rem(650);
+         font-weight: 700;
+         font-size: rem(18);
+         line-height: rem(43);
+         color: $black;
+         text-align: center;
+      }
+   }
+
+   &-arrows {
+
+      &-up {
+         background: url('../img/icons/sort-arrow.svg') center (center / contain) no-repeat;
+         display: block;
+         width: rem(10);
+         height: rem(8);
+         margin-top: rem(14);
+
+         &-active {
+            background: url('../img/icons/sort-arrow-active.svg') center (center / contain) no-repeat;
+         }
+
+         &-inactive {
+            display: none;
+         }
+      }
+
+      &-down {
+         background: url('../img/icons/sort-arrow.svg') center (center / contain) no-repeat;
+         transform: rotate(180deg);
+         display: block;
+         width: rem(10);
+         height: rem(8);
+
+         &-active {
+            margin-top: rem(22);
+            background: url('../img/icons/sort-arrow-active.svg') center (center / contain) no-repeat;
+         }
+
+         &-inactive {
+            display: none;
+         }
+      }
+   }
+
+   &-row {
+      border-bottom: 2px solid $black;
+      display: flex;
+      justify-content: start;
+      height: rem(175);
+
+      &-btns {
+         width: rem(100);
+
+         &-index {
+            height: rem(45);
+            font-weight: 400;
+            font-size: rem(18);
+            line-height: rem(45);
+            text-align: center;
+            color: $black;
+            background: $table-cartridge-index;
+         }
+
+         &-delete, &-edit {
+            height: rem(65);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: $table-cartridge-btn;
+
+            &:hover {
+               background: $table-cartridge-btn-hover;
+            }
+
+            &:active {
+               background: $table-cartridge-btn-active;
+            }
+         }
+
+         &-delete-img {
+            width: rem(22);
+            height: rem(22);
+            background: url('../img/icons/delete-icon.svg') center (center / contain) no-repeat;
+         }
+
+         &-edit-img {
+            width: rem(22);
+            height: rem(22);
+            background: url('../img/icons/edit-icon.svg') center (center / contain) no-repeat;
+         }
+      }
+
+      &-info {
+         flex-grow: 1;
+
+         &-title {
+            height: rem(140);
+            background: $table-cartridge-info-title;
+            font-weight: 700;
+            font-size: rem(24);
+            line-height: rem(140);
+            text-align: center;
+            color: $black;
+         }
+
+         &-footer {
+            height: rem(35);
+            background: $table-cartridge-info-footer;
+            display: flex;
+            justify-content: start;
+            font-weight: 400;
+            font-size: rem(16);
+            line-height: rem(35);
+
+            &-coef, &-toner {
+               width: rem(150);
+               text-align: end;
+            }
+
+            &-value {
+               width: rem(80);
+               text-align: center;
+            }
+
+            &-name {
+               flex-grow: 1;
+               padding-left: rem(20);
+               text-align: start;
+            }
+         }
+      }
+
+      &-parts {
+         width: rem(650);
+
+         &-item {
+            display: flex;
+            justify-content: start;
+
+            &-name {
+               width: rem(250);
+               height: rem(35);
+               text-align: end;
+               font-weight: 400;
+               font-size: rem(16);
+               line-height: rem(35);
+            }
+
+            &-value {
+               width: rem(400);
+               height: rem(35);
+               text-align: center;
+               font-weight: 400;
+               font-size: rem(16);
+               line-height: rem(35);
+            }
+
+            &-bg-1 {
+               background: $table-cartridge-parts-bg1;
+            }
+
+            &-bg-2 {
+               background: $table-cartridge-parts-bg2;
+            }
+
+            &-bg-3 {
+               background: $table-cartridge-parts-bg3;
+            }
+         }
+      }
+
+
+
+
+
+
+
+
+
+      &-name {
+         flex-grow: 1;
+         font-weight: 400;
+         font-size: rem(16);
+         line-height: rem(35);
+         text-align: start;
+         padding-left: rem(30);
+         color: $black;
+      }
+
+
+
+
+   }
+}

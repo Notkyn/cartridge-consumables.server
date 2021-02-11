@@ -1,8 +1,10 @@
 @import "modules/header/header";
 @import "modules/account/account";
 @import "modules/menu/menu";
-@import "modules/parts-table/parts-table";
+@import "modules/tables/parts-table/parts-table";
+@import "modules/tables/cartridge-table/cartridge-table";
 @import "modules/modal/editor-parts/editor-parts";
+@import "modules/modal/cartridge-editor/cartridge-editor";
 @import "modules/note/note";
 @import "modules/error/error";
 
