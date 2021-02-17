@@ -1,9 +1,20 @@
 .modal-field {
   width: rem(540);
-  margin-top: rem(20);
+  margin-top: rem(15);
+
+  &_coef {
+    align-items: center;
+    width: rem(120);
+  }
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &-title {
     display: block;
+    width: 100%;
     height: rem(35);
     font-weight: 400;
     font-size: rem(18);
@@ -25,9 +36,38 @@
     outline: none;
     resize: none;
 
+    &_select {
+      width: rem(540);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-top: rem(5);
+      padding-bottom: rem(5);
+      border-radius: rem(10);
+      min-height: rem(50);
+    }
+
+    &_toner {
+      width: rem(380);
+    }
+
+    &_coef {
+      width: rem(80);
+      min-height: rem(40);
+      padding-top: rem(5);
+      padding-bottom: rem(5);
+      border-radius: rem(10);
+      text-align: center;
+    }
+
     &_error {
       border: 2px solid $error;
     }
+  }
+
+  &-btns {
+    margin-top: rem(30);
+    display: flex;
+    justify-content: space-between;
   }
 
   &-error {
@@ -38,6 +78,4 @@
     font-weight: 400;
     font-size: rem(16);
   }
-
-
 }

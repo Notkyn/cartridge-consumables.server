@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+    <div th:fragment="cartridge-editor" class="cartridge-editor hide">
+        <div class="modal-title"></div>
+        <div class="modal-id hide"></div>
+        <div class="modal-field">
+            <label for="modal-field-name" class="modal-field-title"><span th:text="#{view.modal.field.name}"></span></label>
+            <input id="modal-field-name" type="text" class="modal-field-value">
+            <div id="modal-field-error-name" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field-wrapper">
+            <div class="modal-field">
+                <label for="modal-select-toner" class="modal-field-title"><span th:text="#{view.modal.field.toner}"></span></label>
+                <select id="modal-select-toner" class="modal-field-value modal-field-value_select modal-field-value_toner"></select>
+                <div id="modal-field-error-toner" class="modal-field-error"></div>
+            </div>
+
+            <div class="modal-field modal-field_coef">
+                <label for="modal-field-coef" class="modal-field-title"><span th:text="#{view.modal.field.coefToner}"></span></label>
+                <input id="modal-field-coef" type="text" class="modal-field-value modal-field-value_coef">
+                <div id="modal-field-error-coef" class="modal-field-error"></div>
+            </div>
+        </div>
+        <div class="modal-field">
+            <label for="modal-select-drum" class="modal-field-title"><span th:text="#{view.modal.field.drum}"></span></label>
+            <select id="modal-select-drum" class="modal-field-value modal-field-value_select"></select>
+            <div id="modal-field-error-drum" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field">
+            <label for="modal-select-magneticshaft" class="modal-field-title"><span th:text="#{view.modal.field.magneticShaft}"></span></label>
+            <select id="modal-select-magneticshaft" class="modal-field-value modal-field-value_select"></select>
+            <div id="modal-field-error-magneticshaft" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field">
+            <label for="modal-select-primarychargeshaft" class="modal-field-title"><span th:text="#{view.modal.field.primaryChargeShaft}"></span></label>
+            <select id="modal-select-primarychargeshaft" class="modal-field-value modal-field-value_select"></select>
+            <div id="modal-field-error-primarychargeshaft" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field">
+            <label for="modal-select-cleaningblade" class="modal-field-title"><span th:text="#{view.modal.field.cleaningBlade}"></span></label>
+            <select id="modal-select-cleaningblade" class="modal-field-value modal-field-value_select"></select>
+            <div id="modal-field-error-cleaningblade" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field">
+            <label for="modal-select-dispensingblade" class="modal-field-title"><span th:text="#{view.modal.field.dispensingBlade}"></span></label>
+            <select id="modal-select-dispensingblade" class="modal-field-value modal-field-value_select"></select>
+            <div id="modal-field-error-dispensingblade" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field-btns">
+            <button class="btn btn_modal" th:text="#{view.btn.add}">add</button>
+            <button class="btn btn_modal-cancel" th:text="#{view.btn.cancel}"></button>
+        </div>
+    </div>
+</html>
