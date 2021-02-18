@@ -5,6 +5,7 @@ public class ConstUrl {
     public static final String PAGE_MAIN = "/";
     public static final String PAGE_ERROR = "/error";
 
+    public static final String PAGE_DEPARTMENT = "/departments";
     public static final String PAGE_CARTRIDGE = "/cartridges";
 
     public static final String PAGE_TONER = "/toners";
@@ -15,6 +16,7 @@ public class ConstUrl {
     public static final String PAGE_DISPENSING_BLADE = "/dispensing_blades";
 
     /* UI */
+    public static final String UI_DEPARTMENT = "/ui/department";
     public static final String UI_CARTRIDGE = "/ui/cartridge";
 
     public static final String UI_TONER = "/ui/parts/toner";

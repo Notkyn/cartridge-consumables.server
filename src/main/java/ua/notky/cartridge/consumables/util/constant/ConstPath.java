@@ -6,6 +6,7 @@ public class ConstPath {
     public static final String PAGE_EXCEPTION = "exception/exception";
     public static final String PAGE_ERROR = "exception/error";
 
+    public static final String PAGE_DEPARTMENT = "pages/departments";
     public static final String PAGE_CARTRIDGE = "pages/cartridges";
 
     public static final String PAGE_TONER = "pages/toners";

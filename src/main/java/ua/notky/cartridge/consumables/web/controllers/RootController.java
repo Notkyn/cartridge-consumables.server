@@ -15,9 +15,9 @@ public class RootController {
         return ConstPath.PAGE_MAIN;
     }
 
-    @GetMapping(value = "/departments")
+    @GetMapping(value = ConstUrl.PAGE_DEPARTMENT)
     public String departments(){
-        return "pages/departments";
+        return ConstPath.PAGE_DEPARTMENT;
     }
 
     @GetMapping(value = ConstUrl.PAGE_CARTRIDGE)
