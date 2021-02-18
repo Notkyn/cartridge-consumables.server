@@ -49,6 +49,12 @@ public class DepartmentRepositoryImp implements DepartmentRepository {
         return repository.findAll();
     }
 
+    @Override
+    public List<Department> getAllWithCartridge() {
+        log.info("Find all with cartriedge from bd");
+        return repository.getAllWithCartridge();
+    }
+
     @Autowired
     public void setRepository(CrudDepartmentRepository repository) {
         this.repository = repository;

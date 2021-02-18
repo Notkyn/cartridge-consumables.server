@@ -11,8 +11,10 @@ import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGES;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
 
@@ -108,5 +110,20 @@ class DepartmentServiceTest extends AbstractTestService {
     @Test
     void getAll() {
         assertIterableEquals(service.getAll(), DEPARTMENTS);
+    }
+
+    @Test
+    void getAllWithCartridge() {
+        List<Department> departments = service.getAllWithCartridge();
+
+        assertIterableEquals(departments, DEPARTMENTS);
+
+        for(int i = 0; i < departments.size(); i++){
+            int k = i;
+            if(i == 4){
+                k = 0;
+            }
+            assertEquals(departments.get(i).getCartridge(), CARTRIDGES.get(k));
+        }
     }
 }

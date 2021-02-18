@@ -11,4 +11,5 @@ public interface DepartmentRepository {
     Department getWithWorkDays(int id);
     boolean delete(Department department);
     List<Department> getAll();
+    List<Department> getAllWithCartridge();
 }

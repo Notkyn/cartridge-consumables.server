@@ -62,8 +62,6 @@ public class CartridgeRepositoryTest extends AbstractTestRepository {
         assertEquals(cartridge.getPrimaryChargeShaft(), PRIMARY_CHARGE_SHAFT_2);
         assertEquals(cartridge.getCleaningBlade(), CLEANING_BLADE_2);
         assertEquals(cartridge.getDispensingBlade(), DISPENSING_BLADE_2);
-//        assertIterableEquals(cartridge.getDepartments(),
-//                Collections.singletonList(DEPARTMENT_2));
     }
 
     @Test

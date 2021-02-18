@@ -22,4 +22,5 @@ public interface DepartmentService {
     void delete(int id);
 
     List<Department> getAll();
+    List<Department> getAllWithCartridge();
 }

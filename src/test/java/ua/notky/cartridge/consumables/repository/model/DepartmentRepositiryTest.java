@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGES;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
 import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.WORKING_DAY_1;
@@ -66,5 +67,20 @@ class DepartmentRepositiryTest extends AbstractTestRepository {
     @Test
     void getAll() {
         assertIterableEquals(repository.getAll(), DEPARTMENTS);
+    }
+
+    @Test
+    void getAllWithCartridge() {
+        List<Department> departments = repository.getAllWithCartridge();
+
+        assertIterableEquals(departments, DEPARTMENTS);
+
+        for(int i = 0; i < departments.size(); i++){
+            int k = i;
+            if(i == 4){
+                k = 0;
+            }
+            assertEquals(departments.get(i).getCartridge(), CARTRIDGES.get(k));
+        }
     }
 }

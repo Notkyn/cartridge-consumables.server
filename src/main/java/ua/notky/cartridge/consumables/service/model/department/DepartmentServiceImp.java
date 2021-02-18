@@ -65,6 +65,12 @@ public class DepartmentServiceImp implements DepartmentService {
         return repository.getAll();
     }
 
+    @Override
+    public List<Department> getAllWithCartridge() {
+        log.info("Get all Departments with Cartridge");
+        return repository.getAllWithCartridge();
+    }
+
     @Autowired
     public void setRepository(DepartmentRepository repository) {
         this.repository = repository;
