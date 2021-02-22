@@ -159,22 +159,22 @@ export class CartridgesTable {
         infoName.innerText = element.toner.name;
         let infoFooter = document.createElement("div");
         infoFooter.classList.add("cartridge-table-row-info-footer");
-        infoFooter.appendChild(infoCoef);
-        infoFooter.appendChild(infoValue);
         infoFooter.appendChild(infoToner);
         infoFooter.appendChild(infoName);
+        infoFooter.appendChild(infoCoef);
+        infoFooter.appendChild(infoValue);
         let sectionInfo = document.createElement("div");
         sectionInfo.classList.add("cartridge-table-row-info");
-        sectionInfo.appendChild(infoTitle);
         sectionInfo.appendChild(infoFooter);
+        sectionInfo.appendChild(infoTitle);
 
         let sectionParts = document.createElement("div");
         sectionParts.classList.add("cartridge-table-row-parts");
-        sectionParts.appendChild(this._createPartsItem(`${i18n.nameDrum}:`, 1, element.drum.name));
-        sectionParts.appendChild(this._createPartsItem(`${i18n.nameMagneticShaft}:`, 2, element.magneticShaft.name));
-        sectionParts.appendChild(this._createPartsItem(`${i18n.namePrimaryChargeShaft}:`, 3, element.primaryChargeShaft.name));
-        sectionParts.appendChild(this._createPartsItem(`${i18n.nameCleaningBlade}:`, 2, element.cleaningBlade.name));
-        sectionParts.appendChild(this._createPartsItem(`${i18n.nameDispensingBlade}:`, 1, element.dispensingBlade.name));
+        sectionParts.appendChild(this._createPartsItem(`${i18n.nameDrum}:`, element.drum.name));
+        sectionParts.appendChild(this._createPartsItem(`${i18n.nameMagneticShaft}:`, element.magneticShaft.name));
+        sectionParts.appendChild(this._createPartsItem(`${i18n.namePrimaryChargeShaft}:`, element.primaryChargeShaft.name));
+        sectionParts.appendChild(this._createPartsItem(`${i18n.nameCleaningBlade}:`, element.cleaningBlade.name));
+        sectionParts.appendChild(this._createPartsItem(`${i18n.nameDispensingBlade}:`, element.dispensingBlade.name));
 
         let row = document.createElement("div");
         row.classList.add("cartridge-table-row");
@@ -185,7 +185,7 @@ export class CartridgesTable {
         return row;
     }
 
-    _createPartsItem(name, indexColor, value){
+    _createPartsItem(name, value){
         let partsName = document.createElement("div");
         partsName.classList.add("cartridge-table-row-parts-item-name");
         partsName.innerText = name;
@@ -194,7 +194,6 @@ export class CartridgesTable {
         partsValue.innerText = value;
         let partsItem = document.createElement("div");
         partsItem.classList.add("cartridge-table-row-parts-item");
-        partsItem.classList.add(`cartridge-table-row-parts-item-bg-${indexColor}`);
         partsItem.appendChild(partsName);
         partsItem.appendChild(partsValue);
 

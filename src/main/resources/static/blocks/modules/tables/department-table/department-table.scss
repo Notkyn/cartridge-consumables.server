@@ -96,11 +96,11 @@
       border-radius: rem(10);
 
       &_odd {
-         background: $table-department-odd;
+         background: $odd;
       }
 
       &_even {
-         background: $table-department-even;
+         background: $even;
       }
 
       &-index {
@@ -145,11 +145,11 @@
          }
 
          &:hover {
-            background: $table-department-btn-hover;
+            background: $table-btn-hover;
          }
 
          &:active {
-            background: $white;
+            background: $table-btn-active;
          }
       }
 

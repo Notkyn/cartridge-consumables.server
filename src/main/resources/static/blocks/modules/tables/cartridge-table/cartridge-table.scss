@@ -97,7 +97,7 @@
             line-height: rem(45);
             text-align: center;
             color: $black;
-            background: $table-cartridge-index;
+            background: $even;
          }
 
          &-delete, &-edit {
@@ -106,14 +106,14 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            background: $table-cartridge-btn;
+            background: $odd;
 
             &:hover {
-               background: $table-cartridge-btn-hover;
+               background: $table-btn-hover;
             }
 
             &:active {
-               background: $table-cartridge-btn-active;
+               background: $table-btn-active;
             }
          }
 
@@ -134,23 +134,23 @@
          flex-grow: 1;
 
          &-title {
-            height: rem(140);
-            background: $table-cartridge-info-title;
+            height: rem(130);
+            background: $odd;
             font-weight: 700;
             font-size: rem(24);
-            line-height: rem(140);
+            line-height: rem(130);
             text-align: center;
             color: $black;
          }
 
          &-footer {
-            height: rem(35);
-            background: $table-cartridge-info-footer;
+            height: rem(45);
+            background: $even;
             display: flex;
             justify-content: start;
             font-weight: 400;
             font-size: rem(16);
-            line-height: rem(35);
+            line-height: rem(45);
 
             &-coef, &-toner {
                width: rem(150);
@@ -176,6 +176,7 @@
          &-item {
             display: flex;
             justify-content: start;
+            background: $even;
 
             &-name {
                width: rem(250);
@@ -193,18 +194,6 @@
                font-weight: 400;
                font-size: rem(16);
                line-height: rem(35);
-            }
-
-            &-bg-1 {
-               background: $table-cartridge-parts-bg1;
-            }
-
-            &-bg-2 {
-               background: $table-cartridge-parts-bg2;
-            }
-
-            &-bg-3 {
-               background: $table-cartridge-parts-bg3;
             }
          }
       }

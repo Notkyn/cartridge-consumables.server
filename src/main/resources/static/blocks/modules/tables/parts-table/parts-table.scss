@@ -71,7 +71,7 @@
          color: $black;
       }
 
-      &-edit {
+      &-edit, &-delete {
          width: rem(100);
          cursor: pointer;
          display: flex;
@@ -81,37 +81,28 @@
          &-img {
             width: rem(22);
             height: rem(22);
-            background: url('../img/icons/edit-icon.svg') center (center / contain) no-repeat;
          }
 
          &:hover {
-            background: $column-btn-hover;
+            background: $table-btn-hover;
          }
 
          &:active {
-            background: $white;
+            background: $table-btn-active;
+         }
+      }
+
+      &-edit {
+
+         &-img {
+            background: url('../img/icons/edit-icon.svg') center (center / contain) no-repeat;
          }
       }
 
       &-delete {
-         width: rem(100);
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         cursor: pointer;
 
          &-img {
-            width: rem(22);
-            height: rem(22);
             background: url('../img/icons/delete-icon.svg') center (center / contain) no-repeat;
-         }
-
-         &:hover {
-            background: $column-btn-hover;
-         }
-
-         &:active {
-            background: $white;
          }
       }
    }
