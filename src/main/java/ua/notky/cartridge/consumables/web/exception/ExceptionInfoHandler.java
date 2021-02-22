@@ -60,7 +60,7 @@ public class ExceptionInfoHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ErrorInfo duplicateNameError(HttpServletRequest request, DataIntegrityViolationException exception){
 
-        if(isDuplicateEntryException(exception)){
+        if(isSQLException(exception, Const.DUPLICATE_EXCEPTION)){
             logException(log, request, exception, true, VALIDATION_ERROR);
 
             return getErrorInfo(request,
@@ -68,6 +68,16 @@ public class ExceptionInfoHandler {
                     VALIDATION_ERROR,
                     messageI18nUtil.getMessageErrorType(VALIDATION_ERROR),
                     Map.of(Const.NAME_FIELD, messageI18nUtil.getMessage(Const.DUPLICATE_EXCEPTION_CODE)));
+        }
+
+        if(isSQLException(exception, Const.EXISTENCE_DATA_EXCEPTION)) {
+            logException(log, request, exception, true, VALIDATION_ERROR);
+
+            return getErrorInfo(request,
+                    exception,
+                    VALIDATION_ERROR,
+                    messageI18nUtil.getMessageErrorType(VALIDATION_ERROR),
+                    Map.of(getNameFieldForSqlException(exception), messageI18nUtil.getMessage(Const.REFERENCES_CODE)));
         }
 
         logException(log, request, exception, true, DATA_ERROR);

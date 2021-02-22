@@ -15,7 +15,6 @@ import static ua.notky.cartridge.consumables.util.ValidationUtil.*;
 public class DepartmentServiceImp implements DepartmentService {
     private DepartmentRepository repository;
 
-
     @Override
     public Department create(Department department) {
         log.info("Create new Department: {}", department);

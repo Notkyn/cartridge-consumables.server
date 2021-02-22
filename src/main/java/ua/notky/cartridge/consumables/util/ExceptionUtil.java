@@ -11,6 +11,7 @@ import ua.notky.cartridge.consumables.util.exception.ErrorType;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Slf4j
 @Component
@@ -115,11 +116,41 @@ public class ExceptionUtil {
         return getErrorInfo(request, exception, errorType, errorMsg, null);
     }
 
-    public static boolean isDuplicateEntryException(Exception ex){
-        log.info("Check Exception for Duplicate Items[exception={}]", ex.toString());
+    public static boolean isSQLException(Exception ex, String sqlError){
+        log.info("Check Exception for SQL Errors [exception={}], [sql error={}]", ex.toString(), sqlError);
 
         String rootMsg = getRootCause(ex).getMessage();
 
-        return rootMsg != null && rootMsg.toLowerCase().contains(Const.DUPLICATE_EXCEPTION);
+        return rootMsg != null && rootMsg.toLowerCase().contains(sqlError);
+    }
+
+    public static String getNameFieldForSqlException(Exception ex){
+        log.info("Check Name Field for SQL Exception [exception={}]]", ex.toString());
+
+        String rootMsg = getRootCause(ex).getMessage();
+
+        if(rootMsg != null && rootMsg.toLowerCase().contains(Const.CARTRIDGE_REFERENCES)){
+            return Const.CARTRIDGE_FIELD;
+        }
+        if(rootMsg != null && rootMsg.toLowerCase().contains(Const.TONER_REFERENCES)){
+            return Const.TONER_FIELD;
+        }
+        if(rootMsg != null && rootMsg.toLowerCase().contains(Const.DRUM_REFERENCES)){
+            return Const.DRUM_FIELD;
+        }
+        if(rootMsg != null && rootMsg.toLowerCase().contains(Const.MAGNETIC_SHAFT_REFERENCES)){
+            return Const.MAGNETIC_SHAFT_FIELD;
+        }
+        if(rootMsg != null && rootMsg.toLowerCase().contains(Const.PRIMARY_CHARGE_SHAFT_REFERENCES)){
+            return Const.PRIMARY_CHARGE_SHAFT_FIELD;
+        }
+        if(rootMsg != null && rootMsg.toLowerCase().contains(Const.CLEANING_BLADE_REFERENCES)){
+            return Const.CLEANING_BLADE_FIELD;
+        }
+        if(rootMsg != null && rootMsg.toLowerCase().contains(Const.DISPENSING_BLADE_REFERENCES)){
+            return Const.DISPENSING_BLADE_FIELD;
+        }
+
+        return Const.MSG;
     }
 }
