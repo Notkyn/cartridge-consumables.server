@@ -4,6 +4,7 @@ const webpack = require("webpack");
 module.exports = {
     entry: {
         "main": "./src/main/resources/static/scripts/index.js",
+        "departments": "./src/main/resources/static/scripts/import/pages/departments.js",
         "cartridges": "./src/main/resources/static/scripts/import/pages/cartridges.js",
         "toners": "./src/main/resources/static/scripts/import/pages/toners.js",
         "drums": "./src/main/resources/static/scripts/import/pages/drums.js",

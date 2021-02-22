@@ -3,7 +3,7 @@ import { configuration } from "%config%/config_fabric";
 import { sort } from "%api%/sort";
 import { noteHandler } from "%api%/note-handler";
 
-export class PartsTable {
+export class DepartmentsTable {
 
     constructor(classContentContainer) {
         this._classContainer = classContentContainer;
@@ -18,7 +18,7 @@ export class PartsTable {
 
     build(modal){
         this._container = document.querySelector(`div.${this._classContainer}`);
-        this._table = this._container.querySelector(".parts-table");
+        this._table = this._container.querySelector(".department-table");
 
         this._modal = modal;
         this._modal.setTable(this._table);
@@ -40,37 +40,33 @@ export class PartsTable {
     }
 
     _refreshTable(){
-        this._clearTable();
+        while(this._table.firstChild){
+            this._table.removeChild(this._table.firstChild);
+        }
 
         this._table.appendChild(this._createHeader());
 
         this._renderBody();
     }
 
-    _clearTable(){
-        while(this._table.firstChild){
-            this._table.removeChild(this._table.firstChild);
-        }
-    }
-
     _createHeader(){
         let indexSection = document.createElement("div");
-        indexSection.classList.add("parts-table-header-index");
+        indexSection.classList.add("department-table-header-index");
         indexSection.innerText = "#";
 
-        let editSection = document.createElement("div");
-        editSection.classList.add("parts-table-header-edit");
-        let deleteSection = document.createElement("div");
-        deleteSection.classList.add("parts-table-header-delete");
+        let cartridgeSection = document.createElement("div");
+        cartridgeSection.classList.add("department-table-header-cartridge");
+        cartridgeSection.innerText = i18n.nameCartridge;
 
         let arrowUp = document.createElement("div");
-        arrowUp.classList.add("parts-table-arrows-up");
+        arrowUp.classList.add("department-table-arrows-up");
         this._arrowUp = arrowUp;
         let arrowDown = document.createElement("div");
-        arrowDown.classList.add("parts-table-arrows-down");
+        arrowDown.classList.add("department-table-arrows-down");
         this._arrowDown = arrowDown;
+
         let arrows = document.createElement("div");
-        arrows.classList.add("parts-table-arrows");
+        arrows.classList.add("department-table-arrows");
         arrows.appendChild(arrowUp);
         arrows.appendChild(arrowDown);
 
@@ -78,7 +74,7 @@ export class PartsTable {
         name.innerText = i18n.nameName;
 
         let nameSection = document.createElement("div");
-        nameSection.classList.add("parts-table-header-name");
+        nameSection.classList.add("department-table-header-name");
         nameSection.appendChild(arrows);
         nameSection.appendChild(name);
         nameSection.addEventListener("click", () => {
@@ -88,10 +84,16 @@ export class PartsTable {
             this._setSort(this._switchSort);
         });
 
+        let editSection = document.createElement("div");
+        editSection.classList.add("department-table-header-edit");
+        let deleteSection = document.createElement("div");
+        deleteSection.classList.add("department-table-header-delete");
+
         let header = document.createElement("div");
-        header.classList.add("parts-table-header");
+        header.classList.add("department-table-header");
         header.appendChild(indexSection);
         header.appendChild(nameSection);
+        header.appendChild(cartridgeSection);
         header.appendChild(editSection);
         header.appendChild(deleteSection);
 
@@ -108,7 +110,7 @@ export class PartsTable {
         }
 
         let body = document.createElement("div");
-        body.classList.add("parts-table-body");
+        body.classList.add("department-table-body");
 
         data.forEach((element) => {
             body.appendChild(this._createRowBody(element));
@@ -119,13 +121,17 @@ export class PartsTable {
 
     _createRowBody(element) {
         let index = document.createElement("div");
-        index.classList.add("parts-table-row-index");
+        index.classList.add("department-table-row-index");
         index.innerText = this._indexValue;
         this._indexValue++;
 
         let name = document.createElement("div");
-        name.classList.add("parts-table-row-name");
+        name.classList.add("department-table-row-name");
         name.innerText = element.name;
+
+        let cartridge = document.createElement("div");
+        cartridge.classList.add("department-table-row-cartridge");
+        cartridge.innerText = element.cartridge.name;
 
         let editBtn = this._createBtnBody("edit");
         editBtn.addEventListener(configuration.getConstants().eventClick, () => {
@@ -142,14 +148,16 @@ export class PartsTable {
         });
 
         let row = document.createElement("div");
-        row.classList.add("parts-table-row");
+        row.classList.add("department-table-row");
         if(this._indexValue % 2 === 0) {
-            row.classList.add("odd");
+            row.classList.add("department-table-row_odd");
         } else {
-            row.classList.add("even");
+            row.classList.add("department-table-row_even");
         }
+
         row.appendChild(index);
         row.appendChild(name);
+        row.appendChild(cartridge);
         row.appendChild(editBtn);
         row.appendChild(deleteBtn);
 
@@ -163,10 +171,10 @@ export class PartsTable {
 
     _createBtnBody(nameBtn){
         let imgDiv = document.createElement("div");
-        imgDiv.classList.add(`parts-table-row-${nameBtn}-img`);
+        imgDiv.classList.add(`department-table-row-${nameBtn}-img`);
 
         let btn = document.createElement("div");
-        btn.classList.add(`parts-table-row-${nameBtn}`);
+        btn.classList.add(`department-table-row-${nameBtn}`);
 
         btn.appendChild(imgDiv);
 
@@ -175,15 +183,15 @@ export class PartsTable {
 
     _setSort(sort){
         if(sort){
-            this._arrowUp.classList.remove("parts-table-arrows-up-active");
-            this._arrowUp.classList.add("parts-table-arrows-up-inactive");
-            this._arrowDown.classList.add("parts-table-arrows-down-active");
-            this._arrowDown.classList.remove("parts-table-arrows-down-inactive");
+            this._arrowUp.classList.remove("department-table-arrows-up-active");
+            this._arrowUp.classList.add("department-table-arrows-up-inactive");
+            this._arrowDown.classList.add("department-table-arrows-down-active");
+            this._arrowDown.classList.remove("department-table-arrows-down-inactive");
         } else {
-            this._arrowUp.classList.add("parts-table-arrows-up-active");
-            this._arrowUp.classList.remove("parts-table-arrows-up-inactive");
-            this._arrowDown.classList.remove("parts-table-arrows-down-active");
-            this._arrowDown.classList.add("parts-table-arrows-down-inactive");
+            this._arrowUp.classList.add("department-table-arrows-up-active");
+            this._arrowUp.classList.remove("department-table-arrows-up-inactive");
+            this._arrowDown.classList.remove("department-table-arrows-down-active");
+            this._arrowDown.classList.add("department-table-arrows-down-inactive");
         }
     }
 }

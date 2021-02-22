@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+lang="en">
+    <div th:fragment="department-editor" class="department-editor hide">
+        <div class="modal-title"></div>
+        <div class="modal-id hide"></div>
+        <div class="modal-field">
+            <label for="modal-field-name" class="modal-field-title"><span th:text="#{view.modal.field.name}"></span></label>
+            <input id="modal-field-name" type="text" class="modal-field-value">
+            <div id="modal-field-error-name" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field">
+            <label for="modal-select-cartridge" class="modal-field-title"><span th:text="#{view.modal.field.cartridge}"></span></label>
+            <select id="modal-select-cartridge" class="modal-field-value modal-field-value_select"></select>
+            <div id="modal-field-error-cartridge" class="modal-field-error"></div>
+        </div>
+        <div class="modal-field-btns">
+            <button class="btn btn_modal" th:text="#{view.btn.add}">add</button>
+            <button class="btn btn_modal-cancel" th:text="#{view.btn.cancel}"></button>
+        </div>
+    </div>
+</html>

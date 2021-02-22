@@ -1,0 +1,12 @@
+.department-editor {
+   padding: rem(30);
+   width: rem(540);
+   min-height: rem(240);
+   background: $grey;
+   position: absolute;
+   top: rem(50);
+   left: 50%;
+   transform: translateX(-50%);
+   border-radius: rem(20);
+   z-index: 5;
+}
