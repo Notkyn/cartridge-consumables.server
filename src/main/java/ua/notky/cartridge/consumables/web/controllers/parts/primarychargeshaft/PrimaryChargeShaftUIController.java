@@ -10,7 +10,7 @@ import ua.notky.cartridge.consumables.util.constant.ConstUrl;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = ConstUrl.UI_PRIMARY_CHARGE_SHAFT, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = ConstUrl.UI_PARTS_PRIMARY_CHARGE_SHAFT, produces = MediaType.APPLICATION_JSON_VALUE)
 public class PrimaryChargeShaftUIController extends AbstractPrimaryChargeShaftController {
     @Override
     @GetMapping

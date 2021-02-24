@@ -10,7 +10,7 @@ import ua.notky.cartridge.consumables.util.constant.ConstUrl;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = ConstUrl.UI_DISPENSING_BLADE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = ConstUrl.UI_PARTS_DISPENSING_BLADE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class DispensingBladeController extends AbstractDispensingBladeController {
     @Override
     @GetMapping

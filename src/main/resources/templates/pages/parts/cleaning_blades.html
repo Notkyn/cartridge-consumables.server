@@ -8,7 +8,7 @@
         <div class="container-content">
             <div th:replace="blocks/menu :: menu"></div>
 
-            <div class="drums" data-page="drums">
+            <div class="cleaning-blades" data-page="parts-cleaning-blades">
                 <button class="btn btn_add" data-btn="add" th:text="#{view.btn.add}"></button>
                 <div th:replace="blocks/parts_table :: parts-table"></div>
             </div>
@@ -18,6 +18,6 @@
         <div th:replace="blocks/modal/editor_parts :: editor-parts"></div>
         <div th:replace="blocks/modal/overflow :: overflow"></div>
 
-        <script th:src="@{/js/drums.min.js}" defer></script>
+        <script th:src="@{/js/cleaning-blades.min.js}" defer></script>
     </body>
 </html>

@@ -5,16 +5,23 @@
 
     <div th:fragment="menu" class="menu">
         <ul>
-            <li class="menu-item" data-page="main"><a th:href="@{/}">Головна</a></li>
-            <li class="menu-item" data-page="department"><a th:href="@{/departments}">Магазини/Офіс</a></li>
-            <li class="menu-item" data-page="cartridges"><a th:href="@{/cartridges}">Картриджи</a></li>
-            <li class="menu-item menu-group">Запчастини</li>
-            <li class="menu-subitem" data-page="toners"><a th:href="@{/toners}">Тонер</a></li>
-            <li class="menu-subitem" data-page="drums"><a th:href="@{/drums}">Фотобарабан</a></li>
-            <li class="menu-subitem" data-page="magnetic-shafts"><a th:href="@{/magnetic_shafts}">Магнітний вал</a></li>
-            <li class="menu-subitem" data-page="primary-charge-shafts"><a th:href="@{/primary_charge_shafts}">Вал заряду</a></li>
-            <li class="menu-subitem" data-page="cleaning-blades"><a th:href="@{/cleaning_blades}">Лезо очистки</a></li>
-            <li class="menu-subitem" data-page="dispensing-blades"><a th:href="@{/dispensing_blades}">Лезо дозування</a></li>
+            <li class="menu-item" data-page="main"><a th:href="@{/}" th:text="#{view.menu.main}"></a></li>
+
+            <li class="menu-item menu-group" th:text="#{view.menu.refillCartridges}"></li>
+            <li class="menu-subitem" data-page="refill-cartridges-stats"><a th:href="@{/refill_cartridges/stats}" th:text="#{view.menu.refillCartridges.stats}"></a></li>
+            <li class="menu-subitem" data-page="refill-cartridges-refillings"><a th:href="@{/refill_cartridges/refillings}" th:text="#{view.menu.refillCartridges.refillings}"></a></li>
+
+            <li class="menu-item" data-page="department"><a th:href="@{/departments}" th:text="#{view.menu.departments}"></a></li>
+            <li class="menu-item" data-page="cartridges"><a th:href="@{/cartridges}" th:text="#{view.menu.cartridges}"></a></li>
+
+            <li class="menu-item menu-group" th:text="#{view.menu.parts}"></li>
+            <li class="menu-subitem" data-page="parts-toners"><a th:href="@{/parts/toners}" th:text="#{view.menu.parts.toners}"></a></li>
+            <li class="menu-subitem" data-page="parts-drums"><a th:href="@{/parts/drums}" th:text="#{view.menu.parts.drums}"></a></li>
+            <li class="menu-subitem" data-page="parts-magnetic-shafts"><a th:href="@{/parts/magnetic_shafts}" th:text="#{view.menu.parts.magneticShafts}"></a></li>
+            <li class="menu-subitem" data-page="parts-primary-charge-shafts"><a th:href="@{/parts/primary_charge_shafts}" th:text="#{view.menu.parts.primaryChargeShafts}"></a></li>
+            <li class="menu-subitem" data-page="parts-cleaning-blades"><a th:href="@{/parts/cleaning_blades}" th:text="#{view.menu.parts.cleaningBlades}"></a></li>
+            <li class="menu-subitem" data-page="parts-dispensing-blades"><a th:href="@{/parts/dispensing_blades}" th:text="#{view.menu.parts.dispensingBlades}"></a></li>
+
             <li class="menu-item" data-page="tools"><a th:href="@{/tools}">Інструменти</a></li>
         </ul>
     </div>

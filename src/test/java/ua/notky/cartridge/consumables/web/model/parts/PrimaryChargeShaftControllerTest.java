@@ -24,7 +24,7 @@ public class PrimaryChargeShaftControllerTest extends AbstractControllerTest {
 
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_PRIMARY_CHARGE_SHAFT;
+        url = ConstUrl.UI_PARTS_PRIMARY_CHARGE_SHAFT;
     }
 
     @Autowired

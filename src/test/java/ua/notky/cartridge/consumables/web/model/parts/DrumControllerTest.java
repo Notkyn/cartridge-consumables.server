@@ -24,7 +24,7 @@ public class DrumControllerTest extends AbstractControllerTest {
 
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_DRUM;
+        url = ConstUrl.UI_PARTS_DRUM;
     }
 
     @Autowired

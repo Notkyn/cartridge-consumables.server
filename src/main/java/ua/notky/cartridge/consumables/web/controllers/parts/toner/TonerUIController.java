@@ -10,7 +10,7 @@ import ua.notky.cartridge.consumables.model.parts.Toner;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = ConstUrl.UI_TONER, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = ConstUrl.UI_PARTS_TONER, produces = MediaType.APPLICATION_JSON_VALUE)
 public class TonerUIController extends AbstractTonerController {
 
     @Override

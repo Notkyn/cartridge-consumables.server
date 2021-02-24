@@ -10,7 +10,7 @@ import ua.notky.cartridge.consumables.util.constant.ConstUrl;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = ConstUrl.UI_CLEANING_BLADE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = ConstUrl.UI_PARTS_CLEANING_BLADE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class CleaningBladeController extends AbstractCleaningBladeController {
     @Override
     @GetMapping

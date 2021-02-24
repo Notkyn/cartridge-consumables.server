@@ -10,7 +10,7 @@ import ua.notky.cartridge.consumables.util.constant.ConstUrl;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = ConstUrl.UI_DRUM, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = ConstUrl.UI_PARTS_DRUM, produces = MediaType.APPLICATION_JSON_VALUE)
 public class DrumController extends AbstractDrumController {
     @Override
     @GetMapping

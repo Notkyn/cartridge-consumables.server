@@ -15,6 +15,16 @@ public class RootController {
         return ConstPath.PAGE_MAIN;
     }
 
+    @GetMapping(value = ConstUrl.PAGE_REFILL_STATS)
+    public String refillCartridgeStats(){
+        return ConstPath.PAGE_REFILL_STATS;
+    }
+
+    @GetMapping(value = ConstUrl.PAGE_REFILL_REFILLINGS)
+    public String refillCartridgeRefillings(){
+        return ConstPath.PAGE_REFILL_REFILLINGS;
+    }
+
     @GetMapping(value = ConstUrl.PAGE_DEPARTMENT)
     public String departments(){
         return ConstPath.PAGE_DEPARTMENT;

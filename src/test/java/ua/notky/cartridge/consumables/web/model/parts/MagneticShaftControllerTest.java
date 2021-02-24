@@ -24,7 +24,7 @@ public class MagneticShaftControllerTest extends AbstractControllerTest {
 
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_MAGNETIC_SHAFT;
+        url = ConstUrl.UI_PARTS_MAGNETIC_SHAFT;
     }
 
     @Autowired

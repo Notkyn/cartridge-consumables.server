@@ -94,7 +94,6 @@ public class WorkingDayServiceTest extends AbstractTestService {
         service.delete(ID_WORKING_DAY_5);
         assertIterableEquals(service.getAll(),
                 Arrays.asList(WORKING_DAY_1, WORKING_DAY_2, WORKING_DAY_3, WORKING_DAY_4));
-
     }
 
     @Test

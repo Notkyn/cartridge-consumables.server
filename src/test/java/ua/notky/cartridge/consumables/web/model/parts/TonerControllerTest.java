@@ -24,7 +24,7 @@ public class TonerControllerTest extends AbstractControllerTest {
 
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_TONER;
+        url = ConstUrl.UI_PARTS_TONER;
     }
 
     @Autowired

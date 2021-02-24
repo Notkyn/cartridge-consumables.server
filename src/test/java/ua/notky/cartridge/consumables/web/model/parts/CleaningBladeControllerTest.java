@@ -26,7 +26,7 @@ import static ua.notky.cartridge.consumables.util.exception.ErrorType.VALIDATION
 public class CleaningBladeControllerTest extends AbstractControllerTest {
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_CLEANING_BLADE;
+        url = ConstUrl.UI_PARTS_CLEANING_BLADE;
     }
 
     @Autowired
