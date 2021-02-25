@@ -51,7 +51,7 @@ class DepartmentRepositiryTest extends AbstractTestRepository {
     void getWithWorkingDay(){
         Department department = repository.getWithWorkDays(ID_DEPARTMENT_2);
         assertEquals(department, DEPARTMENT_2);
-        assertIterableEquals(department.getWorkingDays(),
+        assertIterableEquals(department.getRefillCartridges(),
                 List.of(WORKING_DAY_1, WORKING_DAY_2));
     }
 

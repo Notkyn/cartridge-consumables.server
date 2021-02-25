@@ -54,7 +54,7 @@ public class DepartmentServiceImp implements DepartmentService {
         log.info("Delete Department by id={}", id);
         Department department = repository.getWithWorkDays(id);
         checkNotFoundWithId(department, id);
-        checkDependencyList(department, department.getWorkingDays());
+        checkDependencyList(department, department.getRefillCartridges());
         repository.delete(department);
     }
 

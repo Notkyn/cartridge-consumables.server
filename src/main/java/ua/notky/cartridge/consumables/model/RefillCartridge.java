@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "working_day")
-public class WorkingDay extends AbstractBaseEntity {
+@Table(name = "refill_cartridge")
+public class RefillCartridge extends AbstractBaseEntity {
     private static final long serialVersionUID = 2387474522123375775L;
 
     @Getter
@@ -21,22 +21,20 @@ public class WorkingDay extends AbstractBaseEntity {
     @Setter
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "working_day_department_megre",
-            joinColumns = {@JoinColumn(name = "_id_working_day_megre", nullable = false)},
+            name = "refill_cartridge_department_megre",
+            joinColumns = {@JoinColumn(name = "_id_refill_cartridge_megre", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "_id_department_megre", nullable = false)})
     private List<Department> departments;
 
-    public WorkingDay() {
+    public RefillCartridge() {
     }
 
-    public WorkingDay(LocalDate date) {
+    public RefillCartridge(LocalDate date) {
         this.date = date;
     }
 
-    public WorkingDay(Integer id, LocalDate date) {
+    public RefillCartridge(Integer id, LocalDate date) {
         super(id);
         this.date = date;
     }
-
-
 }

@@ -3,9 +3,9 @@ package ua.notky.cartridge.consumables.repository.model;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import ua.notky.cartridge.consumables.model.WorkingDay;
+import ua.notky.cartridge.consumables.model.RefillCartridge;
 import ua.notky.cartridge.consumables.repository.AbstractTestRepository;
-import ua.notky.cartridge.consumables.repository.workingday.WorkingDayRepository;
+import ua.notky.cartridge.consumables.repository.refillcartridge.RefillCartridgeRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,20 +17,20 @@ import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEP
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_4;
 import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.*;
 
-public class WorkingDayRepositoryTest extends AbstractTestRepository {
+public class RefillCartridgeRepositoryTest extends AbstractTestRepository {
     @Autowired
-    private WorkingDayRepository repository;
+    private RefillCartridgeRepository repository;
 
     @Test
     @Transactional
     void save() {
-        WorkingDay newWorkingDay = getNew();
+        RefillCartridge newRefillCartridge = getNew();
 
-        WorkingDay result = repository.save(newWorkingDay);
-        assertEquals(newWorkingDay, result);
+        RefillCartridge result = repository.save(newRefillCartridge);
+        assertEquals(newRefillCartridge, result);
 
         int newWorkingDayId = result.getId();
-        assertEquals(repository.getById(newWorkingDayId), newWorkingDay);
+        assertEquals(repository.getById(newWorkingDayId), newRefillCartridge);
     }
 
     @Test
@@ -42,9 +42,9 @@ public class WorkingDayRepositoryTest extends AbstractTestRepository {
 
     @Test
     void getWithDepartments(){
-        WorkingDay workingDay = repository.getWithDepartments(ID_WORKING_DAY_2);
-        assertEquals(workingDay, WORKING_DAY_2);
-        assertIterableEquals(workingDay.getDepartments(),
+        RefillCartridge refillCartridge = repository.getWithDepartments(ID_WORKING_DAY_2);
+        assertEquals(refillCartridge, WORKING_DAY_2);
+        assertIterableEquals(refillCartridge.getDepartments(),
                 List.of(DEPARTMENT_2, DEPARTMENT_4));
     }
 

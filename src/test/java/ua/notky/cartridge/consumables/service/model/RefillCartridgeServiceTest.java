@@ -3,10 +3,9 @@ package ua.notky.cartridge.consumables.service.model;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import ua.notky.cartridge.consumables.model.WorkingDay;
+import ua.notky.cartridge.consumables.model.RefillCartridge;
 import ua.notky.cartridge.consumables.service.AbstractTestService;
-import ua.notky.cartridge.consumables.service.model.workingday.WorkingDayService;
-import ua.notky.cartridge.consumables.util.exception.HasDependencyException;
+import ua.notky.cartridge.consumables.service.model.refillcartridge.RefillCartridgeService;
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
@@ -20,20 +19,20 @@ import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEP
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_4;
 import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.*;
 
-public class WorkingDayServiceTest extends AbstractTestService {
+public class RefillCartridgeServiceTest extends AbstractTestService {
     @Autowired
-    private WorkingDayService service;
+    private RefillCartridgeService service;
 
     @Test
     @Transactional
     void create() {
-        WorkingDay newWorkingDay = getNew();
+        RefillCartridge newRefillCartridge = getNew();
 
-        WorkingDay result = service.create(newWorkingDay);
-        assertEquals(newWorkingDay, result);
+        RefillCartridge result = service.create(newRefillCartridge);
+        assertEquals(newRefillCartridge, result);
 
         int newWorkingDayId = result.getId();
-        assertEquals(service.get(newWorkingDayId), newWorkingDay);
+        assertEquals(service.get(newWorkingDayId), newRefillCartridge);
     }
 
     @Test
@@ -51,7 +50,7 @@ public class WorkingDayServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void update() {
-        WorkingDay updated = getUpdated(WORKING_DAY_2);
+        RefillCartridge updated = getUpdated(WORKING_DAY_2);
 
         assertEquals(service.update(updated), updated);
         assertEquals(service.get(updated.getId()), updated);
@@ -77,9 +76,9 @@ public class WorkingDayServiceTest extends AbstractTestService {
 
     @Test
     void getWithDepartments(){
-        WorkingDay workingDay = service.getWithDepartments(ID_WORKING_DAY_2);
-        assertEquals(workingDay, WORKING_DAY_2);
-        assertIterableEquals(workingDay.getDepartments(),
+        RefillCartridge refillCartridge = service.getWithDepartments(ID_WORKING_DAY_2);
+        assertEquals(refillCartridge, WORKING_DAY_2);
+        assertIterableEquals(refillCartridge.getDepartments(),
                 List.of(DEPARTMENT_2, DEPARTMENT_4));
     }
 

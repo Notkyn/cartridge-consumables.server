@@ -1,10 +1,10 @@
 SET SQL_SAFE_UPDATES = 0;
 
 # cleaning all notes from all tables;
-DELETE FROM `working_day_department_megre` WHERE `_id` > 0;
-ALTER TABLE `working_day_department_megre` AUTO_INCREMENT = 1;
-DELETE FROM `working_day` WHERE `_id` > 0;
-ALTER TABLE `working_day` AUTO_INCREMENT = 1;
+DELETE FROM `refill_cartridge_department_megre` WHERE `_id` > 0;
+ALTER TABLE `refill_cartridge_department_megre` AUTO_INCREMENT = 1;
+DELETE FROM `refill_cartridge` WHERE `_id` > 0;
+ALTER TABLE `refill_cartridge` AUTO_INCREMENT = 1;
 DELETE FROM `department` WHERE `_id` > 0;
 ALTER TABLE `department` AUTO_INCREMENT = 1;
 DELETE FROM `cartridge` WHERE `_id` > 0;
@@ -76,16 +76,16 @@ INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_3', 3);
 INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_4', 4);
 INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_5', 1);
 
-INSERT INTO `working_day`(`date`) VALUES ('2015-05-01');
-INSERT INTO `working_day`(`date`) VALUES ('2015-05-02');
-INSERT INTO `working_day`(`date`) VALUES ('2015-05-03');
-INSERT INTO `working_day`(`date`) VALUES ('2015-05-04');
-INSERT INTO `working_day`(`date`) VALUES ('2015-05-05');
+INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-01');
+INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-02');
+INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-03');
+INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-04');
+INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-05');
 
-INSERT INTO `working_day_department_megre`(`_id_working_day_megre`, `_id_department_megre`) VALUES (1, 1);
-INSERT INTO `working_day_department_megre`(`_id_working_day_megre`, `_id_department_megre`) VALUES (1, 2);
-INSERT INTO `working_day_department_megre`(`_id_working_day_megre`, `_id_department_megre`) VALUES (1, 3);
-INSERT INTO `working_day_department_megre`(`_id_working_day_megre`, `_id_department_megre`) VALUES (2, 2);
-INSERT INTO `working_day_department_megre`(`_id_working_day_megre`, `_id_department_megre`) VALUES (2, 4);
+INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (1, 1);
+INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (1, 2);
+INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (1, 3);
+INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (2, 2);
+INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (2, 4);
 
 SET SQL_SAFE_UPDATES = 1;

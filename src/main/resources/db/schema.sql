@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `working_day_department_megre`;
-DROP TABLE IF EXISTS `working_day`;
+DROP TABLE IF EXISTS `refill_cartridge_department_megre`;
+DROP TABLE IF EXISTS `refill_cartridge`;
 DROP TABLE IF EXISTS `department`;
 DROP TABLE IF EXISTS `cartridge`;
 DROP TABLE IF EXISTS `toner`;
@@ -95,7 +95,7 @@ CREATE TABLE `department`(
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE `working_day`(
+CREATE TABLE `refill_cartridge`(
   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `date` TIMESTAMP NOT NULL UNIQUE,
   PRIMARY KEY(`_id`)
@@ -103,13 +103,13 @@ CREATE TABLE `working_day`(
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE `working_day_department_megre` (
+CREATE TABLE `refill_cartridge_department_megre` (
   `_id` INT UNSIGNED AUTO_INCREMENT NOT NULL,
-  `_id_working_day_megre` INT UNSIGNED NOT NULL,
+  `_id_refill_cartridge_megre` INT UNSIGNED NOT NULL,
   `_id_department_megre` INT UNSIGNED NOT NULL,
   PRIMARY KEY(`_id`),
-  CONSTRAINT `_id_working_day_megre_ibfk_1`
-    FOREIGN KEY (`_id_working_day_megre`) REFERENCES `working_day`(`_id`),
+  CONSTRAINT `_id_refill_cartridge_megre_ibfk_1`
+    FOREIGN KEY (`_id_refill_cartridge_megre`) REFERENCES `refill_cartridge`(`_id`),
   CONSTRAINT `_id_department_megre_ibfk_2`
     FOREIGN KEY (`_id_department_megre`) REFERENCES `department`(`_id`)
 )

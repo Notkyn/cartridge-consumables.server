@@ -9,7 +9,7 @@ import ua.notky.cartridge.consumables.configuration.ServerConfig;
 import ua.notky.cartridge.consumables.repository.department.DepartmentRepository;
 import ua.notky.cartridge.consumables.service.model.cartridge.CartridgeService;
 import ua.notky.cartridge.consumables.service.model.department.DepartmentService;
-import ua.notky.cartridge.consumables.service.model.workingday.WorkingDayService;
+import ua.notky.cartridge.consumables.service.model.refillcartridge.RefillCartridgeService;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -31,10 +31,10 @@ public class ConsumablesApplication {
 
         log.debug("Application is running...");
 
-        DepartmentService departmentService = ctx.getBean(DepartmentService.class);
-        DepartmentRepository departmentRepository = ctx.getBean(DepartmentRepository.class);
-        WorkingDayService workingDayService = ctx.getBean(WorkingDayService.class);
-        CartridgeService cartridgeService = ctx.getBean(CartridgeService.class);
+//        DepartmentService departmentService = ctx.getBean(DepartmentService.class);
+//        DepartmentRepository departmentRepository = ctx.getBean(DepartmentRepository.class);
+//        RefillCartridgeService refillCartridgeService = ctx.getBean(RefillCartridgeService.class);
+//        CartridgeService cartridgeService = ctx.getBean(CartridgeService.class);
 
     }
 

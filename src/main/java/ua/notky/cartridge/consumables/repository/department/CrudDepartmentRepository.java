@@ -19,7 +19,7 @@ public interface CrudDepartmentRepository extends JpaRepository<Department, Inte
             + " WHERE d.id=?1")
     Department getWithCartridge(int id);
 
-    @EntityGraph(attributePaths = {"workingDays"}, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"refillCartridges"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT d FROM Department d WHERE d.id=?1")
     Department getWithWorkDays(int id);
 
