@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_ID;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_2;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_4;
-import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeTool.*;
 
 public class RefillCartridgeServiceTest extends AbstractTestService {
     @Autowired
@@ -44,13 +44,13 @@ public class RefillCartridgeServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void createIllegalEntity(){
-        assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(WORKING_DAY_2)));
+        assertThrows(IllegalEntityException.class, () -> service.create(getUpdated(REFILL_CARTRIDGE_2)));
     }
 
     @Test
     @Transactional
     void update() {
-        RefillCartridge updated = getUpdated(WORKING_DAY_2);
+        RefillCartridge updated = getUpdated(REFILL_CARTRIDGE_2);
 
         assertEquals(service.update(updated), updated);
         assertEquals(service.get(updated.getId()), updated);
@@ -70,14 +70,14 @@ public class RefillCartridgeServiceTest extends AbstractTestService {
 
     @Test
     void get() {
-        assertEquals(service.get(ID_WORKING_DAY_2), WORKING_DAY_2);
-        assertNotEquals(service.get(ID_WORKING_DAY_2), WORKING_DAY_3);
+        assertEquals(service.get(ID_REFILL_CARTRIDGE_2), REFILL_CARTRIDGE_2);
+        assertNotEquals(service.get(ID_REFILL_CARTRIDGE_2), REFILL_CARTRIDGE_3);
     }
 
     @Test
     void getWithDepartments(){
-        RefillCartridge refillCartridge = service.getWithDepartments(ID_WORKING_DAY_2);
-        assertEquals(refillCartridge, WORKING_DAY_2);
+        RefillCartridge refillCartridge = service.getWithDepartments(ID_REFILL_CARTRIDGE_2);
+        assertEquals(refillCartridge, REFILL_CARTRIDGE_2);
         assertIterableEquals(refillCartridge.getDepartments(),
                 List.of(DEPARTMENT_2, DEPARTMENT_4));
     }
@@ -90,9 +90,9 @@ public class RefillCartridgeServiceTest extends AbstractTestService {
     @Test
     @Transactional
     void delete() {
-        service.delete(ID_WORKING_DAY_5);
+        service.delete(ID_REFILL_CARTRIDGE_5);
         assertIterableEquals(service.getAll(),
-                Arrays.asList(WORKING_DAY_1, WORKING_DAY_2, WORKING_DAY_3, WORKING_DAY_4));
+                Arrays.asList(REFILL_CARTRIDGE_1, REFILL_CARTRIDGE_2, REFILL_CARTRIDGE_3, REFILL_CARTRIDGE_4));
     }
 
     @Test
@@ -103,6 +103,6 @@ public class RefillCartridgeServiceTest extends AbstractTestService {
 
     @Test
     void getAll() {
-        assertIterableEquals(service.getAll(), WORKING_DAYS);
+        assertIterableEquals(service.getAll(), REFILLS_CARTRIDGES);
     }
 }

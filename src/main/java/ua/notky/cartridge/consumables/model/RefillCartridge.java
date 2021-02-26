@@ -37,4 +37,16 @@ public class RefillCartridge extends AbstractBaseEntity {
         super(id);
         this.date = date;
     }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + date.hashCode();
+        return result;
+    }
+
+    public String toString() {
+        return super.toString() +
+                ", " + date.toString();
+    }
 }

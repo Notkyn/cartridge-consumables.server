@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_ID;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_2;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_4;
-import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeTool.*;
 
 public class RefillCartridgeRepositoryTest extends AbstractTestRepository {
     @Autowired
@@ -35,15 +35,15 @@ public class RefillCartridgeRepositoryTest extends AbstractTestRepository {
 
     @Test
     void getById() {
-        assertEquals(repository.getById(ID_WORKING_DAY_2), WORKING_DAY_2);
-        assertNotEquals(repository.getById(ID_WORKING_DAY_2), WORKING_DAY_3);
+        assertEquals(repository.getById(ID_REFILL_CARTRIDGE_2), REFILL_CARTRIDGE_2);
+        assertNotEquals(repository.getById(ID_REFILL_CARTRIDGE_2), REFILL_CARTRIDGE_3);
         assertNull(repository.getById(INVALID_ID));
     }
 
     @Test
     void getWithDepartments(){
-        RefillCartridge refillCartridge = repository.getWithDepartments(ID_WORKING_DAY_2);
-        assertEquals(refillCartridge, WORKING_DAY_2);
+        RefillCartridge refillCartridge = repository.getWithDepartments(ID_REFILL_CARTRIDGE_2);
+        assertEquals(refillCartridge, REFILL_CARTRIDGE_2);
         assertIterableEquals(refillCartridge.getDepartments(),
                 List.of(DEPARTMENT_2, DEPARTMENT_4));
     }
@@ -51,14 +51,14 @@ public class RefillCartridgeRepositoryTest extends AbstractTestRepository {
     @Test
     @Transactional
     void delete() {
-        assertTrue(repository.delete(WORKING_DAY_5));
-        assertNull(repository.getById(ID_WORKING_DAY_5));
+        assertTrue(repository.delete(REFILL_CARTRIDGE_5));
+        assertNull(repository.getById(ID_REFILL_CARTRIDGE_5));
         assertIterableEquals(repository.getAll(),
-                Arrays.asList(WORKING_DAY_1, WORKING_DAY_2, WORKING_DAY_3, WORKING_DAY_4));
+                Arrays.asList(REFILL_CARTRIDGE_1, REFILL_CARTRIDGE_2, REFILL_CARTRIDGE_3, REFILL_CARTRIDGE_4));
     }
 
     @Test
     void getAll() {
-        assertIterableEquals(repository.getAll(), WORKING_DAYS);
+        assertIterableEquals(repository.getAll(), REFILLS_CARTRIDGES);
     }
 }

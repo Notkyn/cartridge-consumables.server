@@ -1,36 +1,33 @@
-package ua.notky.cartridge.consumables.web.model;
+package ua.notky.cartridge.consumables.web.controllers.refillcartridge;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import ua.notky.cartridge.consumables.model.Department;
-import ua.notky.cartridge.consumables.service.model.department.DepartmentService;
+import ua.notky.cartridge.consumables.model.RefillCartridge;
+import ua.notky.cartridge.consumables.service.model.refillcartridge.RefillCartridgeService;
 import ua.notky.cartridge.consumables.util.JsonUtil;
 import ua.notky.cartridge.consumables.util.constant.ConstUrl;
 import ua.notky.cartridge.consumables.web.AbstractControllerTest;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_ID;
-import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_NAME_BIG;
-import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeTool.*;
 import static ua.notky.cartridge.consumables.tools.web.WebTool.*;
 import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
-import static ua.notky.cartridge.consumables.util.exception.ErrorType.VALIDATION_ERROR;
 
-public class DepartmentControllerTest extends AbstractControllerTest {
+class RefillCartridgeRefillingsControllerTest extends AbstractControllerTest {
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_DEPARTMENT;
+        url = ConstUrl.UI_REFILL_REFILLINGS;
     }
 
     @Autowired
-    private DepartmentService service;
+    private RefillCartridgeService service;
 
     @Test
     void getAll() throws Exception {
@@ -39,17 +36,17 @@ public class DepartmentControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
                 .andExpect(contentContentType())
-                .andExpect(bodyJson(Department.class, DEPARTMENTS));
+                .andExpect(bodyJson(RefillCartridge.class, REFILLS_CARTRIDGES));
     }
 
     @Test
     void get() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ID_DEPARTMENT_2)))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ID_REFILL_CARTRIDGE_2)))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
                 .andExpect(contentContentType())
-                .andExpect(bodyJson(Department.class, DEPARTMENT_2));
+                .andExpect(bodyJson(RefillCartridge.class, service.get(ID_REFILL_CARTRIDGE_2)));
     }
 
     @Test
@@ -64,22 +61,12 @@ public class DepartmentControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_DEPARTMENT_5)))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_REFILL_CARTRIDGE_5)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
         assertIterableEquals(service.getAll(),
-                Arrays.asList(DEPARTMENT_1, DEPARTMENT_2, DEPARTMENT_3, DEPARTMENT_4));
-    }
-
-    @Test
-    void deleteHasDependency() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_DEPARTMENT_2)))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity())
-                .andExpect(headerContentType())
-                .andExpect(contentContentType())
-                .andExpect(matchTypeError(HAS_DEPENDENCY));
+                Arrays.asList(REFILL_CARTRIDGE_1, REFILL_CARTRIDGE_2, REFILL_CARTRIDGE_3, REFILL_CARTRIDGE_4));
     }
 
     @Test
@@ -102,41 +89,12 @@ public class DepartmentControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void createInvalidName() throws  Exception {
-        Department departmentBig = new Department(INVALID_NAME_BIG);
-
-        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(departmentBig)))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity())
-                .andExpect(headerContentType())
-                .andExpect(contentContentType())
-                .andExpect(matchTypeError(VALIDATION_ERROR));
-    }
-
-    @Test
-    void createInvalidAllParts() throws  Exception {
-        Department departmentWithoutCartridge = getNew();
-        departmentWithoutCartridge.setCartridge(null);
-
-        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(departmentWithoutCartridge)))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity())
-                .andExpect(headerContentType())
-                .andExpect(contentContentType())
-                .andExpect(matchTypeError(VALIDATION_ERROR));
-    }
-
-    @Test
     void createDuplicate() throws  Exception {
-        Department newDepartment = getNew();
-        newDepartment.setName(DEPARTMENT_2.getName());
+        RefillCartridge newRefillCartridge = getNew();
+        newRefillCartridge.setDate(REFILL_CARTRIDGE_2.getDate());
         mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(newDepartment)))
+                .content(JsonUtil.writeValue(newRefillCartridge)))
                 .andDo(print())
                 .andExpect(status().isConflict())
                 .andExpect(headerContentType())

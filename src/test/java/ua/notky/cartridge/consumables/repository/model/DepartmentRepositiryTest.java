@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGES;
 import static ua.notky.cartridge.consumables.tools.data.model.CartridgeTool.CARTRIDGE_2;
 import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
-import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.WORKING_DAY_1;
-import static ua.notky.cartridge.consumables.tools.data.model.WorkingDayTool.WORKING_DAY_2;
+import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeTool.REFILL_CARTRIDGE_1;
+import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeTool.REFILL_CARTRIDGE_2;
 
 class DepartmentRepositiryTest extends AbstractTestRepository {
     @Autowired
@@ -52,7 +52,7 @@ class DepartmentRepositiryTest extends AbstractTestRepository {
         Department department = repository.getWithWorkDays(ID_DEPARTMENT_2);
         assertEquals(department, DEPARTMENT_2);
         assertIterableEquals(department.getRefillCartridges(),
-                List.of(WORKING_DAY_1, WORKING_DAY_2));
+                List.of(REFILL_CARTRIDGE_1, REFILL_CARTRIDGE_2));
     }
 
     @Test

@@ -10,7 +10,7 @@ import java.util.List;
 import static ua.notky.cartridge.consumables.util.ValidationUtil.checkNewBean;
 
 @Slf4j
-public class AbstractRefillCartridgeController {
+public abstract class AbstractRefillCartridgeRefillingsController {
     private RefillCartridgeService service;
 
     List<RefillCartridge> getAll(){

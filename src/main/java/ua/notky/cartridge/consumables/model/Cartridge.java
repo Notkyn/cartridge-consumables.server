@@ -75,4 +75,16 @@ public class Cartridge extends AbstractNameEntity {
         super(name);
         this.coefToner = coefToner;
     }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + coefToner;
+        return result;
+    }
+
+    public String toString() {
+        return super.toString() +
+                ", " + coefToner;
+    }
 }

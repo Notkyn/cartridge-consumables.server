@@ -1,12 +1,12 @@
-package ua.notky.cartridge.consumables.web.model.parts;
+package ua.notky.cartridge.consumables.web.controllers;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import ua.notky.cartridge.consumables.model.parts.CleaningBlade;
-import ua.notky.cartridge.consumables.service.model.parts.cleaningblade.CleaningBladeService;
+import ua.notky.cartridge.consumables.model.Department;
+import ua.notky.cartridge.consumables.service.model.department.DepartmentService;
 import ua.notky.cartridge.consumables.util.JsonUtil;
 import ua.notky.cartridge.consumables.util.constant.ConstUrl;
 import ua.notky.cartridge.consumables.web.AbstractControllerTest;
@@ -18,19 +18,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_ID;
 import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_NAME_BIG;
-import static ua.notky.cartridge.consumables.tools.data.model.parts.CleaningBladeTool.*;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.*;
 import static ua.notky.cartridge.consumables.tools.web.WebTool.*;
 import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
 import static ua.notky.cartridge.consumables.util.exception.ErrorType.VALIDATION_ERROR;
 
-public class CleaningBladeControllerTest extends AbstractControllerTest {
+public class DepartmentControllerTest extends AbstractControllerTest {
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_PARTS_CLEANING_BLADE;
+        url = ConstUrl.UI_DEPARTMENT;
     }
 
     @Autowired
-    private CleaningBladeService service;
+    private DepartmentService service;
 
     @Test
     void getAll() throws Exception {
@@ -39,17 +39,17 @@ public class CleaningBladeControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
                 .andExpect(contentContentType())
-                .andExpect(bodyJson(CleaningBlade.class, CLEANING_BLADES));
+                .andExpect(bodyJson(Department.class, DEPARTMENTS));
     }
 
     @Test
     void get() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ID_CLEANING_BLADE_2)))
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ID_DEPARTMENT_2)))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(headerContentType())
                 .andExpect(contentContentType())
-                .andExpect(bodyJson(CleaningBlade.class, CLEANING_BLADE_2));
+                .andExpect(bodyJson(Department.class, DEPARTMENT_2));
     }
 
     @Test
@@ -64,17 +64,17 @@ public class CleaningBladeControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws  Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_CLEANING_BLADE_5)))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_DEPARTMENT_5)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
         assertIterableEquals(service.getAll(),
-                Arrays.asList(CLEANING_BLADE_1, CLEANING_BLADE_2, CLEANING_BLADE_3, CLEANING_BLADE_4));
+                Arrays.asList(DEPARTMENT_1, DEPARTMENT_2, DEPARTMENT_3, DEPARTMENT_4));
     }
 
     @Test
     void deleteHasDependency() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_CLEANING_BLADE_2)))
+        mvc.perform(MockMvcRequestBuilders.delete(generateUrl(ID_DEPARTMENT_2)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -97,16 +97,32 @@ public class CleaningBladeControllerTest extends AbstractControllerTest {
         mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(getNew())))
+                .andDo(print())
                 .andExpect(status().isNoContent());
     }
 
     @Test
-    void createInvalid() throws  Exception {
-        CleaningBlade bladeBig = new CleaningBlade(INVALID_NAME_BIG);
+    void createInvalidName() throws  Exception {
+        Department departmentBig = new Department(INVALID_NAME_BIG);
 
         mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(bladeBig)))
+                .content(JsonUtil.writeValue(departmentBig)))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(matchTypeError(VALIDATION_ERROR));
+    }
+
+    @Test
+    void createInvalidAllParts() throws  Exception {
+        Department departmentWithoutCartridge = getNew();
+        departmentWithoutCartridge.setCartridge(null);
+
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(departmentWithoutCartridge)))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(headerContentType())
@@ -116,11 +132,11 @@ public class CleaningBladeControllerTest extends AbstractControllerTest {
 
     @Test
     void createDuplicate() throws  Exception {
-        CleaningBlade newBlade = getNew();
-        newBlade.setName(CLEANING_BLADE_2.getName());
+        Department newDepartment = getNew();
+        newDepartment.setName(DEPARTMENT_2.getName());
         mvc.perform(MockMvcRequestBuilders.post(generateUrl())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(newBlade)))
+                .content(JsonUtil.writeValue(newDepartment)))
                 .andDo(print())
                 .andExpect(status().isConflict())
                 .andExpect(headerContentType())
