@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS `refill_cartridge_department_megre`;
 DROP TABLE IF EXISTS `refill_cartridge`;
 DROP TABLE IF EXISTS `department`;
 DROP TABLE IF EXISTS `cartridge`;
@@ -96,22 +95,17 @@ CREATE TABLE `department`(
   DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE `refill_cartridge`(
-  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `date` TIMESTAMP NOT NULL UNIQUE,
-  PRIMARY KEY(`_id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARACTER SET = utf8mb4;
-
-CREATE TABLE `refill_cartridge_department_megre` (
-  `_id` INT UNSIGNED AUTO_INCREMENT NOT NULL,
-  `_id_refill_cartridge_megre` INT UNSIGNED NOT NULL,
-  `_id_department_megre` INT UNSIGNED NOT NULL,
-  PRIMARY KEY(`_id`),
-  CONSTRAINT `_id_refill_cartridge_megre_ibfk_1`
-    FOREIGN KEY (`_id_refill_cartridge_megre`) REFERENCES `refill_cartridge`(`_id`),
-  CONSTRAINT `_id_department_megre_ibfk_2`
-    FOREIGN KEY (`_id_department_megre`) REFERENCES `department`(`_id`)
+   `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+   `date` TIMESTAMP NOT NULL,
+   `drum_use` BOOL DEFAULT 0,
+   `magnetic_shaft_use` BOOL DEFAULT 0,
+   `primary_charge_shaft_use` BOOL DEFAULT 0,
+   `cleaning_blade__use` BOOL DEFAULT 0,
+   `dispensing_blade_use` BOOL DEFAULT 0,
+   `_id_department` INT UNSIGNED NOT NULL,
+   PRIMARY KEY(`_id`),
+   CONSTRAINT `_id_department_ibfk_1`
+     FOREIGN KEY(`_id_department`) REFERENCES `department`(`_id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8mb4;

@@ -22,7 +22,7 @@ public class Department extends AbstractNameEntity {
 
     @Getter
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "departments")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
     private List<RefillCartridge> refillCartridges = new ArrayList<>();
 
     public Department() {

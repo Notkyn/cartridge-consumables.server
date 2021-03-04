@@ -1,8 +1,6 @@
 SET SQL_SAFE_UPDATES = 0;
 
 # cleaning all notes from all tables;
-DELETE FROM `refill_cartridge_department_megre` WHERE `_id` > 0;
-ALTER TABLE `refill_cartridge_department_megre` AUTO_INCREMENT = 1;
 DELETE FROM `refill_cartridge` WHERE `_id` > 0;
 ALTER TABLE `refill_cartridge` AUTO_INCREMENT = 1;
 DELETE FROM `department` WHERE `_id` > 0;
@@ -76,16 +74,15 @@ INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_3', 3);
 INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_4', 4);
 INSERT INTO `department`(`name`, `_id_cartridge`) VALUES ('department_5', 1);
 
-INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-01');
-INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-02');
-INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-03');
-INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-04');
-INSERT INTO `refill_cartridge`(`date`) VALUES ('2015-05-05');
-
-INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (1, 1);
-INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (1, 2);
-INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (1, 3);
-INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (2, 2);
-INSERT INTO `refill_cartridge_department_megre`(`_id_refill_cartridge_megre`, `_id_department_megre`) VALUES (2, 4);
+INSERT INTO `refill_cartridge`(`date`, `drum_use`, `magnetic_shaft_use`, `primary_charge_shaft_use`, `cleaning_blade__use`, `dispensing_blade_use`, `_id_department`)
+  VALUES ('2015-05-01', 0, 0, 0, 0, 0, 1);
+INSERT INTO `refill_cartridge`(`date`, `drum_use`, `magnetic_shaft_use`, `primary_charge_shaft_use`, `cleaning_blade__use`, `dispensing_blade_use`, `_id_department`)
+  VALUES ('2015-05-02', 0, 0, 0, 0, 0, 2);
+INSERT INTO `refill_cartridge`(`date`, `drum_use`, `magnetic_shaft_use`, `primary_charge_shaft_use`, `cleaning_blade__use`, `dispensing_blade_use`, `_id_department`)
+  VALUES ('2015-05-03', 1, 1, 1, 1, 1, 3);
+INSERT INTO `refill_cartridge`(`date`, `drum_use`, `magnetic_shaft_use`, `primary_charge_shaft_use`, `cleaning_blade__use`, `dispensing_blade_use`, `_id_department`)
+  VALUES ('2015-05-04', 0, 0, 0, 0, 0, 4);
+INSERT INTO `refill_cartridge`(`date`, `drum_use`, `magnetic_shaft_use`, `primary_charge_shaft_use`, `cleaning_blade__use`, `dispensing_blade_use`, `_id_department`)
+  VALUES ('2015-05-05', 0, 0, 0, 0, 0, 1);
 
 SET SQL_SAFE_UPDATES = 1;
