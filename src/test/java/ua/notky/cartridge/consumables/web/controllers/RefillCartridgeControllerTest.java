@@ -1,4 +1,4 @@
-package ua.notky.cartridge.consumables.web.controllers.refillcartridge;
+package ua.notky.cartridge.consumables.web.controllers;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -107,5 +107,20 @@ class RefillCartridgeControllerTest extends AbstractControllerTest {
                 .content(JsonUtil.writeValue(getNew())))
                 .andDo(print())
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void createInvalidData() throws  Exception {
+        RefillCartridge refillCartridge = new RefillCartridge();
+        refillCartridge.setDate(LocalDate.of(2012, 10, 10));
+
+        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(refillCartridge)))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(matchTypeError(VALIDATION_ERROR));
     }
 }

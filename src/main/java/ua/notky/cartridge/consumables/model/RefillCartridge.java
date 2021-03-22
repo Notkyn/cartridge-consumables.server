@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ public class RefillCartridge extends AbstractBaseEntity {
 
     @Getter
     @Setter
+    @NotNull
     @Column(name = "date", nullable = false, unique = true)
     private LocalDate date;
 
@@ -44,6 +46,7 @@ public class RefillCartridge extends AbstractBaseEntity {
 
     @Getter
     @Setter
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "_id_department", nullable = false)
     private Department department;
