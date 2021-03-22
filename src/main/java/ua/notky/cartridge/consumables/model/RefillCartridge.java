@@ -59,6 +59,20 @@ public class RefillCartridge extends AbstractBaseEntity {
         this(id, date, false, false, false, false, false);
     }
 
+    public RefillCartridge(LocalDate date,
+                           boolean useDrum,
+                           boolean useMagneticShaft,
+                           boolean usePrimaryChargeShaft,
+                           boolean useCleaningBlade,
+                           boolean useDispensingBlade) {
+        this.date = date;
+        this.useDrum = useDrum;
+        this.useMagneticShaft = useMagneticShaft;
+        this.usePrimaryChargeShaft = usePrimaryChargeShaft;
+        this.useCleaningBlade = useCleaningBlade;
+        this.useDispensingBlade = useDispensingBlade;
+    }
+
     public RefillCartridge(Integer id,
                            LocalDate date,
                            boolean useDrum,

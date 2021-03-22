@@ -11,6 +11,7 @@ import ua.notky.cartridge.consumables.util.JsonUtil;
 import ua.notky.cartridge.consumables.util.constant.ConstUrl;
 import ua.notky.cartridge.consumables.web.AbstractControllerTest;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,10 +21,10 @@ import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeToo
 import static ua.notky.cartridge.consumables.tools.web.WebTool.*;
 import static ua.notky.cartridge.consumables.util.exception.ErrorType.*;
 
-class RefillCartridgeRefillingsControllerTest extends AbstractControllerTest {
+class RefillCartridgeControllerTest extends AbstractControllerTest {
     @BeforeAll
     static void prepareForTest(){
-        url = ConstUrl.UI_REFILL_REFILLINGS;
+        url = ConstUrl.UI_REFILL_CARTRIDGE;
     }
 
     @Autowired
@@ -37,6 +38,26 @@ class RefillCartridgeRefillingsControllerTest extends AbstractControllerTest {
                 .andExpect(headerContentType())
                 .andExpect(contentContentType())
                 .andExpect(bodyJson(RefillCartridge.class, REFILLS_CARTRIDGES));
+    }
+
+    @Test
+    void getAllDates() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ConstUrl.DATES)))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(bodyJsonDates(LocalDate.class, REFILLS_DATES));
+    }
+
+    @Test
+    void getAllByDate() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get(generateUrl(ConstUrl.FILTER) + "?date=" + DATE_REFILL_3))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(headerContentType())
+                .andExpect(contentContentType())
+                .andExpect(bodyJson(RefillCartridge.class, REFILL_CARTRIDGE_3));
     }
 
     @Test
@@ -86,19 +107,5 @@ class RefillCartridgeRefillingsControllerTest extends AbstractControllerTest {
                 .content(JsonUtil.writeValue(getNew())))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-    }
-
-    @Test
-    void createDuplicate() throws  Exception {
-        RefillCartridge newRefillCartridge = getNew();
-        newRefillCartridge.setDate(REFILL_CARTRIDGE_2.getDate());
-        mvc.perform(MockMvcRequestBuilders.post(generateUrl())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(newRefillCartridge)))
-                .andDo(print())
-                .andExpect(status().isConflict())
-                .andExpect(headerContentType())
-                .andExpect(contentContentType())
-                .andExpect(matchTypeError(VALIDATION_ERROR));
     }
 }

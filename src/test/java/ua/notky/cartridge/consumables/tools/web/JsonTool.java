@@ -17,8 +17,6 @@ public class JsonTool {
     }
 
     public static <T> List<T> readListFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
-        List<T> list = JsonUtil.readValues(getContent(result), clazz);
-        list.sort(Comparator.comparingInt(ob -> ((AbstractBaseEntity) ob).getId()));
-        return list;
+        return JsonUtil.readValues(getContent(result), clazz);
     }
 }

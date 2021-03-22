@@ -7,14 +7,15 @@ import ua.notky.cartridge.consumables.model.RefillCartridge;
 import ua.notky.cartridge.consumables.repository.AbstractTestRepository;
 import ua.notky.cartridge.consumables.repository.refillcartridge.RefillCartridgeRepository;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_ID;
-import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_2;
-import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_4;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_3;
 import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeTool.*;
 
 public class RefillCartridgeRepositoryTest extends AbstractTestRepository {
@@ -41,14 +42,6 @@ public class RefillCartridgeRepositoryTest extends AbstractTestRepository {
     }
 
     @Test
-    void getWithDepartments(){
-        RefillCartridge refillCartridge = repository.getWithDepartments(ID_REFILL_CARTRIDGE_2);
-        assertEquals(refillCartridge, REFILL_CARTRIDGE_2);
-        assertIterableEquals(refillCartridge.getDepartments(),
-                List.of(DEPARTMENT_2, DEPARTMENT_4));
-    }
-
-    @Test
     @Transactional
     void delete() {
         assertTrue(repository.delete(REFILL_CARTRIDGE_5));
@@ -60,5 +53,22 @@ public class RefillCartridgeRepositoryTest extends AbstractTestRepository {
     @Test
     void getAll() {
         assertIterableEquals(repository.getAll(), REFILLS_CARTRIDGES);
+    }
+
+    @Test
+    void getAllDates(){
+        List<LocalDate> dates = repository.getAllDates();
+        Collections.sort(dates);
+        assertIterableEquals(dates, REFILLS_DATES);
+    }
+
+    @Test
+    void getAllByDateWithDepartment(){
+        List<RefillCartridge> refillings = repository.getAllByDateWithDepartment(DATE_REFILL_3);
+        assertIterableEquals(refillings, List.of(REFILL_CARTRIDGE_3));
+        assertEquals(refillings.size(), 1);
+        assertEquals(refillings.get(0).getDepartment(), DEPARTMENT_3);
+
+        assertEquals(repository.getAllByDateWithDepartment(INVALID_DATE_REFILL).size(), 0);
     }
 }

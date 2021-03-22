@@ -21,18 +21,39 @@ public class AbstractControllerTest {
 
     protected static String url;
 
-    protected String generateUrl(int... args){
-        if(args.length == 0){
-            return url;
-        } else {
-            StringBuilder sb = new StringBuilder(url);
+    protected String generateUrl(){
+        return url;
+    }
 
-            for(int item : args){
-                sb.append("/")
-                    .append(item);
-            }
-
-            return sb.toString();
+    protected <T> String generateUrl(T arg) {
+        if(arg == null) {
+            return generateUrl();
         }
+        return createUrl(generateUrl(), arg);
+    }
+
+    protected <T> String generateUrl(String path, T arg) {
+        String tempUrl;
+        if(arg == null) {
+            tempUrl = generateUrl();
+        } else {
+            tempUrl = createUrl(generateUrl(), path);
+        }
+
+        if(arg != null) {
+            tempUrl = createUrl(tempUrl, arg);
+        }
+
+        return tempUrl;
+    }
+
+    private <T> String createUrl(String url, T arg){
+        String[] argItems = String.valueOf(arg).split("/");
+
+        StringBuilder sb = new StringBuilder(url);
+        for(String item : argItems){
+            sb.append("/").append(item);
+        }
+        return sb.toString();
     }
 }

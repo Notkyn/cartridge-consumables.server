@@ -9,14 +9,15 @@ import ua.notky.cartridge.consumables.service.model.refillcartridge.RefillCartri
 import ua.notky.cartridge.consumables.util.exception.IllegalEntityException;
 import ua.notky.cartridge.consumables.util.exception.NotFoundDataException;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static ua.notky.cartridge.consumables.tools.data.AbstractModelTool.INVALID_ID;
-import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_2;
-import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_4;
+import static ua.notky.cartridge.consumables.tools.data.model.DepartmentTool.DEPARTMENT_3;
 import static ua.notky.cartridge.consumables.tools.data.model.RefillCartridgeTool.*;
 
 public class RefillCartridgeServiceTest extends AbstractTestService {
@@ -75,14 +76,6 @@ public class RefillCartridgeServiceTest extends AbstractTestService {
     }
 
     @Test
-    void getWithDepartments(){
-        RefillCartridge refillCartridge = service.getWithDepartments(ID_REFILL_CARTRIDGE_2);
-        assertEquals(refillCartridge, REFILL_CARTRIDGE_2);
-        assertIterableEquals(refillCartridge.getDepartments(),
-                List.of(DEPARTMENT_2, DEPARTMENT_4));
-    }
-
-    @Test
     void getNotFound(){
         assertThrows(NotFoundDataException.class, () -> service.get(INVALID_ID));
     }
@@ -104,5 +97,22 @@ public class RefillCartridgeServiceTest extends AbstractTestService {
     @Test
     void getAll() {
         assertIterableEquals(service.getAll(), REFILLS_CARTRIDGES);
+    }
+
+    @Test
+    void getAllDates(){
+        List<LocalDate> dates = service.getAllDates();
+        Collections.sort(dates);
+        assertIterableEquals(dates, REFILLS_DATES);
+    }
+
+    @Test
+    void getAllByDateWithDepartment(){
+        List<RefillCartridge> refillings = service.getAllByDateWithDepartment(DATE_REFILL_3);
+        assertIterableEquals(refillings, List.of(REFILL_CARTRIDGE_3));
+        assertEquals(refillings.size(), 1);
+        assertEquals(refillings.get(0).getDepartment(), DEPARTMENT_3);
+
+        assertEquals(service.getAllByDateWithDepartment(INVALID_DATE_REFILL).size(), 0);
     }
 }

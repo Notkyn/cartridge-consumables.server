@@ -2361,7 +2361,28 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8080/consumables/ui/refill_cartridges/refillings",
+											"raw": "http://localhost:8080/consumables/ui/refill_cartridges",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"consumables",
+												"ui",
+												"refill_cartridges"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all with filter",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/consumables/ui/refill_cartridges/filter/2015-05-01",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -2371,7 +2392,30 @@
 												"consumables",
 												"ui",
 												"refill_cartridges",
-												"refillings"
+												"filter",
+												"2015-05-01"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all dates",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/consumables/ui/refill_cartridges/dates",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"consumables",
+												"ui",
+												"refill_cartridges",
+												"dates"
 											]
 										}
 									},
@@ -2383,7 +2427,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://localhost:8080/consumables/ui/refill_cartridges/refillings/2",
+											"raw": "http://localhost:8080/consumables/ui/refill_cartridges/2",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -2393,7 +2437,6 @@
 												"consumables",
 												"ui",
 												"refill_cartridges",
-												"refillings",
 												"2"
 											]
 										}
@@ -2407,7 +2450,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n        \"date\": \"2015-04-19\",\r\n        \"departments\": [\r\n        {\r\n            \"id\": 2,\r\n            \"name\": \"department_2\"\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"name\": \"department_4\"\r\n        }\r\n    ]\r\n    }",
+											"raw": "{\r\n        \"date\": \"2016-04-19\",\r\n        \"useDrum\": false,\r\n        \"useMagneticShaft\": false,\r\n        \"usePrimaryChargeShaft\": false,\r\n        \"useCleaningBlade\": false,\r\n        \"useDispensingBlade\": false,\r\n        \"department\": {\r\n            \"id\": 1,\r\n            \"name\": \"department_1\"\r\n        }\r\n    }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2415,7 +2458,7 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:8080/consumables/ui/refill_cartridges/refillings",
+											"raw": "http://localhost:8080/consumables/ui/refill_cartridges",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -2424,8 +2467,7 @@
 											"path": [
 												"consumables",
 												"ui",
-												"refill_cartridges",
-												"refillings"
+												"refill_cartridges"
 											]
 										}
 									},

@@ -19,8 +19,7 @@ public class ConstUrl {
     public static final String PAGE_DISPENSING_BLADE = "/parts/dispensing_blades";
 
     /* UI */
-    public static final String UI_REFILL_STATS = "/ui/refill_cartridges/stats";
-    public static final String UI_REFILL_REFILLINGS = "/ui/refill_cartridges/refillings";
+    public static final String UI_REFILL_CARTRIDGE = "/ui/refill_cartridges";
 
     public static final String UI_DEPARTMENT = "/ui/department";
     public static final String UI_CARTRIDGE = "/ui/cartridge";
@@ -34,4 +33,6 @@ public class ConstUrl {
 
     /* Common */
     public static final String ID = "/{id}";
+    public static final String DATES = "/dates";
+    public static final String FILTER = "/filter";
 }

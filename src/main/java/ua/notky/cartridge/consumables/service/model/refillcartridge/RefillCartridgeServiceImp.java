@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ua.notky.cartridge.consumables.model.RefillCartridge;
 import ua.notky.cartridge.consumables.repository.refillcartridge.RefillCartridgeRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ua.notky.cartridge.consumables.util.ValidationUtil.*;
@@ -36,13 +37,6 @@ public class RefillCartridgeServiceImp implements RefillCartridgeService {
         log.info("Get one Refill Cartridge by id={}", id);
         return checkNotFoundWithId(repository.getById(id), id);
     }
-
-    @Override
-    public RefillCartridge getWithDepartments(int id) {
-        log.info("Get one Refill Cartridge by id={} with Departments", id);
-        return checkNotFoundWithId(repository.getWithDepartments(id), id);
-    }
-
     @Override
     public void delete(int id) {
         log.info("Delete Refill Cartridge by id={}", id);
@@ -55,6 +49,18 @@ public class RefillCartridgeServiceImp implements RefillCartridgeService {
     public List<RefillCartridge> getAll() {
         log.info("Get all Refill Cartridge");
         return repository.getAll();
+    }
+
+    @Override
+    public List<LocalDate> getAllDates() {
+        log.info("Get all Dates from All Refill Cartidges");
+        return repository.getAllDates();
+    }
+
+    @Override
+    public List<RefillCartridge> getAllByDateWithDepartment(LocalDate date) {
+        log.info("Get All by Date with Department [date={}] from bd", date);
+        return repository.getAllByDateWithDepartment(date);
     }
 
     @Autowired

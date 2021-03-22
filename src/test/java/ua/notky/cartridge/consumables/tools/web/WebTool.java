@@ -5,6 +5,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import ua.notky.cartridge.consumables.model.AbstractBaseEntity;
 import ua.notky.cartridge.consumables.util.exception.ErrorType;
 
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -26,12 +27,21 @@ public class WebTool {
         return jsonPath("$.type").value(errorType.toString());
     }
 
+    private static <T extends AbstractBaseEntity> List<T> getSortList(List<T> list){
+        list.sort(Comparator.comparingInt(AbstractBaseEntity::getId));
+        return list;
+    }
+
     @SafeVarargs
     public static <T extends AbstractBaseEntity> ResultMatcher bodyJson(Class<T> cl, T... expected) {
         return bodyJson(cl, List.of(expected));
     }
 
     public static <T extends AbstractBaseEntity> ResultMatcher bodyJson(Class<T> cl, Iterable<T> expected) {
+        return mvcResult -> assertIterableEquals(getSortList(readListFromJsonMvcResult(mvcResult, cl)), expected);
+    }
+
+    public static <T> ResultMatcher bodyJsonDates(Class<T> cl, Iterable<T> expected) {
         return mvcResult -> assertIterableEquals(readListFromJsonMvcResult(mvcResult, cl), expected);
     }
 }

@@ -5,17 +5,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ua.notky.cartridge.consumables.model.RefillCartridge;
 import ua.notky.cartridge.consumables.service.model.refillcartridge.RefillCartridgeService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ua.notky.cartridge.consumables.util.ValidationUtil.checkNewBean;
 
 @Slf4j
-public abstract class AbstractRefillCartridgeRefillingsController {
+public abstract class AbstractRefillCartridgeController {
     private RefillCartridgeService service;
 
     List<RefillCartridge> getAll(){
         log.info("Get all");
         return service.getAll();
+    }
+
+    List<LocalDate> getAllDates() {
+        log.info("Get all dates from all refillings");
+        return service.getAllDates();
+    }
+
+    List<RefillCartridge> getAllByDate(LocalDate date) {
+        log.info("Get all refillings by date");
+        return service.getAllByDateWithDepartment(date);
     }
 
     void delete(int id){
@@ -25,7 +36,7 @@ public abstract class AbstractRefillCartridgeRefillingsController {
 
     RefillCartridge get(int id){
         log.info("Get id={}", id);
-        return service.getWithDepartments(id);
+        return service.get(id);
     }
 
     void create(RefillCartridge refillCartridge){
