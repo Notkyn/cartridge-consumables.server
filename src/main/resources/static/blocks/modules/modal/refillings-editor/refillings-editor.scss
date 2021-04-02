@@ -1,0 +1,267 @@
+.refillings-editor {
+   padding: rem(30);
+   width: rem(1200);
+   min-height: rem(815);
+   background: $grey;
+   position: absolute;
+   top: rem(50);
+   left: 50%;
+   transform: translateX(-50%);
+   border-radius: rem(20);
+   z-index: 5;
+
+   &-wrap {
+      display: flex;
+   }
+
+   &-column {
+      width: rem(600);
+   }
+
+   &-search {
+      margin-left: rem(35);
+
+      &::before {
+         content: url("../img/icons/search-icon.svg");
+         width: rem(100);
+         height: rem(45);
+         margin-top: rem(8);
+         margin-left: rem(35);
+         position: absolute;
+         z-index: 5;
+      }
+
+      & label {
+
+         &::before {
+            content: "";
+            width: rem(100);
+            height: rem(45);
+            background: $search-fon;
+            position: absolute;
+            z-index: 4;
+            border-radius: rem(10) 0 0 rem(10);
+         }
+
+         & input {
+            width: rem(435);
+            height: rem(45);
+            border: none;
+            border-radius: rem(10);
+            padding-left: rem(120);
+            padding-right: rem(10);
+            position: relative;
+
+            &:focus {
+               outline: none;
+               box-shadow: rem(0) rem(0) rem(5) rem(2) $search-shadow;
+            }
+         }
+      }
+   }
+
+   &-departments {
+      margin-top: rem(10);
+      height: rem(750);
+      overflow-y: auto;
+
+      &-item {
+         margin-top: rem(10);
+         margin-left: rem(35);
+         width: rem(534);
+         height: rem(44);
+         display: flex;
+
+         &-plus {
+            width: rem(44);
+            height: rem(44);
+            background: $plus-btn;
+            border-radius: rem(10);
+            position: relative;
+
+            &::before, &::after {
+               content: "";
+               width: rem(22);
+               height: rem(4);
+               background: $white;
+               position: absolute;
+               top: rem(22);
+               left: rem(22);
+               transform: translateX(-50%) translateY(-50%);
+            }
+
+            &::after {
+               width: rem(4);
+               height: rem(22);
+            }
+
+            &:hover {
+               background: $plus-btn-hover;
+            }
+
+            &:active {
+               background: $plus-btn-active;
+            }
+         }
+
+         &-info {
+            background: $search-fon;
+            margin-left: rem(20);
+            width: rem(470);
+            border-radius: rem(10);
+            position: relative;
+
+            &::before {
+               content: '';
+               width: rem(20);
+               height: rem(44);
+               background: $search-icon;
+               border-radius: rem(10) 0 0 rem(10);
+               position: absolute;
+               top: 0;
+               left: 0;
+            }
+
+            &-title, &-subtitle {
+               margin-left: rem(20);
+               padding-left: rem(10);
+               height: rem(24);
+               font-weight: 400;
+               font-size: rem(18);
+               line-height: rem(24);
+            }
+
+            &-subtitle {
+               height: rem(20);
+               font-size: rem(12);
+               line-height: rem(20);
+            }
+         }
+      }
+   }
+
+   &-date {
+      width: rem(510);
+      height: rem(45);
+      font-weight: 900;
+      font-size: rem(24);
+      line-height: rem(45);
+      text-align: center;
+   }
+
+   &-refillings {
+      width: rem(600);
+      height: rem(680);
+      margin-top: rem(10);
+      overflow-y: auto;
+
+      &-item {
+         margin-top: rem(10);
+         height: (40);
+         width: rem(570);
+
+         &-refill {
+            display: flex;
+
+            &-title {
+               background: $refill-item;
+               border-radius: rem(10);
+               width: rem(430);
+               height: rem(40);
+               line-height: rem(40);
+               font-weight: 400;
+               font-size: rem(20);
+               padding-left: rem(30);
+               padding-right: rem(50);
+               overflow: hidden;
+               text-overflow: ellipsis;
+               position: relative;
+               cursor: pointer;
+
+               &::after {
+                  content: "";
+                  width: rem(15);
+                  height: rem(15);
+                  background: url("../img/icons/refill-arrow.svg") center (center / contain) no-repeat;
+                  position: absolute;
+                  top: rem(20);
+                  left: rem(480);
+                  transform: translateY(-50%);
+                  transition: all 0.2s;
+               }
+
+               &-active {
+                  &:after {
+                     transform:translateY(-50%) rotate(90deg);
+                  }
+               }
+            }
+
+            &-btn {
+               width: rem(40);
+               height: rem(40);
+               border-radius: rem(10);
+               background: $minus-btn;
+               margin-left: rem(20);
+               position: relative;
+
+               &::before {
+                  content: "";
+                  width: rem(20);
+                  height: rem(4);
+                  background: $white;
+                  position: absolute;
+                  top: rem(20);
+                  left: rem(20);
+                  transform: translateY(-50%) translateX(-50%);
+               }
+
+               &:hover {
+                  background: $minus-btn-hover;
+               }
+
+               &:active {
+                  background: $minus-btn-active;
+               }
+            }
+
+         }
+
+         &-info {
+            &-point {
+               margin-left: rem(5);
+               padding-left: rem(30);
+               width: rem(470);
+               height: rem(35);
+               position: relative;
+               line-height: rem(35);
+               font-weight: 400;
+               font-size: rem(16);
+               display: flex;
+
+               &:before {
+                  content: "";
+                  width: rem(500);
+                  height: rem(1);
+                  background: $black;
+                  position: absolute;
+                  top: rem(34);
+                  left: 0;
+               }
+
+               &-title {
+                  width: rem(410);
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+               }
+
+               & input {
+                  display: block;
+                  margin-left: rem(30);
+                  margin-top: rem(10);
+               }
+            }
+         }
+      }
+   }
+}

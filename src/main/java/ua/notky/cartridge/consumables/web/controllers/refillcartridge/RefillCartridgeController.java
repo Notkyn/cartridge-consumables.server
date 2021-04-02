@@ -28,7 +28,6 @@ public class RefillCartridgeController extends AbstractRefillCartridgeController
     @Override
     @GetMapping(ConstUrl.FILTER)
     List<RefillCartridge> getAllByDate(@RequestParam(required = false) LocalDate date){
-        System.out.println("LocalDate: " + date);
         return super.getAllByDate(date);
     }
 

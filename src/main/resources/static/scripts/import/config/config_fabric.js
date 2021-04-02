@@ -1,3 +1,4 @@
+import { refillingsConfig } from "%config%/model/refillings";
 import { departmentsConfig } from "%config%/model/department";
 import { cartridgesConfig } from "%config%/model/cartridge";
 import { tonersConfig } from "%config%/model/parts/toners";
@@ -12,6 +13,7 @@ import { constants } from "%config%/constants";
 class FabricConfig {
     constructor(){
         // models
+        this._isRefillings = false;
         this._isCartridge = false;
         this._isDepartment = false;
 
@@ -31,6 +33,7 @@ class FabricConfig {
 
         modalMode.refresh();
 
+        this._isRefillings = false;
         this._isCartridge = false;
         this._isDepartment = false;
 
@@ -44,6 +47,8 @@ class FabricConfig {
 
     getInstanse(){
         switch (true) {
+            case this._isRefillings:
+                return refillingsConfig;
             case this._isDepartment:
                 return departmentsConfig;
             case this._isCartridge:
@@ -73,6 +78,11 @@ class FabricConfig {
 
     _setPartsMode(value){
         this._isPartsMode = value;
+    }
+
+    setRefillingsConfig(){
+        this._refreshConfig();
+        this._isRefillings = true;
     }
 
     setDepartmentConfig(){
