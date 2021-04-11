@@ -47,6 +47,23 @@ class DateHelper {
 
         return days;
     }
+
+    getFormatCurrentDate(){
+        let currentDate = new Date();
+
+        let tempYear = currentDate.getFullYear();
+
+        let tempMonth = currentDate.getMonth() + 1;
+        if(tempMonth < 10){
+            tempMonth = `0${tempMonth}`;
+        }
+        let tempDay = currentDate.getDate();
+        if(tempDay < 10){
+            tempDay = `0${tempDay}`;
+        }
+
+        return `${tempDay}-${tempMonth}-${tempYear}`;
+    }
 }
 
 export const dateHelper = new DateHelper();

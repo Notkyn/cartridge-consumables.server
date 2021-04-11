@@ -78,6 +78,7 @@
             background: $plus-btn;
             border-radius: rem(10);
             position: relative;
+            cursor: pointer;
 
             &::before, &::after {
                content: "";
@@ -129,6 +130,7 @@
                font-weight: 400;
                font-size: rem(18);
                line-height: rem(24);
+               user-select: none;
             }
 
             &-subtitle {
@@ -147,6 +149,7 @@
       font-size: rem(24);
       line-height: rem(45);
       text-align: center;
+      user-select: none;
    }
 
    &-refillings {
@@ -177,6 +180,7 @@
                text-overflow: ellipsis;
                position: relative;
                cursor: pointer;
+               user-select: none;
 
                &::after {
                   content: "";
@@ -204,6 +208,7 @@
                background: $minus-btn;
                margin-left: rem(20);
                position: relative;
+               cursor: pointer;
 
                &::before {
                   content: "";
@@ -228,6 +233,7 @@
          }
 
          &-info {
+
             &-point {
                margin-left: rem(5);
                padding-left: rem(30);
@@ -238,6 +244,17 @@
                font-weight: 400;
                font-size: rem(16);
                display: flex;
+               cursor: pointer;
+               user-select: none;
+
+               &:hover {
+                  background: $btn-hover;
+               }
+
+               &:active {
+                  background: $btn-active;
+                  color: $white;
+               }
 
                &:before {
                   content: "";
@@ -253,12 +270,22 @@
                   width: rem(410);
                   overflow: hidden;
                   text-overflow: ellipsis;
+                  user-select: none;
                }
 
-               & input {
-                  display: block;
-                  margin-left: rem(30);
-                  margin-top: rem(10);
+               &-active {
+
+                  &:after {
+                     content: "";
+                     width: rem(15);
+                     height: rem(15);
+                     background: $black;
+                     border-radius: 100%;
+                     transform: translateY(-50%);
+                     position: absolute;
+                     top: 50%;
+                     left: rem(475);
+                  }
                }
             }
          }

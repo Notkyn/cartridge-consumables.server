@@ -1,124 +1,102 @@
 import { Overflow } from "%blocks%/components/overflow/overflow";
 import { configuration } from "%config%/config_fabric";
-import {request} from "%api%/rest";
+import { dateHelper } from "%api%/date-helper";
+import { request } from "%api%/rest";
 import { departmentsConfig } from "%config%/model/department";
-import {tonersConfig} from "%config%/model/parts/toners";
-import {drumsConfig} from "%config%/model/parts/drums";
-import {magneticShaftsConfig} from "%config%/model/parts/magnetic-shaft";
-import {primaryChargeShaftsConfig} from "%config%/model/parts/primary-charge-shaft";
-import {cleaningBladesConfig} from "%config%/model/parts/cleaning-blade";
-import {dispensingBladesConfig} from "%config%/model/parts/dispensing-blade";
+import {constants} from "%config%/constants";
+import { sort } from "%api%/sort";
+
 
 export class RefillingsEditor {
     constructor(){
         this._modal = document.querySelector(".refillings-editor");
         this._overflow = new Overflow();
-        //
-        // // btns
-        // this._apply_btn = this._modal.querySelector(".btn_modal");
-        // this._cancel_btn = this._modal.querySelector(".btn_modal-cancel");
-        //
-        // // fields
-        // this._title = this._modal.querySelector(".modal-title");
-        // this._id = this._modal.querySelector(".modal-id");
-        // this._name_field = this._modal.querySelector("#modal-field-name");
-        // this._name_field_error = this._modal.querySelector("#modal-field-error-name");
-        // this._coef_field = this._modal.querySelector("#modal-field-coef");
-        // this._coef_field_error = this._modal.querySelector("#modal-field-error-coef");
-        // this._select_toner = this._modal.querySelector("#modal-select-toner");
-        // this._toner_field_error = this._modal.querySelector("#modal-field-error-toner");
-        // this._select_drum = this._modal.querySelector("#modal-select-drum");
-        // this._drum_field_error = this._modal.querySelector("#modal-field-error-drum");
-        // this._select_magneticshaft = this._modal.querySelector("#modal-select-magneticshaft");
-        // this._magneticshaft_field_error = this._modal.querySelector("#modal-field-error-magneticshaft");
-        // this._select_primarychargeshaft = this._modal.querySelector("#modal-select-primarychargeshaft");
-        // this._primarychargeshaft_field_error = this._modal.querySelector("#modal-field-error-primarychargeshaft");
-        // this._select_cleaningblade = this._modal.querySelector("#modal-select-cleaningblade");
-        // this._cleaningblade_field_error = this._modal.querySelector("#modal-field-error-cleaningblade");
-        // this._select_dispencingblade = this._modal.querySelector("#modal-select-dispensingblade");
-        // this._dispensingblade_field_error = this._modal.querySelector("#modal-field-error-dispensingblade");
-        //
-        // // data
-        // this._isNew = true;
-        // this._table = null;
-        // this._data = null;
-        // this._listToners = null;
-        // this._listDrums = null;
-        // this._listMagneticShafts = null;
-        // this._listPrimaryChargeShafts = null;
-        // this._listCleaningBlabes = null;
-        // this._listDispencingBlades = null;
-        //
-        // this._createOption = this._createOption.bind(this);
-        // this._loadToners = this._loadToners.bind(this);
-        // this._loadDrums = this._loadDrums.bind(this);
-        // this._loadMagneticShafts = this._loadMagneticShafts.bind(this);
-        // this._loadPrimaryChargeShafts = this._loadPrimaryChargeShafts.bind(this);
-        // this._loadCleaningBlades = this._loadCleaningBlades.bind(this);
-        // this._loadDispencingBlades = this._loadDispencingBlades.bind(this);
-        // this._failValidationForm = this._failValidationForm.bind(this);
-        this._createDepartmentsList = this._createDepartmentsList.bind(this);
+        this._listDepartments = [];
+
+        this._loadDepartments = this._loadDepartments.bind(this);
     }
 
     show(data){
+        console.log("data: " + data);
+
         this._clearRootElement(this._modal);
 
-        let column1 = document.createElement("div");
-        column1.classList.add("refillings-editor-column");
+        this._date = document.createElement("div");
+        this._date.classList.add("refillings-editor-date");
+        this._date.innerText = dateHelper.getFormatCurrentDate();
+
+        this._listRefillings = document.createElement("div");
+        this._listRefillings.classList.add("refillings-editor-refillings");
+
+        let applyBtn = document.createElement("button");
+        applyBtn.classList.add("btn");
+        applyBtn.classList.add("btn_modal");
+        applyBtn.innerText = i18n.modalAddBtn;
+
+        applyBtn.addEventListener(configuration.getConstants().eventClick, () => {
+            let date = "";
+
+            let refillingsToSave = [];
+            let refillings = this._listRefillings.querySelectorAll(".refillings-editor-refillings-item");
+            refillings.forEach(e => {
+                console.log(e);
+                let refilling = {};
+                let title = e.querySelector(".refillings-editor-refillings-item-refill-title");
+
+                this._listDepartments.forEach(e => {
+                    if(e.name.includes(title.innerText)){
+                        refilling.department = e;
+                    }
+                });
+
+                let points = this._listRefillings.querySelectorAll(".refillings-editor-refillings-item-info-point");
+                points.forEach(point => {
+                   console.log(point);
+                   //
+                });
+
+                console.log(refilling);
+                refillingsToSave.push(refilling);
+            });
+
+            // to save
+        });
+
+        let cancelBtn = document.createElement("button");
+        cancelBtn.classList.add("btn");
+        cancelBtn.classList.add("btn_modal-cancel");
+        cancelBtn.innerText = i18n.modalCancelBtn;
+
+        cancelBtn.addEventListener(configuration.getConstants().eventClick, () => {
+            this._createEvent();
+        });
+
+        let buttons = document.createElement("div");
+        buttons.classList.add("modal-field-btns");
+        buttons.appendChild(applyBtn);
+        buttons.appendChild(cancelBtn);
+
+        let columnRefillings = document.createElement("div");
+        columnRefillings.classList.add("refillings-editor-column");
+        columnRefillings.appendChild(this._date);
+        columnRefillings.appendChild(this._listRefillings);
+        columnRefillings.appendChild(buttons);
 
         this._departments = document.createElement("div");
         this._departments.classList.add("refillings-editor-departments");
 
-        let column2 = document.createElement("div");
-        column2.classList.add("refillings-editor-column");
-        column2.appendChild(this._createSearchBar());
-        column2.appendChild(this._departments);
-        request.get(departmentsConfig.getAllAjax(), this._createDepartmentsList);
-
+        let columnDepartments = document.createElement("div");
+        columnDepartments.classList.add("refillings-editor-column");
+        columnDepartments.appendChild(this._createSearchBar());
+        columnDepartments.appendChild(this._departments);
+        request.get(departmentsConfig.getAllAjax(), this._loadDepartments);
 
         let wrap = document.createElement("div");
         wrap.classList.add("refillings-editor-wrap");
-        wrap.appendChild(column1);
-        wrap.appendChild(column2);
+        wrap.appendChild(columnRefillings);
+        wrap.appendChild(columnDepartments);
 
         this._modal.appendChild(wrap);
-
-        // this._title.innerHTML = configuration.getInstanse().getName();
-        //
-        // if(configuration.getModalMode().isNewModalMode()){
-        //     this._apply_btn.innerHTML = i18n.modalAddBtn;
-        // }
-        // if(configuration.getModalMode().isEditModalMode()){
-        //     this._apply_btn.innerHTML = i18n.modalUpdateBtn;
-        // }
-        //
-        // this._resetErrorFields();
-        //
-        // this._coef_field.addEventListener('input',
-        //     function(e){
-        //         this.value = this.value.replace(/[^\d]/g, '');
-        //     }
-        // );
-        //
-        // if(data !== undefined && data !== null){
-        //     this._data = data;
-        //     this._isNew = false;
-        //     this._name_field.value = data.name;
-        //     this._id.textContent = data.id;
-        //     this._coef_field.value = data.coefToner;
-        // } else {
-        //     this._isNew = true;
-        //     this._name_field.value = "";
-        //     this._id.textContent = "";
-        //     this._coef_field.value = 0;
-        // }
-        //
-        // request.get(tonersConfig.getAllAjax(), this._loadToners);
-        // request.get(drumsConfig.getAllAjax(), this._loadDrums);
-        // request.get(magneticShaftsConfig.getAllAjax(), this._loadMagneticShafts);
-        // request.get(primaryChargeShaftsConfig.getAllAjax(), this._loadPrimaryChargeShafts);
-        // request.get(cleaningBladesConfig.getAllAjax(), this._loadCleaningBlades);
-        // request.get(dispensingBladesConfig.getAllAjax(), this._loadDispencingBlades);
 
         this._overflow.show();
         this._modal.classList.remove(configuration.getConstants().classHide);
@@ -134,6 +112,17 @@ export class RefillingsEditor {
         let input = document.createElement("input");
         input.setAttribute("id", "refillings-editor-search-input");
         input.setAttribute("type", "text");
+        input.addEventListener(constants.eventInput, () => {
+                let tempList = [];
+
+                this._listDepartments.forEach(e => {
+                    if(e.name.includes(input.value)){
+                        tempList.push(e);
+                    }
+                });
+
+                this._createDepartmentsList(tempList);
+        });
 
         let label = document.createElement("label");
         label.setAttribute("for", "refillings-editor-search-input");
@@ -146,24 +135,26 @@ export class RefillingsEditor {
         return searchBar;
     }
 
+    _loadDepartments(departments){
+        this._listDepartments = departments;
+        this._createDepartmentsList(departments);
+    }
+
     _createDepartmentsList(list){
         this._clearRootElement(this._departments);
 
+        sort.byNameAsc(list);
+
         list.forEach(e => {
-            console.log(e);
-            console.log(`id department: ${e.id}`);
-            console.log(`name departments: ${e.name}`);
-            console.log(`cartridge name: ${e.cartridge.name}`);
-
             this._departments.appendChild(this._createDepartmentItem(e));
-
-
-
         });
     }
 
     _createDepartmentItem(department){
         let plus = this._createBaseElement("refillings-editor-departments-item-plus");
+        plus.addEventListener(constants.eventClick, () => {
+            this._listRefillings.appendChild(this._createRefilling(department));
+        });
 
         let title = this._createBaseElement("refillings-editor-departments-item-info-title");
         title.innerText = department.name;
@@ -178,6 +169,69 @@ export class RefillingsEditor {
         item.appendChild(info);
 
         return item;
+    }
+
+    _createRefilling(department){
+        let refTitle = document.createElement("div");
+        refTitle.classList.add("refillings-editor-refillings-item-refill-title");
+        refTitle.innerText = department.name;
+        let refDeleteBtn = document.createElement("div");
+        refDeleteBtn.classList.add("refillings-editor-refillings-item-refill-btn");
+
+        let refill = document.createElement("div");
+        refill.classList.add("refillings-editor-refillings-item-refill");
+        refill.appendChild(refTitle);
+        refill.appendChild(refDeleteBtn);
+
+        let refInfo = document.createElement("div");
+        refInfo.classList.add("refillings-editor-refillings-item-info");
+        refInfo.classList.add(constants.classHide);
+        refInfo.appendChild(this._createOnePointRefilling(i18n.nameDrum));
+        refInfo.appendChild(this._createOnePointRefilling(i18n.nameMagneticShaft));
+        refInfo.appendChild(this._createOnePointRefilling(i18n.namePrimaryChargeShaft));
+        refInfo.appendChild(this._createOnePointRefilling(i18n.nameCleaningBlade));
+        refInfo.appendChild(this._createOnePointRefilling(i18n.nameDispensingBlade));
+
+        let refillItem = document.createElement("div");
+        refillItem.classList.add("refillings-editor-refillings-item");
+        refillItem.appendChild(refill);
+        refillItem.appendChild(refInfo);
+
+        refill.addEventListener(constants.eventClick, () => {
+            if(refTitle.classList.contains("refillings-editor-refillings-item-refill-title-active")){
+                refTitle.classList.remove("refillings-editor-refillings-item-refill-title-active")
+                refInfo.classList.add(constants.classHide);
+            } else {
+                refTitle.classList.add("refillings-editor-refillings-item-refill-title-active")
+                refInfo.classList.remove(constants.classHide);
+            }
+        });
+
+        refDeleteBtn.addEventListener(constants.eventClick, () => {
+           this._listRefillings.removeChild(refillItem);
+        });
+
+        return refillItem;
+    }
+
+    _createOnePointRefilling(title){
+        let titlePoint = document.createElement("div");
+        titlePoint.classList.add("refillings-editor-refillings-item-info-point-title");
+        titlePoint.innerText = title;
+
+        let point = document.createElement("div");
+        point.classList.add("refillings-editor-refillings-item-info-point");
+        point.appendChild(titlePoint);
+
+        point.addEventListener(constants.eventClick, () => {
+            if(point.classList.contains("refillings-editor-refillings-item-info-point-active")){
+                point.classList.remove("refillings-editor-refillings-item-info-point-active");
+            } else {
+                point.classList.add("refillings-editor-refillings-item-info-point-active");
+            }
+        });
+
+        return point;
     }
 
     // _resetErrorFields(){
@@ -209,18 +263,6 @@ export class RefillingsEditor {
 
     setTable(table){
         this._table = table;
-
-        // this._apply_btn.addEventListener(configuration.getConstants().eventClick, () => {
-        //
-        //     request.post(configuration.getInstanse().getAddAjax(),
-        //         this._getData(),
-        //         this._createEvent,
-        //         this._failValidationForm);
-        // });
-        //
-        // this._cancel_btn.addEventListener(configuration.getConstants().eventClick, () => {
-        //     this._createEvent();
-        // });
     }
 
     _createBaseElement(clazz) {
@@ -254,19 +296,19 @@ export class RefillingsEditor {
     //         }
     //     }
     // }
-    //
-    // _createEvent(){
-    //     this._close();
-    //     this._table.dispatchEvent(new CustomEvent(configuration.getConstants().eventModalAddBtn, {
-    //         bubbles: true
-    //     }));
-    // }
-    //
-    // _close(){
-    //     this._overflow.hide();
-    //     this._modal.classList.add(configuration.getConstants().classHide);
-    // }
-    //
+
+    _createEvent(){
+        this._close();
+        this._table.dispatchEvent(new CustomEvent(configuration.getConstants().eventModalAddBtn, {
+            bubbles: true
+        }));
+    }
+
+    _close(){
+        this._overflow.hide();
+        this._modal.classList.add(configuration.getConstants().classHide);
+    }
+
     // _failValidationForm(error){
     //     this._resetErrorFields();
     //
@@ -312,105 +354,4 @@ export class RefillingsEditor {
     //     }
     // }
     //
-    // _loadToners(list){
-    //     this._listToners = list;
-    //
-    //     this._clearChild(this._select_toner);
-    //
-    //     if(this._isNew) {
-    //         this._select_toner.appendChild(this._createDefaultOption());
-    //     }
-    //
-    //     list.forEach(item => {
-    //         this._select_toner.appendChild(this._createOption(item,
-    //             this._isNew ? this._data : this._data.toner));
-    //     });
-    // }
-    //
-    // _loadDrums(list){
-    //     this._listDrums = list;
-    //
-    //     this._clearChild(this._select_drum);
-    //
-    //     if(this._isNew) {
-    //         this._select_drum.appendChild(this._createDefaultOption());
-    //     }
-    //
-    //     list.forEach(item => {
-    //         this._select_drum.appendChild(this._createOption(item,
-    //             this._isNew ? this._data : this._data.drum));
-    //     });
-    // }
-    //
-    // _loadMagneticShafts(list){
-    //     this._listMagneticShafts = list;
-    //
-    //     this._clearChild(this._select_magneticshaft);
-    //
-    //     if(this._isNew) {
-    //         this._select_magneticshaft.appendChild(this._createDefaultOption());
-    //     }
-    //
-    //     list.forEach(item => {
-    //         this._select_magneticshaft.appendChild(this._createOption(item,
-    //             this._isNew ? this._data : this._data.magneticShaft));
-    //     });
-    // }
-    //
-    // _loadPrimaryChargeShafts(list){
-    //     this._listPrimaryChargeShafts = list;
-    //
-    //     this._clearChild(this._select_primarychargeshaft);
-    //
-    //     if(this._isNew) {
-    //         this._select_primarychargeshaft.appendChild(this._createDefaultOption());
-    //     }
-    //
-    //     list.forEach(item => {
-    //         this._select_primarychargeshaft.appendChild(this._createOption(item,
-    //             this._isNew ? this._data : this._data.primaryChargeShaft));
-    //     });
-    // }
-    //
-    // _loadCleaningBlades(list){
-    //     this._listCleaningBlabes = list;
-    //
-    //     this._clearChild(this._select_cleaningblade);
-    //
-    //     if(this._isNew) {
-    //         this._select_cleaningblade.appendChild(this._createDefaultOption());
-    //     }
-    //
-    //     list.forEach(item => {
-    //         this._select_cleaningblade.appendChild(this._createOption(item,
-    //             this._isNew ? this._data : this._data.cleaningBlade));
-    //     });
-    // }
-    //
-    // _loadDispencingBlades(list){
-    //     this._listDispencingBlades = list;
-    //
-    //     this._clearChild(this._select_dispencingblade);
-    //
-    //     if(this._isNew) {
-    //         this._select_dispencingblade.appendChild(this._createDefaultOption());
-    //     }
-    //
-    //     list.forEach(item => {
-    //         this._select_dispencingblade.appendChild(this._createOption(item,
-    //             this._isNew ? this._data : this._data.dispensingBlade));
-    //     });
-    // }
-    //
-    // _createOption(item, data){
-    //     let option = document.createElement("option");
-    //     option.setAttribute("value", item.id);
-    //     option.innerText = item.name;
-    //
-    //     if(!this._isNew && item.id === data.id){
-    //         option.setAttribute("selected", "selected");
-    //     }
-    //
-    //     return option;
-    // }
 }
