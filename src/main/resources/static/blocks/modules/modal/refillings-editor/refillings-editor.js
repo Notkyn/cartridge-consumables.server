@@ -34,32 +34,20 @@ export class RefillingsEditor {
         applyBtn.innerText = i18n.modalAddBtn;
 
         applyBtn.addEventListener(configuration.getConstants().eventClick, () => {
-            let date = "";
 
-            let refillingsToSave = [];
             let refillings = this._listRefillings.querySelectorAll(".refillings-editor-refillings-item");
-            refillings.forEach(e => {
-                console.log(e);
+            refillings.forEach(refillingsItem => {
                 let refilling = {};
-                let title = e.querySelector(".refillings-editor-refillings-item-refill-title");
 
-                this._listDepartments.forEach(e => {
-                    if(e.name.includes(title.innerText)){
-                        refilling.department = e;
-                    }
-                });
+                refilling.date = this._date;
+                refilling.department = this._getDepartmentToRefilling(refillingsItem);
 
-                let points = this._listRefillings.querySelectorAll(".refillings-editor-refillings-item-info-point");
-                points.forEach(point => {
-                   console.log(point);
-                   //
-                });
+                this._setPointsToRefillings(refilling, refillingsItem);
+
 
                 console.log(refilling);
-                refillingsToSave.push(refilling);
+                // to save
             });
-
-            // to save
         });
 
         let cancelBtn = document.createElement("button");
@@ -232,6 +220,43 @@ export class RefillingsEditor {
         });
 
         return point;
+    }
+
+    _getDepartmentToRefilling(refillingsItem){
+        let title = refillingsItem.querySelector(".refillings-editor-refillings-item-refill-title");
+
+        this._listDepartments.forEach(departmentsItem => {
+            if(departmentsItem.name === title.innerText){
+                console.log(departmentsItem);
+                return departmentsItem;
+            }
+        });
+    }
+
+    _setPointsToRefillings(refilling, refillingsItem){
+        let points = refillingsItem.querySelectorAll(".refillings-editor-refillings-item-info-point");
+
+        points.forEach((point, index) => {
+            if(index === 0) {
+                refilling.drum = this._getContainsClassPoint(point);
+            }
+            if(index === 1) {
+                refilling.magnetic_shaft = this._getContainsClassPoint(point);
+            }
+            if(index === 2) {
+                refilling.primary_charge_shaft = this._getContainsClassPoint(point);
+            }
+            if(index === 3) {
+                refilling.cleaning_blade = this._getContainsClassPoint(point);
+            }
+            if(index === 4) {
+                refilling.dispensing_blade = this._getContainsClassPoint(point);
+            }
+        });
+    }
+
+    _getContainsClassPoint(point){
+        return point.classList.contains("refillings-editor-refillings-item-info-point-active");
     }
 
     // _resetErrorFields(){
